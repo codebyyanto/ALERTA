@@ -1,0 +1,24 @@
+# 🚨 ALERTA  
+Advanced Location-based Emergency Response and Threat Alert System
+
+## 📌 Deskripsi
+ALERTA merupakan sistem aplikasi berbasis web yang dirancang untuk mendukung proses monitoring, pelaporan, serta penyampaian peringatan dini terhadap kejadian bencana secara real-time. Sistem ini bertujuan untuk meningkatkan kecepatan respons serta efektivitas koordinasi antara masyarakat dan instansi terkait dalam penanganan bencana.
+
+ALERTA berfungsi sebagai pusat pengelolaan informasi kebencanaan yang terintegrasi, sehingga data dapat diakses secara cepat, akurat, dan efisien.
+
+## 🎯 Tujuan
+- Meningkatkan kecepatan penyebaran informasi bencana  
+- Mempermudah masyarakat dalam melaporkan kejadian  
+- Mendukung pengambilan keputusan oleh pihak berwenang  
+- Mengurangi dampak bencana melalui respons yang lebih cepat  
+
+## ⚙️ Tech Stack
+
+### Backend
+- NestJS  
+- Prisma ORM  
+- PostgreSQL / MySQL  
+
+### Frontend (Web CMS)
+- NextJS  
+- React  
