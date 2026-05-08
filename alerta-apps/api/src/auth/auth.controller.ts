@@ -13,6 +13,12 @@ export class AuthController {
     return this.authService.register(registerDto);
   }
 
+  @Post('admin/login')
+  @HttpCode(HttpStatus.OK)
+  adminLogin(@Body() loginDto: LoginDto) {
+    return this.authService.adminLogin(loginDto);
+  }
+
   @Post('login')
   @HttpCode(HttpStatus.OK)
   login(@Body() loginDto: LoginDto) {

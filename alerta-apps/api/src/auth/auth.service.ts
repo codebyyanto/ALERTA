@@ -39,7 +39,7 @@ export class AuthService {
     });
 
     // Auto-login setelah register
-    const payload = { sub: user.id, email: user.email };
+    const payload = { sub: user.id, email: user.email, role: user.role };
     return {
       message: 'Pendaftaran berhasil',
       access_token: this.jwtService.sign(payload),
@@ -47,6 +47,7 @@ export class AuthService {
         id: user.id,
         email: user.email,
         name: user.name,
+        role: user.role,
       }
     };
   }
@@ -72,13 +73,52 @@ export class AuthService {
     }
 
     // Generate JWT Token
-    const payload = { sub: user.id, email: user.email };
+    const payload = { sub: user.id, email: user.email, role: user.role };
     return {
       access_token: this.jwtService.sign(payload),
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
+        role: user.role,
+      }
+    };
+  }
+
+  async adminLogin(loginDto: LoginDto) {
+    const { email, password } = loginDto;
+
+    // Cari user berdasarkan email
+    const user = await this.usersService.findByEmail(email);
+    if (!user) {
+      throw new UnauthorizedException('Email atau password salah');
+    }
+
+    // Pastikan user ini adalah admin
+    if (user.role !== 'ADMIN') {
+      throw new UnauthorizedException('Akses ditolak. Anda bukan admin.');
+    }
+
+    // Jika user tidak punya password
+    if (!user.password) {
+      throw new UnauthorizedException('Gunakan login dengan Google untuk akun ini');
+    }
+
+    // Cocokkan password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Email atau password salah');
+    }
+
+    // Generate JWT Token
+    const payload = { sub: user.id, email: user.email, role: user.role };
+    return {
+      access_token: this.jwtService.sign(payload),
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
       }
     };
   }
