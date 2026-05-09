@@ -37,3 +37,9 @@ export const authService = {
 
     return data;
   },
+  /**
+   * Register user baru
+   * POST /auth/register
+   */
+  async register(payload: RegisterPayload): Promise<AuthResponse> {
+    const { data } = await api.post<AuthResponse>('/auth/register', payload);
