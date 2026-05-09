@@ -208,3 +208,38 @@ export default function RegisterScreen() {
     </SafeAreaView>
   );
 }
+const styles = StyleSheet.create({
+  flex1: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  scrollContent: {
+    flexGrow: 1,
+  },
+
+  /* ── Header Bar ── */
+  headerBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+    backgroundColor: '#F8FAFC',
+  },
+  backBtn: {
+    padding: 4,
+  },
+  headerTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#1e293b',
+  },
+  headerLogo: {
+    fontSize: 15,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: -0.3,
+  },
