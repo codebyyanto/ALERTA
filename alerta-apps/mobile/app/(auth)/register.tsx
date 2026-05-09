@@ -26,3 +26,10 @@ import {
   ArrowRight,
 } from 'lucide-react-native';
 import { router } from 'expo-router';
+
+export default function RegisterScreen() {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
