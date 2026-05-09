@@ -179,3 +179,10 @@ export default function RegisterScreen() {
               <Text style={styles.registerBtnText}>Daftar Sekarang</Text>
               <ArrowRight color="#ffffff" size={18} style={{ marginLeft: 8 }} />
             </TouchableOpacity>
+            {/* ── Login Link ── */}
+            <View style={styles.loginRow}>
+              <Text style={styles.loginLabel}>Sudah punya akun? </Text>
+              <TouchableOpacity onPress={() => router.back()} activeOpacity={0.6}>
+                <Text style={styles.loginLink}>Masuk</Text>
+              </TouchableOpacity>
+            </View>
