@@ -16,3 +16,6 @@ export async function loginAction(formData: FormData) {
     if (!email || !password) {
       return { error: 'Email dan password wajib diisi' };
     }
+    try {
+      const response = await api.post('/auth/admin/login', { email, password });
+      const { access_token, user } = response.data;
