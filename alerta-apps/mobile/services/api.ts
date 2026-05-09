@@ -17,3 +17,8 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// Request interceptor — menambahkan token ke setiap request
+api.interceptors.request.use(
+  async (config) => {
+    try {
