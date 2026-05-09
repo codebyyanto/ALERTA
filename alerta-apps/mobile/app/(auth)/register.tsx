@@ -309,3 +309,38 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     opacity: 0.5,
   },
+  /* ── Form ── */
+  formSection: {
+    marginBottom: 8,
+  },
+  fieldGroup: {
+    marginBottom: 16,
+  },
+  fieldLabel: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#64748b',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
+    marginBottom: 8,
+    marginLeft: 4,
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+  },
+  textInput: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#334155',
+  },
+  eyeBtn: {
+    padding: 4,
+  },
