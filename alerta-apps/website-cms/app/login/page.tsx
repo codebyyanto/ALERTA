@@ -104,3 +104,7 @@ export default function LoginPage() {
               </div>
               <span className="text-sm text-slate-500 font-medium group-hover:text-slate-700 transition-colors">Ingat Saya</span>
             </label>
+            <button type="button" className="text-sm font-bold text-red-600 hover:text-red-700 transition-colors">
+              Lupa Kata Sandi?
+            </button>
+          </div>
