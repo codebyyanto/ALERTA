@@ -40,5 +40,12 @@ export default function LoginScreen() {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         ></ScrollView>
+
+        <LinearGradient
+          colors={['#fee2e2', '#e0f2fe', '#F8FAFC']}
+          style={StyleSheet.absoluteFillObject}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0.6 }}
+        />
     </SafeAreaView>
   );
