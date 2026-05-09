@@ -131,7 +131,6 @@ export default function LoginPage() {
             Belum punya akses? <button className="text-red-600 font-bold hover:underline">Hubungi Admin Utama</button>
           </p>
         </div>
-        </div>
       </div>
 
       {/* Footer Info */}
