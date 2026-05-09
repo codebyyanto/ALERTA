@@ -79,8 +79,33 @@ export default function LoginScreen() {
                 />
               </View>
             </View>
-
-          </ScrollView>
+            <View style={styles.fieldGroup}>
+              <Text style={styles.fieldLabel}>KATA SANDI</Text>
+              <View style={styles.inputRow}>
+                <Lock color="#94a3b8" size={20} />
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="••••••••"
+                  placeholderTextColor="#94a3b8"
+                  secureTextEntry={!showPassword}
+                  value={password}
+                  onChangeText={setPassword}
+                />
+                <TouchableOpacity
+                  onPress={() => setShowPassword(!showPassword)}
+                  style={styles.eyeBtn}
+                  activeOpacity={0.6}
+                >
+                  {showPassword ? (
+                    <EyeOff color="#94a3b8" size={20} />
+                  ) : (
+                    <Eye color="#94a3b8" size={20} />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
