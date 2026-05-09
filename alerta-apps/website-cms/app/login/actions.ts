@@ -9,3 +9,10 @@ export async function loginAction(formData: FormData) {
   if (!email || !password) {
     return { error: 'Email dan password wajib diisi' };
   }
+  export async function loginAction(formData: FormData) {
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    if (!email || !password) {
+      return { error: 'Email dan password wajib diisi' };
+    }
