@@ -10,3 +10,10 @@ const getBaseUrl = () => {
   }
   return 'https://api.alerta.id'; // Production URL nanti
 };
+const api = axios.create({
+  baseURL: getBaseUrl(),
+  timeout: 15000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
