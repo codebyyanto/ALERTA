@@ -9,6 +9,8 @@ import {
   Platform,
   StyleSheet,
   Dimensions,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -17,6 +19,7 @@ import { router } from 'expo-router';
 
 import { AlertaLogo } from '@/components/icons/AlertaLogo';
 import { GoogleIcon } from '@/components/icons/GoogleIcon';
+import { authService } from '@/services/authService';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -24,9 +27,23 @@ export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const handleLogin = () => {
-    // TODO: Integrasi API login nanti
-    router.replace('/(tabs)');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    if (!email.trim() || !password.trim()) {
+      Alert.alert('Peringatan', 'Email dan password tidak boleh kosong.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await authService.login({ email: email.trim(), password });
+      router.replace('/(tabs)');
+    } catch (error: any) {
+      Alert.alert('Login Gagal', error.message || 'Terjadi kesalahan saat login.');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -120,11 +137,16 @@ export default function LoginScreen() {
 
             {/* ── Login Button ── */}
             <TouchableOpacity
-              style={styles.loginBtn}
+              style={[styles.loginBtn, loading && styles.loginBtnDisabled]}
               activeOpacity={0.8}
               onPress={handleLogin}
+              disabled={loading}
             >
-              <Text style={styles.loginBtnText}>Masuk</Text>
+              {loading ? (
+                <ActivityIndicator color="#ffffff" size="small" />
+              ) : (
+                <Text style={styles.loginBtnText}>Masuk</Text>
+              )}
             </TouchableOpacity>
 
             {/* ── Divider ── */}
@@ -312,6 +334,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 10,
     elevation: 6,
+  },
+  loginBtnDisabled: {
+    opacity: 0.7,
   },
 
   loginBtnText: {

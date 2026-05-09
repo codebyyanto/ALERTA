@@ -8,6 +8,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -26,6 +28,7 @@ import {
   ArrowRight,
 } from 'lucide-react-native';
 import { router } from 'expo-router';
+import { authService } from '@/services/authService';
 
 export default function RegisterScreen() {
   const [fullName, setFullName] = useState('');
@@ -33,10 +36,34 @@ export default function RegisterScreen() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleRegister = () => {
-    // TODO: Integrasi API register nanti
-    router.replace('/(tabs)');
+  const handleRegister = async () => {
+    if (!fullName.trim() || !email.trim() || !phone.trim() || !password.trim()) {
+      Alert.alert('Peringatan', 'Semua field harus diisi.');
+      return;
+    }
+    if (password.length < 6) {
+      Alert.alert('Peringatan', 'Password minimal 6 karakter.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await authService.register({
+        name: fullName.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        password,
+      });
+      Alert.alert('Berhasil', 'Akun berhasil dibuat!', [
+        { text: 'OK', onPress: () => router.replace('/(tabs)') },
+      ]);
+    } catch (error: any) {
+      Alert.alert('Registrasi Gagal', error.message || 'Terjadi kesalahan saat mendaftar.');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -172,12 +199,19 @@ export default function RegisterScreen() {
             </View>
             {/* ── Register Button ── */}
             <TouchableOpacity
-              style={styles.registerBtn}
+              style={[styles.registerBtn, loading && styles.registerBtnDisabled]}
               activeOpacity={0.8}
               onPress={handleRegister}
+              disabled={loading}
             >
-              <Text style={styles.registerBtnText}>Daftar Sekarang</Text>
-              <ArrowRight color="#ffffff" size={18} style={{ marginLeft: 8 }} />
+              {loading ? (
+                <ActivityIndicator color="#ffffff" size="small" />
+              ) : (
+                <>
+                  <Text style={styles.registerBtnText}>Daftar Sekarang</Text>
+                  <ArrowRight color="#ffffff" size={18} style={{ marginLeft: 8 }} />
+                </>
+              )}
             </TouchableOpacity>
             {/* ── Login Link ── */}
             <View style={styles.loginRow}>
@@ -359,6 +393,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 10,
     elevation: 6,
+  },
+  registerBtnDisabled: {
+    opacity: 0.7,
   },
   registerBtnText: {
     color: '#ffffff',
