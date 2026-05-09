@@ -44,3 +44,15 @@ export default function RegisterScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.flex1}
       >
+        {/* ── Custom Header Bar ── */}
+        <View style={styles.headerBar}>
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={styles.backBtn}
+            activeOpacity={0.6}
+          >
+            <ArrowLeft color="#1e293b" size={22} />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Buat Akun Baru</Text>
+          <Text style={styles.headerLogo}>ALERTA</Text>
+        </View>
