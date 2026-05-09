@@ -22,3 +22,12 @@ export interface AuthResponse {
     role: string;
   };
 }
+// ── API Calls ──
+
+export const authService = {
+  /**
+   * Login user biasa (bukan admin)
+   * POST /auth/login
+   */
+  async login(payload: LoginPayload): Promise<AuthResponse> {
+    const { data } = await api.post<AuthResponse>('/auth/login', payload);
