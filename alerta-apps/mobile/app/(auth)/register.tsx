@@ -38,3 +38,9 @@ export default function RegisterScreen() {
     // TODO: Integrasi API register nanti
     router.replace('/(tabs)');
   };
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.flex1}
+      >
