@@ -171,3 +171,8 @@ export default function LoginPage() {
     {/* Bottom Copyright Bar */ }
     < div className = "absolute bottom-8 w-full px-12 flex items-center justify-between z-10" >
       <div className="text-[14px] font-black text-slate-800">ALERTA</div>
+      <div className="flex items-center gap-6">
+          <button className="text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-widest transition-colors">Privasi</button>
+          <button className="text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-widest transition-colors">Syarat & Ketentuan</button>
+          <button className="text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-widest transition-colors">Kontak</button>
+        </div>
