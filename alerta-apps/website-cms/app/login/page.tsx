@@ -168,3 +168,6 @@ export default function LoginPage() {
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Secure AES-256</span>
         </div>
       </div >
+    {/* Bottom Copyright Bar */ }
+    < div className = "absolute bottom-8 w-full px-12 flex items-center justify-between z-10" >
+      <div className="text-[14px] font-black text-slate-800">ALERTA</div>
