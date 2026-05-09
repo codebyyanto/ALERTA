@@ -93,3 +93,14 @@ export default function LoginPage() {
               </button>
             </div>
           </div>
+          <div className="flex items-center justify-between mt-2">
+            <label className="flex items-center gap-2 cursor-pointer group">
+              <div className="relative flex items-center justify-center">
+                <input type="checkbox" className="peer sr-only" />
+                <div className="w-5 h-5 border-2 border-slate-200 rounded-md peer-checked:bg-red-500 peer-checked:border-red-500 transition-all" />
+                <div className="absolute text-white opacity-0 peer-checked:opacity-100 transition-opacity">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+              </div>
+              <span className="text-sm text-slate-500 font-medium group-hover:text-slate-700 transition-colors">Ingat Saya</span>
+            </label>
