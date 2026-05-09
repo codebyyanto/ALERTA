@@ -51,3 +51,16 @@ api.interceptors.response.use(
         status,
         message: Array.isArray(message) ? message[0] : message,
       });
+    } else if (error.request) {
+      // Tidak ada respons dari server
+      return Promise.reject({
+        status: 0,
+        message: 'Tidak dapat terhubung ke server. Pastikan koneksi internet Anda aktif.',
+      });
+    }
+    return Promise.reject({
+      status: -1,
+      message: error.message || 'Terjadi kesalahan tidak diketahui',
+    });
+  },
+);
