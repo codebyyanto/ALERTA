@@ -31,3 +31,9 @@ export const authService = {
    */
   async login(payload: LoginPayload): Promise<AuthResponse> {
     const { data } = await api.post<AuthResponse>('/auth/login', payload);
+    // Simpan token ke AsyncStorage
+    await AsyncStorage.setItem('access_token', data.access_token);
+    await AsyncStorage.setItem('user', JSON.stringify(data.user));
+
+    return data;
+  },
