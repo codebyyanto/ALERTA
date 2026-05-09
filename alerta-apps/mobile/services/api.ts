@@ -34,3 +34,8 @@ api.interceptors.request.use(
   },
   (error) => Promise.reject(error),
 );
+// Response interceptor — handle error secara global
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
