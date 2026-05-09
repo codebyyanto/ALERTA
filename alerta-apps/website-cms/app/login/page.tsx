@@ -131,33 +131,11 @@ export default function LoginPage() {
             Belum punya akses? <button className="text-red-600 font-bold hover:underline">Hubungi Admin Utama</button>
           </p>
         </div>
-      </div>
-      <button
-        type="submit"
-        disabled={isPending}
-        className={cn(
-          "w-full bg-[#C8102E] text-white rounded-2xl py-4 font-bold flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(200,16,46,0.15)] hover:shadow-[0_10px_25px_rgba(200,16,46,0.25)] hover:bg-[#b00e28] active:scale-[0.98] transition-all disabled:opacity-70 disabled:active:scale-100",
-          isPending && "cursor-not-allowed"
-        )}
-      >
-        {isPending ? (
-          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-        ) : (
-          <>
-            Masuk ke Dashboard
-            <ArrowRight size={18} />
-          </>
-        )}
-      </button>
-    </form>
-    <div className="mt-10 text-center">
-          <p className="text-sm text-slate-500 font-medium">
-            Belum punya akses? <button className="text-red-600 font-bold hover:underline">Hubungi Admin Utama</button>
-          </p>
         </div>
-      </div >
-    {/* Footer Info */ }
-    < div className = "mt-12 flex items-center gap-8 z-10" >
+      </div>
+
+      {/* Footer Info */}
+      <div className="mt-12 flex items-center gap-8 z-10">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">System Live</span>
@@ -167,11 +145,12 @@ export default function LoginPage() {
           <ShieldCheck size={14} className="text-slate-300" />
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Secure AES-256</span>
         </div>
-      </div >
-    {/* Bottom Copyright Bar */ }
-    < div className = "absolute bottom-8 w-full px-12 flex items-center justify-between z-10" >
-      <div className="text-[14px] font-black text-slate-800">ALERTA</div>
-      <div className="flex items-center gap-6">
+      </div>
+
+      {/* Bottom Copyright Bar */}
+      <div className="absolute bottom-8 w-full px-12 flex items-center justify-between z-10">
+        <div className="text-[14px] font-black text-slate-800">ALERTA</div>
+        <div className="flex items-center gap-6">
           <button className="text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-widest transition-colors">Privasi</button>
           <button className="text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-widest transition-colors">Syarat & Ketentuan</button>
           <button className="text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-widest transition-colors">Kontak</button>
@@ -179,7 +158,7 @@ export default function LoginPage() {
         <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">
           © 2024 Alerta Disaster Response. All Rights Reserved.
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
