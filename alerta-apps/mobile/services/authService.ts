@@ -55,3 +55,9 @@ export const authService = {
   async logout(): Promise<void> {
     await AsyncStorage.multiRemove(['access_token', 'user']);
   },
+  /**
+   * Cek apakah user sudah login (ada token tersimpan)
+   */
+  async getStoredToken(): Promise<string | null> {
+    return AsyncStorage.getItem('access_token');
+  },
