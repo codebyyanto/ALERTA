@@ -293,3 +293,54 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
   },
+  /* ── Divider ── */
+
+  dividerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 28,
+  },
+
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#e2e8f0',
+  },
+
+  dividerText: {
+    marginHorizontal: 16,
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#94a3b8',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
+  },
+
+  /* ── Google Button ── */
+
+  googleBtn: {
+    width: '100%',
+    backgroundColor: '#ffffff',
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    borderRadius: 16,
+    paddingVertical: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+
+  googleIconWrap: {
+    marginRight: 12,
+  },
+
+  googleBtnText: {
+    color: '#334155',
+    fontWeight: '700',
+    fontSize: 15,
+  },
