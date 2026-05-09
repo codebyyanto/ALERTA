@@ -197,3 +197,64 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     marginTop: 4,
   },
+  /* ── Title ── */
+
+  titleSection: {
+    marginBottom: 28,
+  },
+
+  welcomeTitle: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#1e293b',
+    marginBottom: 8,
+  },
+
+  welcomeDesc: {
+    fontSize: 14,
+    color: '#64748b',
+    lineHeight: 20,
+  },
+
+  /* ── Form ── */
+
+  formSection: {
+    marginBottom: 4,
+  },
+
+  fieldGroup: {
+    marginBottom: 16,
+  },
+
+  fieldLabel: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#64748b',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
+    marginBottom: 8,
+    marginLeft: 4,
+  },
+
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(224, 242, 254, 0.5)',
+    borderWidth: 1,
+    borderColor: '#e0f2fe',
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+  },
+
+  textInput: {
+    flex: 1,
+    marginLeft: 12,
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#334155',
+  },
+
+  eyeBtn: {
+    padding: 4,
+  },
