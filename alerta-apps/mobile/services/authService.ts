@@ -43,3 +43,9 @@ export const authService = {
    */
   async register(payload: RegisterPayload): Promise<AuthResponse> {
     const { data } = await api.post<AuthResponse>('/auth/register', payload);
+    // Auto-login: simpan token setelah register berhasil
+    await AsyncStorage.setItem('access_token', data.access_token);
+    await AsyncStorage.setItem('user', JSON.stringify(data.user));
+
+    return data;
+  },
