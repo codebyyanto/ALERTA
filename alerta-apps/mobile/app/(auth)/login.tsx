@@ -105,6 +105,9 @@ export default function LoginScreen() {
               </View>
             </View>
           </View>
+          <TouchableOpacity style={styles.forgotBtn} activeOpacity={0.6}>
+            <Text style={styles.forgotText}>Lupa Kata Sandi?</Text>
+          </TouchableOpacity>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
