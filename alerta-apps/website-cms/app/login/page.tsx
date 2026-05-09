@@ -68,3 +68,19 @@ export default function LoginPage() {
               />
             </div>
           </div>
+          {/* Password Field */}
+          <div className="space-y-2">
+            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider ml-1">
+              Kata Sandi
+            </label>
+            <div className="relative group">
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#C8102E] transition-colors">
+                <Lock size={18} />
+              </div>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                required
+                placeholder="••••••••"
+                className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 pl-12 pr-12 text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-red-500/10 focus:border-red-500/20 transition-all"
+              />
