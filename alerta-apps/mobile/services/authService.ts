@@ -49,3 +49,9 @@ export const authService = {
 
     return data;
   },
+  /**
+   * Logout — hapus token & data user dari storage
+   */
+  async logout(): Promise<void> {
+    await AsyncStorage.multiRemove(['access_token', 'user']);
+  },
