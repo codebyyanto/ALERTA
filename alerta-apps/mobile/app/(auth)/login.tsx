@@ -19,3 +19,8 @@ import { AlertaLogo } from '@/components/icons/AlertaLogo';
 import { GoogleIcon } from '@/components/icons/GoogleIcon';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
+export default function LoginScreen() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
