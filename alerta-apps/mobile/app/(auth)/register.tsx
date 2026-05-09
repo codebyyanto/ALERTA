@@ -95,3 +95,21 @@ export default function RegisterScreen() {
                 <Shield color="#bfdbfe" size={48} strokeWidth={1} />
               </View>
             </View>
+            {/* ── Form Fields ── */}
+            <View style={styles.formSection}>
+
+              {/* Nama Lengkap */}
+              <View style={styles.fieldGroup}>
+                <Text style={styles.fieldLabel}>NAMA LENGKAP</Text>
+                <View style={styles.inputRow}>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="Contoh: Budi Santoso"
+                    placeholderTextColor="#94a3b8"
+                    autoCapitalize="words"
+                    value={fullName}
+                    onChangeText={setFullName}
+                  />
+                  <User color="#94a3b8" size={20} />
+                </View>
+              </View>
