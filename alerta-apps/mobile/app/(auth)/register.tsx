@@ -78,3 +78,20 @@ export default function RegisterScreen() {
                 Gabung dengan jaringan tanggap bencana tercepat di Indonesia.
               </Text>
             </View>
+            {/* ── Encryption Info Card ── */}
+            <View style={styles.infoCard}>
+              <View style={styles.infoCardLeft}>
+                <View style={styles.infoIconCircle}>
+                  <ShieldCheck color="#C8102E" size={20} />
+                </View>
+                <View style={styles.infoTextWrap}>
+                  <Text style={styles.infoTitle}>Data Terenkripsi</Text>
+                  <Text style={styles.infoDesc}>
+                    Keamanan privasi Anda adalah prioritas kami. Semua data dilindungi dengan enkripsi end-to-end.
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.infoShieldWrap}>
+                <Shield color="#bfdbfe" size={48} strokeWidth={1} />
+              </View>
+            </View>
