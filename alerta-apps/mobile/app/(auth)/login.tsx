@@ -128,7 +128,17 @@ export default function LoginScreen() {
             </View>
             <Text style={styles.googleBtnText}>Google</Text>
           </TouchableOpacity>
+          <View style={styles.spacer} />
+          <View style={styles.registerRow}>
+            <Text style={styles.registerLabel}>Belum memiliki akun? </Text>
+            <TouchableOpacity activeOpacity={0.6}><Text style={styles.registerLink}>Daftar Akun Baru</Text></TouchableOpacity>
+          </View>
 
+          <View style={styles.footerRow}>
+            <TouchableOpacity activeOpacity={0.6}><Text style={styles.footerText}>PRIVASI</Text></TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.6}><Text style={styles.footerText}>KETENTUAN</Text></TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.6}><Text style={styles.footerText}>BANTUAN</Text></TouchableOpacity>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
