@@ -258,3 +258,38 @@ const styles = StyleSheet.create({
   eyeBtn: {
     padding: 4,
   },
+
+  /* ── Forgot Password ── */
+
+  forgotBtn: {
+    alignItems: 'flex-end',
+    marginTop: 8,
+    marginBottom: 28,
+  },
+
+  forgotText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#C8102E',
+  },
+
+  /* ── Login Button ── */
+
+  loginBtn: {
+    width: '100%',
+    backgroundColor: '#C8102E',
+    borderRadius: 16,
+    paddingVertical: 16,
+    shadowColor: '#C8102E',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 6,
+  },
+
+  loginBtnText: {
+    color: '#ffffff',
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 16,
+  },
