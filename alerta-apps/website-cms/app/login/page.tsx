@@ -126,3 +126,27 @@ export default function LoginPage() {
             )}
           </button>
         </form>
+        <div className="mt-10 text-center">
+          <p className="text-sm text-slate-500 font-medium">
+            Belum punya akses? <button className="text-red-600 font-bold hover:underline">Hubungi Admin Utama</button>
+          </p>
+        </div>
+      </div>
+      <button
+        type="submit"
+        disabled={isPending}
+        className={cn(
+          "w-full bg-[#C8102E] text-white rounded-2xl py-4 font-bold flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(200,16,46,0.15)] hover:shadow-[0_10px_25px_rgba(200,16,46,0.25)] hover:bg-[#b00e28] active:scale-[0.98] transition-all disabled:opacity-70 disabled:active:scale-100",
+          isPending && "cursor-not-allowed"
+        )}
+      >
+        {isPending ? (
+          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        ) : (
+          <>
+            Masuk ke Dashboard
+            <ArrowRight size={18} />
+          </>
+        )}
+      </button>
+    </form>
