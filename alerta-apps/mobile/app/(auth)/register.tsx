@@ -69,3 +69,12 @@ export default function RegisterScreen() {
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0.4 }}
           />
+          <View style={styles.container}>
+
+            {/* ── Title Section ── */}
+            <View style={styles.titleSection}>
+              <Text style={styles.pageTitle}>Buat Akun Baru</Text>
+              <Text style={styles.pageSubtitle}>
+                Gabung dengan jaringan tanggap bencana tercepat di Indonesia.
+              </Text>
+            </View>
