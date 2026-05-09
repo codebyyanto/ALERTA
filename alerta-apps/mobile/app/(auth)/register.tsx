@@ -113,3 +113,19 @@ export default function RegisterScreen() {
                   <User color="#94a3b8" size={20} />
                 </View>
               </View>
+              {/* Email */}
+              <View style={styles.fieldGroup}>
+                <Text style={styles.fieldLabel}>EMAIL</Text>
+                <View style={styles.inputRow}>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="nama@email.com"
+                    placeholderTextColor="#94a3b8"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    value={email}
+                    onChangeText={setEmail}
+                  />
+                  <Mail color="#94a3b8" size={20} />
+                </View>
+              </View>
