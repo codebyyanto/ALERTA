@@ -47,3 +47,7 @@ api.interceptors.response.use(
         // Token expired / unauthorized — bisa redirect ke login
         console.warn('[API] Unauthorized:', message);
       }
+      return Promise.reject({
+        status,
+        message: Array.isArray(message) ? message[0] : message,
+      });
