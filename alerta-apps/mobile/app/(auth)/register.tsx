@@ -344,3 +344,62 @@ const styles = StyleSheet.create({
   eyeBtn: {
     padding: 4,
   },
+  /* ── Register Button ── */
+  registerBtn: {
+    width: '100%',
+    backgroundColor: '#C8102E',
+    borderRadius: 16,
+    paddingVertical: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 8,
+    shadowColor: '#C8102E',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 6,
+  },
+  registerBtnText: {
+    color: '#ffffff',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+
+  /* ── Login Link ── */
+  loginRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 24,
+    marginBottom: 28,
+  },
+  loginLabel: {
+    color: '#64748b',
+    fontWeight: '500',
+    fontSize: 14,
+  },
+  loginLink: {
+    color: '#C8102E',
+    fontWeight: '700',
+    fontSize: 14,
+  },
+
+  /* ── Trust Badges ── */
+  badgeRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    gap: 24,
+  },
+  badge: {
+    alignItems: 'center',
+    gap: 6,
+  },
+  badgeText: {
+    fontSize: 9,
+    fontWeight: '800',
+    color: '#94a3b8',
+    letterSpacing: 0.5,
+    textAlign: 'center',
+  },
+});
