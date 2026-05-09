@@ -170,3 +170,12 @@ export default function RegisterScreen() {
                 </View>
               </View>
             </View>
+            {/* ── Register Button ── */}
+            <TouchableOpacity
+              style={styles.registerBtn}
+              activeOpacity={0.8}
+              onPress={handleRegister}
+            >
+              <Text style={styles.registerBtnText}>Daftar Sekarang</Text>
+              <ArrowRight color="#ffffff" size={18} style={{ marginLeft: 8 }} />
+            </TouchableOpacity>
