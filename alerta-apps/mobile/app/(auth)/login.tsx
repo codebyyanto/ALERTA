@@ -161,3 +161,39 @@ const styles = StyleSheet.create({
     paddingTop: 48,
     paddingBottom: 24,
   },
+  /* ── Logo ── */
+
+  logoSection: {
+    alignItems: 'center',
+    marginBottom: 36,
+  },
+
+  logoBox: {
+    width: 72,
+    height: 72,
+    backgroundColor: '#C8102E',
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    shadowColor: '#C8102E',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+
+  logoTitle: {
+    fontSize: 32,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: -0.5,
+  },
+
+  logoSubtitle: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#64748b',
+    letterSpacing: 2,
+    marginTop: 4,
+  },
