@@ -61,3 +61,11 @@ export const authService = {
   async getStoredToken(): Promise<string | null> {
     return AsyncStorage.getItem('access_token');
   },
+  /**
+   * Ambil data user yang tersimpan
+   */
+  async getStoredUser(): Promise<AuthResponse['user'] | null> {
+    const userStr = await AsyncStorage.getItem('user');
+    return userStr ? JSON.parse(userStr) : null;
+  },
+};
