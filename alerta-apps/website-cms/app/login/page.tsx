@@ -30,3 +30,10 @@ export default function LoginPage() {
       {/* Background Gradients */}
       <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-red-50 rounded-full blur-[120px] opacity-60" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-blue-50 rounded-full blur-[120px] opacity-60" />
+      {/* Logo Header */}
+      <div className="flex flex-col items-center mb-10 z-10">
+        <h1 className="text-[28px] font-black text-[#C8102E] tracking-tighter">ALERTA</h1>
+        <p className="text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase mt-1">
+          Disaster Response Management
+        </p>
+      </div>
