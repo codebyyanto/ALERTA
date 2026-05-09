@@ -150,3 +150,9 @@ export default function LoginPage() {
         )}
       </button>
     </form>
+    <div className="mt-10 text-center">
+          <p className="text-sm text-slate-500 font-medium">
+            Belum punya akses? <button className="text-red-600 font-bold hover:underline">Hubungi Admin Utama</button>
+          </p>
+        </div>
+      </div >
