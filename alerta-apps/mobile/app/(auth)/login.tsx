@@ -55,6 +55,13 @@ export default function LoginScreen() {
             <Text style={styles.logoTitle}>ALERTA</Text>
             <Text style={styles.logoSubtitle}>SISTEM RESPONS BENCANA</Text>
           </View>
+
+          <View style={styles.titleSection}>
+            <Text style={styles.welcomeTitle}>Selamat Datang</Text>
+            <Text style={styles.welcomeDesc}>
+              Masuk ke akun Anda untuk mendapatkan peringatan waktu-nyata dan informasi evakuasi.
+            </Text>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
