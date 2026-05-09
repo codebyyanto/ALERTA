@@ -15,3 +15,13 @@ export default function LoginPage() {
     setError(null);
 
     const formData = new FormData(event.currentTarget);
+    startTransition(async () => {
+      const result = await loginAction(formData);
+
+      if (result?.error) {
+        setError(result.error);
+      } else if (result?.success) {
+        router.push('/');
+      }
+    });
+  }
