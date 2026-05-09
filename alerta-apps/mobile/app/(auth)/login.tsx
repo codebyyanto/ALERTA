@@ -24,3 +24,7 @@ export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const handleLogin = () => {
+    // TODO: Integrasi API login nanti
+    router.replace('/(tabs)');
+  };
