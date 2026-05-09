@@ -116,7 +116,11 @@ export default function LoginScreen() {
           >
             <Text style={styles.loginBtnText}>Masuk</Text>
           </TouchableOpacity>
-
+          <View style={styles.dividerRow}>
+            <View style={styles.dividerLine} />
+            <Text style={styles.dividerText}>ATAU MASUK DENGAN</Text>
+            <View style={styles.dividerLine} />
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
