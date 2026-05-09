@@ -186,3 +186,25 @@ export default function RegisterScreen() {
                 <Text style={styles.loginLink}>Masuk</Text>
               </TouchableOpacity>
             </View>
+            {/* ── Trust Badges ── */}
+            <View style={styles.badgeRow}>
+              <View style={styles.badge}>
+                <Lock color="#94a3b8" size={18} />
+                <Text style={styles.badgeText}>SSL SECURE</Text>
+              </View>
+              <View style={styles.badge}>
+                <RefreshCw color="#94a3b8" size={18} />
+                <Text style={styles.badgeText}>PRIVACY FIRST</Text>
+              </View>
+              <View style={styles.badge}>
+                <ShieldOff color="#94a3b8" size={18} />
+                <Text style={styles.badgeText}>ANTI SPAM</Text>
+              </View>
+            </View>
+
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+}
