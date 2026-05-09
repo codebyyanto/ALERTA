@@ -144,3 +144,29 @@ export default function RegisterScreen() {
                   <Phone color="#94a3b8" size={20} />
                 </View>
               </View>
+              {/* Kata Sandi */}
+              <View style={styles.fieldGroup}>
+                <Text style={styles.fieldLabel}>KATA SANDI</Text>
+                <View style={styles.inputRow}>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="••••••••"
+                    placeholderTextColor="#94a3b8"
+                    secureTextEntry={!showPassword}
+                    value={password}
+                    onChangeText={setPassword}
+                  />
+                  <TouchableOpacity
+                    onPress={() => setShowPassword(!showPassword)}
+                    style={styles.eyeBtn}
+                    activeOpacity={0.6}
+                  >
+                    {showPassword ? (
+                      <EyeOff color="#94a3b8" size={20} />
+                    ) : (
+                      <Eye color="#94a3b8" size={20} />
+                    )}
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
