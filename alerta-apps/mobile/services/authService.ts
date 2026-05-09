@@ -12,3 +12,13 @@ export interface RegisterPayload {
   phone: string;
   password: string;
 }
+export interface AuthResponse {
+  access_token: string;
+  message?: string;
+  user: {
+    id: string;
+    email: string;
+    name: string;
+    role: string;
+  };
+}
