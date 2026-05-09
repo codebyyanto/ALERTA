@@ -33,3 +33,8 @@ export default function RegisterScreen() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleRegister = () => {
+    // TODO: Integrasi API register nanti
+    router.replace('/(tabs)');
+  };
