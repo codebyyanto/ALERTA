@@ -143,3 +143,21 @@ export default function LoginScreen() {
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
+};
+const styles = StyleSheet.create({
+  flex1: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  scrollContent: {
+    flexGrow: 1,
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 32,
+    paddingTop: 48,
+    paddingBottom: 24,
+  },
