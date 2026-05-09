@@ -37,3 +37,9 @@ export default function LoginPage() {
           Disaster Response Management
         </p>
       </div>
+      {/* Login Card */}
+      <div className="w-full max-w-[480px] bg-white rounded-[32px] p-10 shadow-[0_20px_50px_rgba(0,0,0,0.04)] z-10 border border-white">
+        <div className="mb-10">
+          <h2 className="text-[24px] font-bold text-slate-800 mb-2">Masuk ke Panel Kontrol</h2>
+          <p className="text-slate-500 text-[14px]">Silakan masukkan kredensial admin Anda.</p>
+        </div>
