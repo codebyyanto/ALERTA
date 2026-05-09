@@ -176,3 +176,10 @@ export default function LoginPage() {
           <button className="text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-widest transition-colors">Syarat & Ketentuan</button>
           <button className="text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-widest transition-colors">Kontak</button>
         </div>
+        <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+          © 2024 Alerta Disaster Response. All Rights Reserved.
+        </div>
+      </div >
+    </div >
+  );
+}
