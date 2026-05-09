@@ -28,3 +28,7 @@ export default function LoginScreen() {
     // TODO: Integrasi API login nanti
     router.replace('/(tabs)');
   };
+  return (
+    <SafeAreaView style={styles.safeArea}>
+    </SafeAreaView>
+  );
