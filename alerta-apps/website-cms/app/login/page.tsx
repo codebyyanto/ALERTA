@@ -5,3 +5,8 @@ import { Mail, Lock, Eye, EyeOff, ArrowRight, ShieldCheck, Circle } from 'lucide
 import { loginAction } from './actions';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
+export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
