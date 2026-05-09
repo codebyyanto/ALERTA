@@ -19,3 +19,14 @@ export async function loginAction(formData: FormData) {
     try {
       const response = await api.post('/auth/admin/login', { email, password });
       const { access_token, user } = response.data;
+      // Set HTTP-Only Cookie
+      const cookieStore = await cookies();
+      cookieStore.set('admin_token', access_token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 60 * 60 * 24 * 7, // 1 week
+        path: '/',
+      });
+
+      return { success: true, user };
