@@ -156,3 +156,15 @@ export default function LoginPage() {
           </p>
         </div>
       </div >
+    {/* Footer Info */ }
+    < div className = "mt-12 flex items-center gap-8 z-10" >
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">System Live</span>
+        </div>
+        <div className="w-1 h-1 rounded-full bg-slate-200" />
+        <div className="flex items-center gap-2">
+          <ShieldCheck size={14} className="text-slate-300" />
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Secure AES-256</span>
+        </div>
+      </div >
