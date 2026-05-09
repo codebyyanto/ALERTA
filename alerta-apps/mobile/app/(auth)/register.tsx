@@ -243,3 +243,69 @@ const styles = StyleSheet.create({
     color: '#C8102E',
     letterSpacing: -0.3,
   },
+  /* ── Container ── */
+  container: {
+    flex: 1,
+    paddingHorizontal: 28,
+    paddingTop: 8,
+    paddingBottom: 24,
+  },
+
+  /* ── Title ── */
+  titleSection: {
+    marginBottom: 20,
+  },
+  pageTitle: {
+    fontSize: 26,
+    fontWeight: '800',
+    color: '#1e293b',
+    marginBottom: 8,
+  },
+  pageSubtitle: {
+    fontSize: 14,
+    color: '#64748b',
+    lineHeight: 20,
+  },
+
+  /* ── Info Card ── */
+  infoCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#eff6ff',
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 24,
+    overflow: 'hidden',
+  },
+  infoCardLeft: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  infoIconCircle: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#fee2e2',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  infoTextWrap: {
+    flex: 1,
+  },
+  infoTitle: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1e293b',
+    marginBottom: 4,
+  },
+  infoDesc: {
+    fontSize: 11,
+    color: '#64748b',
+    lineHeight: 16,
+  },
+  infoShieldWrap: {
+    marginLeft: 8,
+    opacity: 0.5,
+  },
