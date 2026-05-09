@@ -129,3 +129,18 @@ export default function RegisterScreen() {
                   <Mail color="#94a3b8" size={20} />
                 </View>
               </View>
+              {/* Nomor Telepon */}
+              <View style={styles.fieldGroup}>
+                <Text style={styles.fieldLabel}>NOMOR TELEPON</Text>
+                <View style={styles.inputRow}>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="+62 812 3456 7890"
+                    placeholderTextColor="#94a3b8"
+                    keyboardType="phone-pad"
+                    value={phone}
+                    onChangeText={setPhone}
+                  />
+                  <Phone color="#94a3b8" size={20} />
+                </View>
+              </View>
