@@ -22,3 +22,15 @@ const api = axios.create({
 api.interceptors.request.use(
   async (config) => {
     try {
+      const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
+      const token = await AsyncStorage.getItem('access_token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch (e) {
+      // Token tidak tersedia, lanjutkan tanpa token
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
