@@ -43,3 +43,9 @@ export default function LoginPage() {
           <h2 className="text-[24px] font-bold text-slate-800 mb-2">Masuk ke Panel Kontrol</h2>
           <p className="text-slate-500 text-[14px]">Silakan masukkan kredensial admin Anda.</p>
         </div>
+        {error && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 text-sm rounded-2xl flex items-center gap-3 animate-in fade-in slide-in-from-top-2">
+            <div className="w-2 h-2 rounded-full bg-red-500" />
+            {error}
+          </div>
+        )}
