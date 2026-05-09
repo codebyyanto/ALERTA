@@ -62,7 +62,25 @@ export default function LoginScreen() {
               Masuk ke akun Anda untuk mendapatkan peringatan waktu-nyata dan informasi evakuasi.
             </Text>
           </View>
-        </ScrollView>
+
+          <View style={styles.formSection}>
+            <View style={styles.fieldGroup}>
+              <Text style={styles.fieldLabel}>ALAMAT EMAIL</Text>
+              <View style={styles.inputRow}>
+                <AtSign color="#94a3b8" size={20} />
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="nama@email.com"
+                  placeholderTextColor="#94a3b8"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  value={email}
+                  onChangeText={setEmail}
+                />
+              </View>
+            </View>
+
+          </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
