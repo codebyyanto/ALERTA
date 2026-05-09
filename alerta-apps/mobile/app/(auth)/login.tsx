@@ -47,5 +47,15 @@ export default function LoginScreen() {
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0.6 }}
         />
+        <View style={styles.container}>
+          <View style={styles.logoSection}>
+            <View style={styles.logoBox}>
+              <AlertaLogo />
+            </View>
+            <Text style={styles.logoTitle}>ALERTA</Text>
+            <Text style={styles.logoSubtitle}>SISTEM RESPONS BENCANA</Text>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
