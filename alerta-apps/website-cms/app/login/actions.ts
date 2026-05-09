@@ -30,3 +30,8 @@ export async function loginAction(formData: FormData) {
       });
 
       return { success: true, user };
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Login gagal. Periksa kembali email dan password Anda.';
+      return { error: message };
+    }
+  }
