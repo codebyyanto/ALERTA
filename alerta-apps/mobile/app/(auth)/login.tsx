@@ -344,3 +344,46 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 15,
   },
+  /* ── Spacer ── */
+
+  spacer: {
+    flex: 1,
+    minHeight: 32,
+  },
+
+  /* ── Register ── */
+
+  registerRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+
+  registerLabel: {
+    color: '#64748b',
+    fontWeight: '500',
+    fontSize: 14,
+  },
+
+  registerLink: {
+    color: '#C8102E',
+    fontWeight: '700',
+    fontSize: 14,
+  },
+
+  /* ── Footer ── */
+
+  footerRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 24,
+  },
+
+  footerText: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#94a3b8',
+    letterSpacing: 1,
+  },
+});
