@@ -39,3 +39,11 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
+      // Server merespons dengan status error
+      const { status, data } = error.response;
+      const message = data?.message || 'Terjadi kesalahan pada server';
+
+      if (status === 401) {
+        // Token expired / unauthorized — bisa redirect ke login
+        console.warn('[API] Unauthorized:', message);
+      }
