@@ -56,3 +56,16 @@ export default function RegisterScreen() {
           <Text style={styles.headerTitle}>Buat Akun Baru</Text>
           <Text style={styles.headerLogo}>ALERTA</Text>
         </View>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          {/* Background Gradient */}
+          <LinearGradient
+            colors={['#f0f9ff', '#F8FAFC', '#F8FAFC']}
+            style={StyleSheet.absoluteFillObject}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0.4 }}
+          />
