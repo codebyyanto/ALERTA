@@ -121,6 +121,14 @@ export default function LoginScreen() {
             <Text style={styles.dividerText}>ATAU MASUK DENGAN</Text>
             <View style={styles.dividerLine} />
           </View>
+
+          <TouchableOpacity style={styles.googleBtn} activeOpacity={0.6}>
+            <View style={styles.googleIconWrap}>
+              <GoogleIcon />
+            </View>
+            <Text style={styles.googleBtnText}>Google</Text>
+          </TouchableOpacity>
+
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
