@@ -151,3 +151,6 @@ export default function UserManagementPage() {
   const totalUsers = users.length;
   const adminCount = users.filter(u => u.role === 'ADMIN').length;
   const standardCount = users.filter(u => u.role === 'USER').length;
+  return (
+    <DashboardLayout>
+      <div className="p-8"></div>
