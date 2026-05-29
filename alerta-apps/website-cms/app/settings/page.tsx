@@ -120,3 +120,23 @@ export default function SettingsPage() {
       } finally {
         setSaving(false);
       }
+      const tabs = [
+        {
+          id: 'general',
+          label: 'Identitas Aplikasi',
+          icon: Globe,
+          desc: 'Nama aplikasi, organisasi, kontak, dan bantuan.'
+        },
+        {
+          id: 'alerts',
+          label: 'Siaga & Notifikasi',
+          icon: Sliders,
+          desc: 'Radius siaga bencana, tingkat bahaya, dan audio alarm.'
+        },
+        {
+          id: 'security',
+          label: 'Sistem & Akses',
+          icon: ShieldCheck,
+          desc: 'Mode pemeliharaan, registrasi user, dan integrasi OAuth.'
+        },
+      ];
