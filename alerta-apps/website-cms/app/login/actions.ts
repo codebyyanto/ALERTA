@@ -31,3 +31,9 @@ export async function loginAction(formData: FormData) {
     return { error: message };
   }
 }
+
+export async function logoutAction() {
+  const cookieStore = await cookies();
+  cookieStore.delete('admin_token');
+  return { success: true };
+}

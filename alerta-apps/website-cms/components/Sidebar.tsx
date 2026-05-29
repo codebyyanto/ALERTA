@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, 
   Activity, 
@@ -13,6 +13,7 @@ import {
   LogOut
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { logoutAction } from '@/app/login/actions';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'DASHBOARD', href: '/dashboard' },
@@ -25,6 +26,14 @@ const menuItems = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function handleLogout() {
+    const result = await logoutAction();
+    if (result.success) {
+      router.push('/login');
+    }
+  }
 
   return (
     <aside className="w-[280px] bg-[#1E293B] h-screen flex flex-col fixed left-0 top-0 z-50">
@@ -75,7 +84,10 @@ export default function Sidebar() {
             <p className="text-[14px] font-bold text-white">Budi Santoso</p>
             <p className="text-[11px] text-slate-400 font-medium">SUPER ADMIN</p>
           </div>
-          <button className="text-slate-500 hover:text-white transition-colors">
+          <button 
+            onClick={handleLogout}
+            className="text-slate-500 hover:text-white transition-colors"
+          >
             <LogOut size={18} />
           </button>
         </div>
