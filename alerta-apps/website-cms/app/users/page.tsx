@@ -141,3 +141,10 @@ export default function UserManagementPage() {
     }
     return colors[sum % colors.length];
   };
+  const filteredUsers = users.filter((u) => {
+    const matchesSearch = (u.name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+      (u.email?.toLowerCase() || '').includes(searchQuery.toLowerCase());
+    const matchesRole = activeFilter === 'Semua Pengguna' ||
+      u.role?.toUpperCase() === activeFilter.toUpperCase();
+    return matchesSearch && matchesRole;
+  });
