@@ -166,3 +166,4 @@ export default function UserManagementPage() {
           className="w-full bg-[#E0F2FE]/50 border-none rounded-2xl py-3 pl-12 pr-4 text-slate-700 placeholder:text-slate-400 focus:ring-2 focus:ring-[#C8102E]/10"
         />
       </div>
+      <div className="flex items-center gap-6"></div>
