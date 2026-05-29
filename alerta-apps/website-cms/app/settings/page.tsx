@@ -25,3 +25,7 @@ export default function SettingsPage() {
     message: string;
     type: 'success' | 'error';
   } | null>(null);
+  const [appName, setAppName] = useState('');
+  const [institution, setInstitution] = useState('');
+  const [hotline, setHotline] = useState('');
+  const [emailSupport, setEmailSupport] = useState('');
