@@ -35,3 +35,10 @@ export default function SettingsPage() {
   const [maintenanceMode, setMaintenanceMode] = useState(false);
   const [allowRegistration, setAllowRegistration] = useState(true);
   const [googleAuthEnabled, setGoogleAuthEnabled] = useState(true);
+
+  async function fetchSettings() {
+    try {
+      setLoading(true);
+
+      const res = await api.get('/settings');
+      const data = res.data;
