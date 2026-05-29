@@ -292,3 +292,23 @@ export default function SettingsPage() {
                     </div>
                   )}
                 </div>
+
+                <div className="lg:col-span-8 bg-white border border-slate-100 rounded-[32px] p-8 lg:p-10 shadow-sm relative overflow-hidden">
+
+                  {activeTab === 'general' && (
+                    <div className="space-y-8 animate-in fade-in duration-300">
+
+                      <div>
+
+                        <h3 className="text-lg font-black text-slate-800 italic uppercase">
+                          Identitas Aplikasi
+                        </h3>
+
+                        <p className="text-xs text-slate-400 font-medium mt-0.5">
+                          Atur profil instansi resmi Anda agar dikenali publik.
+                        </p>
+
+                      </div>
+
+                    </div>
+                  )}
