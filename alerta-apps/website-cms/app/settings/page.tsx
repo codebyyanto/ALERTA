@@ -17,3 +17,11 @@ import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 type TabType = 'general' | 'alerts' | 'security';
 export default function SettingsPage() {
+  const [activeTab, setActiveTab] = useState<TabType>('general');
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+
+  const [toast, setToast] = useState<{
+    message: string;
+    type: 'success' | 'error';
+  } | null>(null);
