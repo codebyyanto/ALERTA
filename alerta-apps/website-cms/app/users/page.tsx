@@ -53,3 +53,12 @@ export default function UserManagementPage() {
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  function resetForm() {
+    setFormName('');
+    setFormEmail('');
+    setFormPhone('');
+    setFormPassword('');
+    setFormRole('USER');
+    setCurrentUser(null);
+  }
