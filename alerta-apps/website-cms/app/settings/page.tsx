@@ -169,3 +169,16 @@ export default function SettingsPage() {
 
               </div>
             </header>
+            <div className="mb-10 flex justify-between items-end">
+              <div>
+
+                <h1 className="text-[32px] font-black text-slate-800 tracking-tighter italic uppercase">
+                  Pengaturan Sistem
+                </h1>
+
+                <p className="text-slate-500 font-medium">
+                  Konfigurasi parameter global aplikasi mobile ALERTA dan control panel CMS.
+                </p>
+
+              </div>
+            </div>
