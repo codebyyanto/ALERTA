@@ -268,3 +268,27 @@ export default function SettingsPage() {
                       </button>
                     );
                   })}
+
+                  {maintenanceMode && (
+                    <div className="bg-amber-50 border border-amber-100 rounded-[24px] p-6 text-amber-800 flex gap-4 animate-pulse mt-6">
+
+                      <AlertTriangle
+                        className="text-amber-600 flex-shrink-0"
+                        size={24}
+                      />
+
+                      <div>
+
+                        <h5 className="text-[12px] font-black uppercase tracking-wider">
+                          Aplikasi Dalam Pemeliharaan
+                        </h5>
+
+                        <p className="text-[11px] font-semibold mt-1 leading-relaxed text-amber-700">
+                          Mode Pemeliharaan aktif. Seluruh pengguna mobile tidak dapat mengakses konten dan akan dialihkan ke layar maintenance.
+                        </p>
+
+                      </div>
+
+                    </div>
+                  )}
+                </div>
