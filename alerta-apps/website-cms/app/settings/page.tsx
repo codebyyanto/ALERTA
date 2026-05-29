@@ -90,3 +90,8 @@ export default function SettingsPage() {
         setToast(null);
       }, 4000);
     }
+    async function handleSave(e: React.FormEvent) {
+      e.preventDefault();
+
+      try {
+        setSaving(true);
