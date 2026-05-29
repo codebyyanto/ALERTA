@@ -121,3 +121,23 @@ export default function UserManagementPage() {
       console.error(err);
     }
   }
+  const getInitials = (name: string) => {
+    if (!name) return 'A';
+    const parts = name.split(' ');
+    if (parts.length > 1) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return parts[0][0].toUpperCase();
+  };
+
+  const getAvatarColor = (name: string) => {
+    const colors = [
+      'bg-red-500', 'bg-blue-500', 'bg-emerald-500',
+      'bg-amber-500', 'bg-indigo-500', 'bg-purple-500', 'bg-pink-500'
+    ];
+    let sum = 0;
+    for (let i = 0; i < name.length; i++) {
+      sum += name.charCodeAt(i);
+    }
+    return colors[sum % colors.length];
+  };
