@@ -37,3 +37,19 @@ export default function UserManagementPage() {
   const [formPhone, setFormPhone] = useState('');
   const [formPassword, setFormPassword] = useState('');
   const [formRole, setFormRole] = useState('USER');
+
+  async function fetchUsers() {
+    try {
+      setLoading(true);
+      const res = await api.get('/users');
+      setUsers(res.data);
+    } catch (err) {
+      console.error('Error fetching users:', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
