@@ -32,3 +32,6 @@ export default function SettingsPage() {
   const [maxAlertRadius, setMaxAlertRadius] = useState(15);
   const [alertNotification, setAlertNotification] = useState('ALL');
   const [notificationSound, setNotificationSound] = useState('emergency_siren');
+  const [maintenanceMode, setMaintenanceMode] = useState(false);
+  const [allowRegistration, setAllowRegistration] = useState(true);
+  const [googleAuthEnabled, setGoogleAuthEnabled] = useState(true);
