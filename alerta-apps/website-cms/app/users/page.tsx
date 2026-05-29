@@ -91,3 +91,23 @@ export default function UserManagementPage() {
     setFormPassword('');
     setIsEditOpen(true);
   }
+  async function handleEditUser(e: React.FormEvent) {
+    e.preventDefault();
+    if (!currentUser) return;
+    try {
+      const res = await api.patch(`/users/${currentUser.id}`, {
+        name: formName,
+        email: formEmail,
+        phone: formPhone || undefined,
+        password: formPassword || undefined,
+        role: formRole,
+      });
+      setUsers(users.map(u => u.id === currentUser.id ? res.data : u));
+      setIsEditOpen(false);
+      resetForm();
+    } catch (err: any) {
+      const msg = err.response?.data?.message || 'Gagal memperbarui pengguna';
+      alert(msg);
+      console.error(err);
+    }
+  }
