@@ -203,3 +203,14 @@ export default function SettingsPage() {
 
               </div>
             )}
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-32 bg-white rounded-[32px] border border-slate-100 shadow-sm">
+
+                <Loader2 className="w-10 h-10 text-[#C8102E] animate-spin mb-4" />
+
+                <span className="text-slate-500 font-bold">
+                  Memuat konfigurasi sistem...
+                </span>
+
+              </div>
+            ) : (
