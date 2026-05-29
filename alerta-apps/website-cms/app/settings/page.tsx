@@ -95,3 +95,15 @@ export default function SettingsPage() {
 
       try {
         setSaving(true);
+        const res = await api.patch('/settings', {
+          appName,
+          institution,
+          hotline,
+          emailSupport,
+          maxAlertRadius,
+          alertNotification,
+          notificationSound,
+          maintenanceMode,
+          allowRegistration,
+          googleAuthEnabled,
+        });
