@@ -22,3 +22,15 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Article {
+  id        String   @id @default(uuid())
+  title     String
+  summary   String
+  content   String
+  category  String
+  image     String?  @default("https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=400")
+  status    String   @default("DRAFT") // 'PUBLISHED' | 'DRAFT'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
