@@ -167,3 +167,5 @@ export default function UserManagementPage() {
         />
       </div>
       <div className="flex items-center gap-6"></div>
+      {/* Title Area */}
+      <div className="flex items-end justify-between mb-10"></div>
