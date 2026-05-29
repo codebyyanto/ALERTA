@@ -386,10 +386,10 @@ export default function SettingsPage() {
                         onChange={(e) => setNotificationSound(e.target.value)}
                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 px-4 text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/10"
                       >
-                        <option value="emergency_siren">🚨 Emergency Siren (Rekomendasi - Keras)</option>
-                        <option value="siren_alert">📢 Loud Warning Horn</option>
-                        <option value="beep_alert">🔕 Short Beep Alert</option>
-                        <option value="system_default">🎵 Nada Bawaan Handphone</option>
+                        <option value="emergency_siren">Emergency Siren (Rekomendasi - Keras)</option>
+                        <option value="siren_alert">Loud Warning Horn</option>
+                        <option value="beep_alert">Short Beep Alert</option>
+                        <option value="system_default">Nada Bawaan Handphone</option>
                       </select>
                     </div>
                   </div>
