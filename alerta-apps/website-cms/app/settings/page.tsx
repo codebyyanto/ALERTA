@@ -66,3 +66,13 @@ export default function SettingsPage() {
           ? data.googleAuthEnabled
           : true
       );
+    } catch (err) {
+      console.error('Error fetching settings:', err);
+
+      showToast(
+        'Gagal memuat pengaturan sistem',
+        'error'
+      );
+    } finally {
+      setLoading(false);
+    }
