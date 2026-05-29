@@ -16,3 +16,4 @@ import {
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
 type TabType = 'general' | 'alerts' | 'security';
+export default function SettingsPage() {
