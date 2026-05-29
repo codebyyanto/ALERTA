@@ -214,3 +214,7 @@ export default function SettingsPage() {
 
               </div>
             ) : (
+              <form
+                onSubmit={handleSave}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+              >
