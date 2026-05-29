@@ -154,3 +154,5 @@ export default function UserManagementPage() {
   return (
     <DashboardLayout>
       <div className="p-8"></div>
+      {/* Top Header Area */}
+      <header className="flex items-center justify-between mb-12"></header>
