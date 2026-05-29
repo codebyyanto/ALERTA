@@ -161,10 +161,17 @@ export default function DashboardPage() {
   };
 
   const filteredArticles = articles.filter((art) => {
-    const matchesSearch = art.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          art.summary.toLowerCase().includes(searchQuery.toLowerCase());
+    const title = art.title || '';
+    const summary = art.summary || '';
+    const content = art.content || '';
+    
+    const matchesSearch = title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          content.toLowerCase().includes(searchQuery.toLowerCase());
+                          
     const matchesCategory = activeCategory === 'Semua Materi' || 
                             art.category?.toUpperCase() === activeCategory.toUpperCase();
+                            
     return matchesSearch && matchesCategory;
   });
 
