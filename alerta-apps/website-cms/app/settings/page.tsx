@@ -182,3 +182,24 @@ export default function SettingsPage() {
 
               </div>
             </div>
+
+            {toast && (
+              <div
+                className={cn(
+                  "fixed bottom-8 right-8 z-[9999] flex items-center gap-3 px-6 py-4 rounded-2xl shadow-xl transition-all duration-300 transform translate-y-0 animate-in slide-in-from-bottom-5",
+                  toast.type === 'success'
+                    ? "bg-emerald-500 text-white shadow-emerald-100"
+                    : "bg-red-500 text-white shadow-red-100"
+                )}
+              >
+
+                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">
+                  ✓
+                </div>
+
+                <span className="text-sm font-bold tracking-wide">
+                  {toast.message}
+                </span>
+
+              </div>
+            )}
