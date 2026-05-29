@@ -80,3 +80,13 @@ export default function SettingsPage() {
     useEffect(() => {
       fetchSettings();
     }, []);
+    function showToast(
+      message: string,
+      type: 'success' | 'error' = 'success'
+    ) {
+      setToast({ message, type });
+
+      setTimeout(() => {
+        setToast(null);
+      }, 4000);
+    }
