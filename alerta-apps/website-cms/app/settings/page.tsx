@@ -110,3 +110,13 @@ export default function SettingsPage() {
         showToast(
           'Pengaturan sistem berhasil disimpan secara permanen!'
         );
+      } catch (err) {
+        console.error('Error saving settings:', err);
+
+        showToast(
+          'Gagal menyimpan pengaturan sistem',
+          'error'
+        );
+      } finally {
+        setSaving(false);
+      }
