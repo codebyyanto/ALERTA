@@ -148,3 +148,6 @@ export default function UserManagementPage() {
       u.role?.toUpperCase() === activeFilter.toUpperCase();
     return matchesSearch && matchesRole;
   });
+  const totalUsers = users.length;
+  const adminCount = users.filter(u => u.role === 'ADMIN').length;
+  const standardCount = users.filter(u => u.role === 'USER').length;
