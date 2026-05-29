@@ -312,3 +312,308 @@ export default function SettingsPage() {
 
                     </div>
                   )}
+                  {/* TAB 2: SIAGA & NOTIFIKASI */}
+                  {activeTab === 'alerts' && (
+                    <div className="space-y-8 animate-in fade-in duration-300">
+                      <div>
+                        <h3 className="text-lg font-black text-slate-800 italic uppercase">
+                          Konfigurasi Siaga & Notifikasi
+                        </h3>
+
+                        <p className="text-xs text-slate-400 font-medium mt-0.5">
+                          Atur sensitivitas deteksi bencana dan model siaran publik.
+                        </p>
+                      </div>
+
+                      <div className="space-y-6">
+
+                        {/* Alert Radius Slider */}
+                        <div className="space-y-4">
+
+                          <div className="flex justify-between items-center">
+                            <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase">
+                              Radius Maksimum Deteksi Siaga
+                            </label>
+
+                            <span className="bg-red-50 text-[#C8102E] text-xs font-black px-3 py-1 rounded-lg">
+                              {maxAlertRadius} KM
+                            </span>
+                          </div>
+
+                          <input
+                            type="range"
+                            min="5"
+                            max="50"
+                            step="5"
+                            value={maxAlertRadius}
+                            onChange={(e) =>
+                              setMaxAlertRadius(Number(e.target.value))
+                            }
+                            className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#C8102E]"
+                          />
+
+                          <div className="flex justify-between text-[10px] font-bold text-slate-400">
+                            <span>5 KM</span>
+                            <span>15 KM</span>
+                            <span>30 KM</span>
+                            <span>50 KM</span>
+                          </div>
+
+                          <p className="text-[11px] font-semibold text-slate-400 leading-relaxed">
+                            Menentukan jangkauan radius deteksi dari lokasi pengguna untuk mengirimkan notifikasi bencana terdekat.
+                          </p>
+                        </div>
+
+                        {/* Level Filter Options */}
+                        <div className="space-y-2">
+
+                          <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase block">
+                            Batas Level Bahaya untuk Notifikasi Instan
+                          </label>
+
+                          <div className="grid grid-cols-2 gap-4 mt-2">
+
+                            <button
+                              type="button"
+                              onClick={() => setAlertNotification('ALL')}
+                              className={cn(
+                                "p-4 rounded-2xl border text-left transition-all",
+                                alertNotification === 'ALL'
+                                  ? "border-[#C8102E] bg-red-50/10 text-slate-800 ring-2 ring-[#C8102E]/10"
+                                  : "border-slate-100 bg-slate-50/40 text-slate-500 hover:bg-slate-50/80"
+                              )}
+                            >
+                              <span className="block text-xs font-black uppercase tracking-wider">
+                                Semua Level Siaga
+                              </span>
+
+                              <span className="block text-[10px] font-semibold mt-1 text-slate-400">
+                                Kirim alarm untuk level Waspada, Siaga, dan Awas.
+                              </span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => setAlertNotification('HIGH_ONLY')}
+                              className={cn(
+                                "p-4 rounded-2xl border text-left transition-all",
+                                alertNotification === 'HIGH_ONLY'
+                                  ? "border-[#C8102E] bg-red-50/10 text-slate-800 ring-2 ring-[#C8102E]/10"
+                                  : "border-slate-100 bg-slate-50/40 text-slate-500 hover:bg-slate-50/80"
+                              )}
+                            >
+                              <span className="block text-xs font-black uppercase tracking-wider">
+                                Hanya Bahaya Tinggi
+                              </span>
+
+                              <span className="block text-[10px] font-semibold mt-1 text-slate-400">
+                                Kirim alarm eksklusif hanya untuk level bahaya kritis (Awas).
+                              </span>
+                            </button>
+
+                          </div>
+                        </div>
+
+                        {/* Sound Configuration */}
+                        <div className="space-y-2">
+
+                          <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase flex items-center gap-2">
+                            <Volume2 size={14} className="text-slate-400" />
+                            Nada Alarm Notifikasi Aplikasi Mobile
+                          </label>
+
+                          <select
+                            value={notificationSound}
+                            onChange={(e) => setNotificationSound(e.target.value)}
+                            className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 px-4 text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/10"
+                          >
+                            <option value="emergency_siren">
+                              🚨 Emergency Siren (Rekomendasi - Keras)
+                            </option>
+
+                            <option value="siren_alert">
+                              📢 Loud Warning Horn
+                            </option>
+
+                            <option value="beep_alert">
+                              🔕 Short Beep Alert
+                            </option>
+
+                            <option value="system_default">
+                              🎵 Nada Bawaan Handphone
+                            </option>
+                          </select>
+
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* TAB 3: SISTEM & KEAMANAN */}
+                  {activeTab === 'security' && (
+                    <div className="space-y-8 animate-in fade-in duration-300">
+
+                      <div>
+                        <h3 className="text-lg font-black text-slate-800 italic uppercase">
+                          Sistem & Keamanan
+                        </h3>
+
+                        <p className="text-xs text-slate-400 font-medium mt-0.5">
+                          Kelola visibilitas aplikasi, kontrol registrasi, dan autentikasi.
+                        </p>
+                      </div>
+
+                      <div className="space-y-6">
+
+                        {/* Toggle: Maintenance Mode */}
+                        <div className="flex items-center justify-between p-6 bg-slate-50/50 border border-slate-100 rounded-[24px] hover:bg-slate-50 transition-colors">
+
+                          <div className="max-w-[75%]">
+
+                            <span className="block text-xs font-black uppercase tracking-wider text-slate-800">
+                              Mode Pemeliharaan (Maintenance Mode)
+                            </span>
+
+                            <span className="block text-[10px] font-semibold text-slate-400 mt-1 leading-relaxed">
+                              Menonaktifkan akses aplikasi mobile untuk masyarakat sementara waktu selama pembaruan sistem berlangsung.
+                            </span>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => setMaintenanceMode(!maintenanceMode)}
+                            className={cn(
+                              "relative inline-flex h-7 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none",
+                              maintenanceMode
+                                ? "bg-[#C8102E]"
+                                : "bg-slate-200"
+                            )}
+                          >
+                            <span
+                              className={cn(
+                                "pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                                maintenanceMode
+                                  ? "translate-x-5"
+                                  : "translate-x-0"
+                              )}
+                            />
+                          </button>
+                        </div>
+
+                        {/* Toggle: Allow Registration */}
+                        <div className="flex items-center justify-between p-6 bg-slate-50/50 border border-slate-100 rounded-[24px] hover:bg-slate-50 transition-colors">
+
+                          <div className="max-w-[75%]">
+
+                            <span className="block text-xs font-black uppercase tracking-wider text-slate-800">
+                              Izinkan Registrasi Pengguna Baru
+                            </span>
+
+                            <span className="block text-[10px] font-semibold text-slate-400 mt-1 leading-relaxed">
+                              Memungkinkan masyarakat umum membuat akun baru secara mandiri langsung dari aplikasi mobile.
+                            </span>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setAllowRegistration(!allowRegistration)
+                            }
+                            className={cn(
+                              "relative inline-flex h-7 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none",
+                              allowRegistration
+                                ? "bg-emerald-500"
+                                : "bg-slate-200"
+                            )}
+                          >
+                            <span
+                              className={cn(
+                                "pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                                allowRegistration
+                                  ? "translate-x-5"
+                                  : "translate-x-0"
+                              )}
+                            />
+                          </button>
+                        </div>
+
+                        {/* Toggle: Google OAuth */}
+                        <div className="flex items-center justify-between p-6 bg-slate-50/50 border border-slate-100 rounded-[24px] hover:bg-slate-50 transition-colors">
+
+                          <div className="max-w-[75%]">
+
+                            <span className="block text-xs font-black uppercase tracking-wider text-slate-800">
+                              Aktifkan Google OAuth Login
+                            </span>
+
+                            <span className="block text-[10px] font-semibold text-slate-400 mt-1 leading-relaxed">
+                              Menyediakan tombol masuk otomatis instan sekali klik menggunakan akun Google di aplikasi mobile.
+                            </span>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setGoogleAuthEnabled(!googleAuthEnabled)
+                            }
+                            className={cn(
+                              "relative inline-flex h-7 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none",
+                              googleAuthEnabled
+                                ? "bg-emerald-500"
+                                : "bg-slate-200"
+                            )}
+                          >
+                            <span
+                              className={cn(
+                                "pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                                googleAuthEnabled
+                                  ? "translate-x-5"
+                                  : "translate-x-0"
+                              )}
+                            />
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Form Bottom Save Action */}
+                  <div className="flex items-center justify-end gap-4 pt-8 mt-10 border-t border-slate-100">
+
+                    <button
+                      type="button"
+                      onClick={fetchSettings}
+                      disabled={saving}
+                      className="px-6 py-4 border border-slate-200 text-slate-500 rounded-2xl font-bold text-sm hover:bg-slate-50 transition-all active:scale-[0.98] disabled:opacity-50"
+                    >
+                      Reset Perubahan
+                    </button>
+
+                    <button
+                      type="submit"
+                      disabled={saving}
+                      className="px-8 py-4 bg-[#C8102E] text-white rounded-2xl font-bold text-sm hover:bg-[#b00e28] shadow-lg shadow-red-200 flex items-center gap-3 transition-all active:scale-[0.98] disabled:bg-[#C8102E]/60 disabled:shadow-none"
+                    >
+
+                      {saving ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Menyimpan...
+                        </>
+                      ) : (
+                        <>
+                          <Save size={16} />
+                          Simpan Konfigurasi
+                        </>
+                      )}
+
+                    </button>
+                  </div>
+                </div>
+              </form>
+            )}
+          </div>
+        </DashboardLayout>
+      );
+    }
