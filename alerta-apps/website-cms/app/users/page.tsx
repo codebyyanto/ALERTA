@@ -177,3 +177,6 @@ export default function UserManagementPage() {
           {roleFilters.map((filter) => {
             {/* Users Table */ }
             <div className="bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-sm"></div>
+            {
+              loading ? (
+                <div className="flex flex-col items-center justify-center py-20"></div>
