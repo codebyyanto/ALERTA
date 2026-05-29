@@ -183,3 +183,5 @@ export default function UserManagementPage() {
               ) : filteredUsers.length === 0 ? (
                 <tbody>
                   {filteredUsers.map((user) => (
+                    {/* --- ADD USER MODAL --- */ }
+      { isAddOpen && (
