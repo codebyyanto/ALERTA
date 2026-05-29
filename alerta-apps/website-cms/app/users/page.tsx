@@ -175,3 +175,5 @@ export default function UserManagementPage() {
         <div className="grid grid-cols-3 gap-6 mb-10">
         <div className="flex gap-2">
           {roleFilters.map((filter) => {
+            {/* Users Table */ }
+            <div className="bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-sm"></div>
