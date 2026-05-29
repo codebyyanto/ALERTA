@@ -173,3 +173,5 @@ export default function UserManagementPage() {
         onClick={() => { resetForm(); setIsAddOpen(true); }}
         {/* Dynamic Cards Stats */}
         <div className="grid grid-cols-3 gap-6 mb-10">
+        <div className="flex gap-2">
+          {roleFilters.map((filter) => {
