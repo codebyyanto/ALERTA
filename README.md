@@ -119,14 +119,6 @@ Pastikan perangkat Anda telah terinstal:
 
 ---
 
-## 🔐 Kredensial Akses Awal (Default Credentials)
-
-Saat backend dijalankan pertama kali, sistem akan mendeteksi database kosong dan otomatis melakukan **auto-seed** untuk akun administrator awal panel CMS:
-
-* **Email**: `admin@alerta.go.id`
-* **Password**: `admin123`
-
----
 
 ## 📄 Lisensi
 Hak Cipta © 2026 Proyek ALERTA. Seluruh hak cipta dilindungi undang-undang.
