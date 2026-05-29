@@ -53,3 +53,16 @@ export default function SettingsPage() {
       setNotificationSound(
         data.notificationSound || 'emergency_siren'
       );
+      setMaintenanceMode(data.maintenanceMode || false);
+
+      setAllowRegistration(
+        data.allowRegistration !== undefined
+          ? data.allowRegistration
+          : true
+      );
+
+      setGoogleAuthEnabled(
+        data.googleAuthEnabled !== undefined
+          ? data.googleAuthEnabled
+          : true
+      );
