@@ -76,3 +76,7 @@ export default function SettingsPage() {
     } finally {
       setLoading(false);
     }
+
+    useEffect(() => {
+      fetchSettings();
+    }, []);
