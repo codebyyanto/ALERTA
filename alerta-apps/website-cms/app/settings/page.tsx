@@ -107,3 +107,6 @@ export default function SettingsPage() {
           allowRegistration,
           googleAuthEnabled,
         });
+        showToast(
+          'Pengaturan sistem berhasil disimpan secara permanen!'
+        );
