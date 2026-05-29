@@ -62,3 +62,23 @@ export default function UserManagementPage() {
     setFormRole('USER');
     setCurrentUser(null);
   }
+
+  async function handleAddUser(e: React.FormEvent) {
+    e.preventDefault();
+    try {
+      const res = await api.post('/users', {
+        name: formName,
+        email: formEmail,
+        phone: formPhone || undefined,
+        password: formPassword || undefined,
+        role: formRole,
+      });
+      setUsers([res.data, ...users]);
+      setIsAddOpen(false);
+      resetForm();
+    } catch (err: any) {
+      const msg = err.response?.data?.message || 'Gagal menambahkan pengguna';
+      alert(msg);
+      console.error(err);
+    }
+  }
