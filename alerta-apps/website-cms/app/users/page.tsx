@@ -82,3 +82,12 @@ export default function UserManagementPage() {
       console.error(err);
     }
   }
+  function openEditModal(user: any) {
+    setCurrentUser(user);
+    setFormName(user.name || '');
+    setFormEmail(user.email || '');
+    setFormPhone(user.phone || '');
+    setFormRole(user.role || 'USER');
+    setFormPassword('');
+    setIsEditOpen(true);
+  }
