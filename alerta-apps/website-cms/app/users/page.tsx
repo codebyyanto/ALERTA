@@ -111,3 +111,13 @@ export default function UserManagementPage() {
       console.error(err);
     }
   }
+  async function handleDeleteUser(id: string) {
+    if (!confirm('Apakah Anda yakin ingin menghapus pengguna ini secara permanen?')) return;
+    try {
+      await api.delete(`/users/${id}`);
+      setUsers(users.filter(u => u.id !== id));
+    } catch (err) {
+      alert('Gagal menghapus pengguna');
+      console.error(err);
+    }
+  }
