@@ -3,15 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import {
-  Globe,
-  Sliders,
+  Settings2,
+  BellRing,
   ShieldCheck,
   Bell,
   HelpCircle,
   Save,
   Volume2,
   AlertTriangle,
-  Loader2
+  Loader2,
+  Smartphone,
+  Building2,
+  PhoneCall,
+  Mail,
+  MapPin,
+  ShieldAlert
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import api from '@/lib/api';
@@ -105,8 +111,8 @@ export default function SettingsPage() {
   }
 
   const tabs = [
-    { id: 'general', label: 'Identitas Aplikasi', icon: Globe, desc: 'Nama aplikasi, organisasi, kontak, dan bantuan.' },
-    { id: 'alerts', label: 'Siaga & Notifikasi', icon: Sliders, desc: 'Radius siaga bencana, tingkat bahaya, dan audio alarm.' },
+    { id: 'general', label: 'Identitas Aplikasi', icon: Settings2, desc: 'Nama aplikasi, organisasi, kontak, dan bantuan.' },
+    { id: 'alerts', label: 'Siaga & Notifikasi', icon: BellRing, desc: 'Radius siaga bencana, tingkat bahaya, dan audio alarm.' },
     { id: 'security', label: 'Sistem & Akses', icon: ShieldCheck, desc: 'Mode pemeliharaan, registrasi user, dan integrasi OAuth.' },
   ];
 
@@ -230,7 +236,10 @@ export default function SettingsPage() {
 
                   <div className="space-y-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase">Nama Aplikasi</label>
+                      <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase flex items-center gap-2">
+                        <Smartphone size={12} className="text-slate-400" />
+                        Nama Aplikasi
+                      </label>
                       <input
                         type="text"
                         required
@@ -242,7 +251,10 @@ export default function SettingsPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase">Nama Instansi / Penyelenggara</label>
+                      <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase flex items-center gap-2">
+                        <Building2 size={12} className="text-slate-400" />
+                        Nama Instansi / Penyelenggara
+                      </label>
                       <input
                         type="text"
                         required
@@ -255,7 +267,10 @@ export default function SettingsPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase">Emergency Hotline / Panggilan Darurat</label>
+                        <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase flex items-center gap-2">
+                          <PhoneCall size={12} className="text-slate-400" />
+                          Emergency Hotline / Panggilan Darurat
+                        </label>
                         <input
                           type="text"
                           required
@@ -266,7 +281,10 @@ export default function SettingsPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase">Email Dukungan Teknis</label>
+                        <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase flex items-center gap-2">
+                          <Mail size={12} className="text-slate-400" />
+                          Email Dukungan Teknis
+                        </label>
                         <input
                           type="email"
                           required
@@ -293,7 +311,10 @@ export default function SettingsPage() {
                     {/* Alert Radius Slider */}
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase">Radius Maksimum Deteksi Siaga</label>
+                        <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase flex items-center gap-2">
+                          <MapPin size={12} className="text-slate-400" />
+                          Radius Maksimum Deteksi Siaga
+                        </label>
                         <span className="bg-red-50 text-[#C8102E] text-xs font-black px-3 py-1 rounded-lg">
                           {maxAlertRadius} KM
                         </span>
@@ -320,7 +341,10 @@ export default function SettingsPage() {
 
                     {/* Level Filter Options */}
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase block">Batas Level Bahaya untuk Notifikasi Instan</label>
+                      <label className="text-[10px] font-black text-slate-400 tracking-wider uppercase flex items-center gap-2">
+                        <ShieldAlert size={12} className="text-slate-400" />
+                        Batas Level Bahaya untuk Notifikasi Instan
+                      </label>
                       <div className="grid grid-cols-2 gap-4 mt-2">
                         <button
                           type="button"
