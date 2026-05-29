@@ -140,3 +140,8 @@ export default function SettingsPage() {
           desc: 'Mode pemeliharaan, registrasi user, dan integrasi OAuth.'
         },
       ];
+
+      return (
+        <DashboardLayout>
+          <div className="p-8 max-w-[1200px] mx-auto min-h-screen relative pb-24">
+
