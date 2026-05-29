@@ -171,3 +171,5 @@ export default function UserManagementPage() {
       <div className="flex items-end justify-between mb-10"></div>
       <button
         onClick={() => { resetForm(); setIsAddOpen(true); }}
+        {/* Dynamic Cards Stats */}
+        <div className="grid grid-cols-3 gap-6 mb-10">
