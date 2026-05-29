@@ -144,4 +144,28 @@ export default function SettingsPage() {
       return (
         <DashboardLayout>
           <div className="p-8 max-w-[1200px] mx-auto min-h-screen relative pb-24">
+            <header className="flex items-center justify-between mb-12">
+              <div className="text-slate-400 text-sm font-medium">
+                Pengaturan &gt; Sistem
+              </div>
 
+              <div className="flex items-center gap-6">
+
+                <button className="relative text-slate-400 hover:text-slate-600 transition-colors">
+                  <Bell size={22} />
+
+                  <div className="absolute top-0 right-0 w-2 h-2 bg-[#C8102E] rounded-full border-2 border-white" />
+                </button>
+
+                <button className="text-slate-400 hover:text-slate-600 transition-colors">
+                  <HelpCircle size={22} />
+                </button>
+
+                <div className="h-8 w-[1px] bg-slate-200" />
+
+                <span className="text-[14px] font-black text-slate-800">
+                  ALERTA CMS
+                </span>
+
+              </div>
+            </header>
