@@ -29,3 +29,6 @@ export default function SettingsPage() {
   const [institution, setInstitution] = useState('');
   const [hotline, setHotline] = useState('');
   const [emailSupport, setEmailSupport] = useState('');
+  const [maxAlertRadius, setMaxAlertRadius] = useState(15);
+  const [alertNotification, setAlertNotification] = useState('ALL');
+  const [notificationSound, setNotificationSound] = useState('emergency_siren');
