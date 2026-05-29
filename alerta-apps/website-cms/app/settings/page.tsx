@@ -42,3 +42,14 @@ export default function SettingsPage() {
 
       const res = await api.get('/settings');
       const data = res.data;
+      setMaxAlertRadius(
+        data.maxAlertRadius !== undefined
+          ? data.maxAlertRadius
+          : 15
+      );
+
+      setAlertNotification(data.alertNotification || 'ALL');
+
+      setNotificationSound(
+        data.notificationSound || 'emergency_siren'
+      );
