@@ -218,3 +218,53 @@ export default function SettingsPage() {
                 onSubmit={handleSave}
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
               >
+                <div className="lg:col-span-4 space-y-3">
+
+                  {tabs.map((tab) => {
+                    const isActive = activeTab === tab.id;
+                    const Icon = tab.icon;
+
+                    return (
+                      <button
+                        key={tab.id}
+                        type="button"
+                        onClick={() => setActiveTab(tab.id as TabType)}
+                        className={cn(
+                          "w-full text-left p-6 rounded-[24px] border transition-all flex items-start gap-4",
+                          isActive
+                            ? "bg-slate-800 border-slate-800 text-white shadow-lg shadow-slate-100"
+                            : "bg-white border-slate-100 text-slate-500 hover:bg-slate-50/50 hover:text-slate-700"
+                        )}
+                      >
+                        <div
+                          className={cn(
+                            "w-10 h-10 rounded-xl flex items-center justify-center",
+                            isActive
+                              ? "bg-white/15 text-white"
+                              : "bg-slate-50 text-slate-500"
+                          )}
+                        >
+                          <Icon size={20} />
+                        </div>
+
+                        <div className="flex-1">
+
+                          <h4 className="text-[14px] font-black tracking-wide uppercase">
+                            {tab.label}
+                          </h4>
+
+                          <p
+                            className={cn(
+                              "text-[11px] font-medium mt-1 leading-relaxed",
+                              isActive
+                                ? "text-slate-300"
+                                : "text-slate-400"
+                            )}
+                          >
+                            {tab.desc}
+                          </p>
+
+                        </div>
+                      </button>
+                    );
+                  })}
