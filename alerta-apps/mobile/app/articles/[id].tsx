@@ -132,3 +132,11 @@ export default function ArticleDetailScreen() {
         <Text style={styles.metaText}>1.2k tayangan</Text>
       </View>
     </View>
+
+    <View style={styles.divider} />
+
+    {/* Ringkasan Ringkas */}
+    <Text style={styles.summaryTitle}>Ringkasan Panduan</Text>
+    <View style={styles.summaryBox}>
+      <Text style={styles.summaryText}>{article.summary}</Text>
+    </View>
