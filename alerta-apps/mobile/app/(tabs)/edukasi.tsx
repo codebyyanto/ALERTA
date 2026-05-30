@@ -133,5 +133,18 @@ return (
       }
     >
     </ScrollView>
+    <View style={styles.headerBar}>
+      <View>
+        <Text style={styles.headerLabel}>PUSAT EDUKASI</Text>
+        <Text style={styles.headerTitle}>Pelajari & Bersiap.</Text>
+      </View>
+
+      <View style={styles.headerIcons}>
+        <TouchableOpacity style={styles.bellIcon} activeOpacity={0.6}>
+          <View style={styles.bellBadge} />
+          <Award size={24} color="#C8102E" />
+        </TouchableOpacity>
+      </View>
+    </View>
   </SafeAreaView>
 );
