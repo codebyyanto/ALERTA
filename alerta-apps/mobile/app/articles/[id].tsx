@@ -40,3 +40,11 @@ export default function ArticleDetailScreen() {
   const handleShare = () => {
     alert('Bagikan materi berhasil disalin!');
   };
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#C8102E" />
+        <Text style={styles.loadingText}>Memuat materi...</Text>
+      </View>
+    );
+  }
