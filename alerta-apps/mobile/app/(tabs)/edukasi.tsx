@@ -146,5 +146,25 @@ return (
         </TouchableOpacity>
       </View>
     </View>
+
+    <View style={styles.searchSection}>
+      <View style={styles.searchInputRow}>
+        <Search color="#94a3b8" size={20} />
+
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Cari panduan mitigasi..."
+          placeholderTextColor="#94a3b8"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+
+        {searchQuery.length > 0 && (
+          <TouchableOpacity onPress={() => setSearchQuery('')}>
+            <X color="#94a3b8" size={18} />
+          </TouchableOpacity>
+        )}
+      </View>
+    </View>
   </SafeAreaView>
 );
