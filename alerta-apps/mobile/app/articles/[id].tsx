@@ -58,3 +58,5 @@ export default function ArticleDetailScreen() {
       </SafeAreaView>
     );
   }
+  return (
+    <View style={styles.container}></View>
