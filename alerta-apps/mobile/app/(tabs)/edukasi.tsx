@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
-import { Search, Eye, Calendar, RefreshCw, X, Award } from 'lucide-react-native';
+import { Search, Eye, Calendar, RefreshCw, X, Menu, Bell } from 'lucide-react-native';
 import { router } from 'expo-router';
 import { articleService, Article } from '@/services/articleService';
 
@@ -105,18 +105,18 @@ export default function EdukasiScreen() {
 
   return (
     <View style={[styles.safeArea, { paddingTop: Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20) }]}>
-      {/* ── Custom Header ── */}
+      {/* ── Custom Header Bar ── */}
       <View style={styles.headerBar}>
-        <View>
-          <Text style={styles.headerLabel}>PUSAT EDUKASI</Text>
-          <Text style={styles.headerTitle}>Pelajari & Bersiap.</Text>
-        </View>
-        <View style={styles.headerIcons}>
-          <TouchableOpacity style={styles.bellIcon} activeOpacity={0.6}>
-            <View style={styles.bellBadge} />
-            <Award size={24} color="#C8102E" />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
+          <Menu size={24} color="#1e293b" />
+        </TouchableOpacity>
+        
+        <Text style={styles.brandTitle}>ALERTA</Text>
+        
+        <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
+          <View style={styles.bellBadge} />
+          <Bell size={22} color="#1e293b" />
+        </TouchableOpacity>
       </View>
 
       <ScrollView
@@ -126,6 +126,12 @@ export default function EdukasiScreen() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#C8102E" />
         }
       >
+        {/* ── Sub Header Konten ── */}
+        <View style={styles.titleSection}>
+          <Text style={styles.contentLabel}>PUSAT EDUKASI</Text>
+          <Text style={styles.contentTitle}>Pelajari & Bersiap.</Text>
+        </View>
+
         {/* ── Search Bar ── */}
         <View style={styles.searchSection}>
           <View style={styles.searchInputRow}>
@@ -299,54 +305,67 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: 14,
-    backgroundColor: '#F8FAFC',
+    paddingVertical: 12,
+    backgroundColor: '#ffffff',
     borderBottomWidth: 1,
     borderBottomColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 3,
+    elevation: 2,
   },
-  headerLabel: {
-    fontSize: 10,
-    fontWeight: '800',
+  brandTitle: {
+    fontSize: 22,
+    fontWeight: '900',
     color: '#C8102E',
-    letterSpacing: 1.5,
-    marginBottom: 4,
+    letterSpacing: 2,
+    textAlign: 'center',
   },
-  headerTitle: {
-    fontSize: 26,
-    fontWeight: '800',
-    color: '#1e293b',
-    letterSpacing: -0.5,
-  },
-  headerIcons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  bellIcon: {
-    width: 44,
-    height: 44,
+  headerIconButton: {
+    width: 42,
+    height: 42,
     borderRadius: 14,
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#e2e8f0',
+    borderColor: '#f1f5f9',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.03,
-    shadowRadius: 6,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.02,
+    shadowRadius: 4,
+    elevation: 1,
   },
   bellBadge: {
     position: 'absolute',
-    top: 12,
-    right: 12,
+    top: 10,
+    right: 10,
     width: 8,
     height: 8,
     borderRadius: 4,
     backgroundColor: '#C8102E',
     borderWidth: 1.5,
     borderColor: '#ffffff',
-    zIndex: 1,
+    zIndex: 2,
+  },
+  titleSection: {
+    marginTop: 16,
+    marginBottom: 8,
+    paddingHorizontal: 4,
+  },
+  contentLabel: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#C8102E',
+    letterSpacing: 1.5,
+    marginBottom: 4,
+  },
+  contentTitle: {
+    fontSize: 28,
+    fontWeight: '900',
+    color: '#1e293b',
+    letterSpacing: -0.5,
   },
   /* ── Search ── */
   searchSection: {
