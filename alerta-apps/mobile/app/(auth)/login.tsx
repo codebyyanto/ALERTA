@@ -38,7 +38,7 @@ export default function LoginScreen() {
     setLoading(true);
     try {
       await authService.login({ email: email.trim(), password });
-      router.replace('/(tabs)');
+      router.replace('/(tabs)/edukasi');
     } catch (error: any) {
       Alert.alert('Login Gagal', error.message || 'Terjadi kesalahan saat login.');
     } finally {

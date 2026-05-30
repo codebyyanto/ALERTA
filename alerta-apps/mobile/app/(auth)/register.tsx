@@ -57,7 +57,7 @@ export default function RegisterScreen() {
         password,
       });
       Alert.alert('Berhasil', 'Akun berhasil dibuat!', [
-        { text: 'OK', onPress: () => router.replace('/(tabs)') },
+        { text: 'OK', onPress: () => router.replace('/(tabs)/edukasi') },
       ]);
     } catch (error: any) {
       Alert.alert('Registrasi Gagal', error.message || 'Terjadi kesalahan saat mendaftar.');

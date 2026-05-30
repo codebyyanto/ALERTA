@@ -19,16 +19,15 @@ export const unstable_settings = {
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [isReady, setIsReady] = useState(false);
+  const [hasToken, setHasToken] = useState(false);
 
   useEffect(() => {
     async function prepare() {
       try {
-        // Check for existing token
+        // Cek keberadaan token
         const token = await authService.getStoredToken();
         if (token) {
-          // If token exists, we can optionally verify it here
-          // For now, just redirect to tabs
-          router.replace('/(tabs)');
+          setHasToken(true);
         }
       } catch (e) {
         console.warn(e);
@@ -40,6 +39,16 @@ export default function RootLayout() {
 
     prepare();
   }, []);
+
+  useEffect(() => {
+    if (isReady && hasToken) {
+      // Tunggu jeda singkat agar navigasi Stack terpasang sempurna
+      const timer = setTimeout(() => {
+        router.replace('/(tabs)/edukasi');
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isReady, hasToken]);
 
   if (!isReady) {
     return null;
