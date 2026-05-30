@@ -182,3 +182,196 @@ export default function ProfileScreen() {
 
         {/* ── Catatan Kaki Versi ── */}
         <Text style={styles.versionText}>ALERTA V1.0.0 • INDONESIA</Text>
+        {/* Spacer di bawah agar tidak tertutup bottom tab */}
+        <View style={styles.bottomSpacer} />
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  headerBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    backgroundColor: '#ffffff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  brandTitle: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: 2,
+    textAlign: 'center',
+  },
+  headerIconButton: {
+    width: 42,
+    height: 42,
+    borderRadius: 14,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.02,
+    shadowRadius: 4,
+    elevation: 1,
+  },
+  scrollContent: {
+    paddingHorizontal: 20,
+    paddingTop: 24,
+  },
+  /* ── Kartu Profil Utama ── */
+  profileCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 24,
+    paddingVertical: 32,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    shadowColor: '#0f172a',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.02,
+    shadowRadius: 12,
+    elevation: 2,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
+  avatarWrapper: {
+    position: 'relative',
+    marginBottom: 16,
+  },
+  avatarIconContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: '#fee2e2',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: '#fee2e2',
+  },
+  verifiedBadge: {
+    position: 'absolute',
+    bottom: 4,
+    right: 4,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#C8102E',
+    borderWidth: 3,
+    borderColor: '#ffffff',
+  },
+  userNameText: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#1e293b',
+    marginBottom: 6,
+    textAlign: 'center',
+  },
+  userRoleText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#64748b',
+    textAlign: 'center',
+  },
+  /* ── Menu Card ── */
+  menuCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 24,
+    paddingHorizontal: 20,
+    shadowColor: '#0f172a',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.02,
+    shadowRadius: 12,
+    elevation: 2,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f1f5f9',
+  },
+  menuItemLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+  },
+  iconWrapper: {
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  menuItemLabel: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#1e293b',
+  },
+  labelWithBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  redDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#C8102E',
+  },
+  /* ── Tombol Keluar Akun Card ── */
+  logoutCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    paddingVertical: 16,
+    borderWidth: 1,
+    borderColor: '#fee2e2',
+    shadowColor: '#fee2e2',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 1,
+    marginBottom: 32,
+  },
+  logoutCardText: {
+    color: '#C8102E',
+    fontWeight: '800',
+    fontSize: 16,
+  },
+  /* ── Catatan Kaki Versi ── */
+  versionText: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#94a3b8',
+    letterSpacing: 1.5,
+    textAlign: 'center',
+    textTransform: 'uppercase',
+  },
+  bottomSpacer: {
+    height: Platform.OS === 'ios' ? 120 : 96,
+  },
+});
