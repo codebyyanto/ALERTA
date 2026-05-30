@@ -140,3 +140,5 @@ export default function ArticleDetailScreen() {
     <View style={styles.summaryBox}>
       <Text style={styles.summaryText}>{article.summary}</Text>
     </View>
+    {/* Konten Lengkap */}
+    <Text style={styles.bodyText}>{article.content}</Text>
