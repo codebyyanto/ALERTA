@@ -122,3 +122,16 @@ const handleCategoryPress = (categoryId: string) => {
     setSelectedCategory(categoryId);
   }
 };
+
+return (
+  <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <ScrollView
+      contentContainerStyle={styles.scrollContent}
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#C8102E" />
+      }
+    >
+    </ScrollView>
+  </SafeAreaView>
+);
