@@ -73,3 +73,9 @@ export default function ArticleDetailScreen() {
     />
     <View style={styles.imageOverlay} />
   </View>
+
+  {/* ── Tombol Header Melayang ── */ }
+  <SafeAreaView style={styles.floatingHeader} edges={['top']}>
+    <TouchableOpacity style={styles.roundBtn} onPress={() => router.back()} activeOpacity={0.6}>
+      <ArrowLeft size={20} color="#1e293b" />
+    </TouchableOpacity>
