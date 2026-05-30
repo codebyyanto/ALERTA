@@ -312,3 +312,9 @@ return (
     </View>
   </SafeAreaView>
 );
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+});
