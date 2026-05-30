@@ -288,5 +288,6 @@ return (
         </TouchableOpacity>
       ))}
     </ScrollView>
+    onPress={() => router.push(`/articles/${article.id}`)}
   </SafeAreaView>
 );
