@@ -289,5 +289,26 @@ return (
       ))}
     </ScrollView>
     onPress={() => router.push(`/articles/${article.id}`)}
+
+    <View style={styles.quizBanner}>
+      <View style={styles.quizHeader}>
+        <View style={styles.quizBadge}>
+          <Text style={styles.quizBadgeText}>🏆 KUIS HARIAN</Text>
+        </View>
+      </View>
+
+      <Text style={styles.quizTitle}>Uji Kesiagaan Anda</Text>
+
+      <Text style={styles.quizDesc}>
+        Apakah Anda tahu apa yang harus dilakukan saat sirine tsunami berbunyi? Ambil kuis 5
+        menit ini sekarang.
+      </Text>
+
+      <TouchableOpacity style={styles.quizBtn} activeOpacity={0.8} onPress={handleStartQuiz}>
+        <Text style={styles.quizBtnText}>Mulai Kuis Sekarang →</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.quizXpText}>+250 XP UNTUK PENGGUNA TERVERIFIKASI</Text>
+    </View>
   </SafeAreaView>
 );
