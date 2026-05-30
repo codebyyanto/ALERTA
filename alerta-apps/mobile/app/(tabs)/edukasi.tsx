@@ -73,3 +73,15 @@ const [refreshing, setRefreshing] = useState(false);
 
 const [searchQuery, setSearchQuery] = useState('');
 const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+const fetchArticles = async (isRefresh = false) => {
+  if (!isRefresh) setLoading(true);
+  try {
+    const data = await articleService.getArticles('PUBLISHED');
+    setArticles(data);
+  } catch (error: any) {
+    console.error('[Edukasi] Gagal mengambil artikel:', error);
+  } finally {
+    setLoading(false);
+    setRefreshing(false);
+  }
+};
