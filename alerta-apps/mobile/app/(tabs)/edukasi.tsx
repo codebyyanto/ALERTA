@@ -166,5 +166,16 @@ return (
         )}
       </View>
     </View>
+
+    <View style={styles.sectionHeader}>
+      <Text style={styles.sectionTitle}>Panduan Mitigasi</Text>
+
+      {selectedCategory && (
+        <TouchableOpacity onPress={() => setSelectedCategory(null)}>
+          <Text style={styles.resetFilterBtn}>HAPUS FILTER</Text>
+        </TouchableOpacity>
+      )}
+    </View>
+
   </SafeAreaView>
 );
