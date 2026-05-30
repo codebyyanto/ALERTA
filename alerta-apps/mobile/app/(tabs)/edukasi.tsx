@@ -46,3 +46,24 @@ export default function EdukasiScreen() {
   return null;
 }
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
+const CATEGORY_BANNERS = [
+  {
+    id: 'MITIGASI BANJIR',
+    label: 'Banjir & Cuaca Ekstrim',
+    image: 'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&q=80&w=400',
+    badge: 'KRITIS',
+  },
+  {
+    id: 'PANDUAN GEMPA',
+    label: 'Gempa Bumi',
+    image: 'https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?auto=format&fit=crop&q=80&w=400',
+    badge: null,
+  },
+  {
+    id: 'TSUNAMI & ERUPSI',
+    label: 'Tsunami',
+    image: 'https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&q=80&w=400',
+    badge: null,
+  },
+];
