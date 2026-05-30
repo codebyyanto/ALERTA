@@ -293,3 +293,94 @@ const styles = StyleSheet.create({
     backgroundColor: '#f1f5f9',
     marginVertical: 4,
   },
+
+  /* ── Ringkasan ── */
+  summaryTitle: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: '#1e293b',
+    letterSpacing: -0.2,
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  summaryBox: {
+    backgroundColor: '#f8fafc',
+    borderRadius: 20,
+    padding: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: '#C8102E',
+    marginBottom: 24,
+  },
+  summaryText: {
+    fontSize: 13,
+    color: '#475569',
+    lineHeight: 20,
+    fontWeight: '500',
+  },
+  /* ── Konten Lengkap ── */
+  bodyText: {
+    fontSize: 15,
+    color: '#334155',
+    lineHeight: 25,
+    fontWeight: '400',
+    marginBottom: 28,
+  },
+  /* ── Disclaimer Box ── */
+  disclaimerBox: {
+    backgroundColor: '#eff6ff',
+    borderRadius: 20,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: '#bfdbfe',
+  },
+  disclaimerTitle: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: '#1e3a8a',
+    marginBottom: 6,
+  },
+  disclaimerText: {
+    fontSize: 12,
+    color: '#2563eb',
+    lineHeight: 18,
+    fontWeight: '500',
+  },
+  /* ── Loading & Error ── */
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F8FAFC',
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#64748b',
+  },
+  errorContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F8FAFC',
+    paddingHorizontal: 32,
+  },
+  errorText: {
+    fontSize: 15,
+    color: '#64748b',
+    textAlign: 'center',
+    fontWeight: '500',
+    marginBottom: 20,
+  },
+  backLink: {
+    backgroundColor: '#C8102E',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 16,
+  },
+  backLinkText: {
+    color: '#ffffff',
+    fontWeight: '700',
+    fontSize: 14,
+  },
+});
