@@ -79,3 +79,16 @@ export default function ArticleDetailScreen() {
     <TouchableOpacity style={styles.roundBtn} onPress={() => router.back()} activeOpacity={0.6}>
       <ArrowLeft size={20} color="#1e293b" />
     </TouchableOpacity>
+    <View style={styles.rightFloatingBtns}>
+      <TouchableOpacity
+        style={styles.roundBtn}
+        onPress={() => setSaved(!saved)}
+        activeOpacity={0.6}
+      >
+        <Bookmark size={20} color={saved ? '#C8102E' : '#1e293b'} fill={saved ? '#C8102E' : 'none'} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.roundBtn} onPress={handleShare} activeOpacity={0.6}>
+        <Share2 size={20} color="#1e293b" />
+      </TouchableOpacity>
+    </View>
+  </SafeAreaView>
