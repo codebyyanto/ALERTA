@@ -48,3 +48,13 @@ export default function ArticleDetailScreen() {
       </View>
     );
   }
+  if (!article) {
+    return (
+      <SafeAreaView style={styles.errorContainer}>
+        <Text style={styles.errorText}>Materi tidak ditemukan atau telah dihapus.</Text>
+        <TouchableOpacity style={styles.backLink} onPress={() => router.back()}>
+          <Text style={styles.backLinkText}>Kembali ke Edukasi</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    );
+  }
