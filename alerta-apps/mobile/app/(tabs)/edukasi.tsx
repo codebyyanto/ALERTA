@@ -114,3 +114,11 @@ const handleStartQuiz = () => {
     ]
   );
 };
+
+const handleCategoryPress = (categoryId: string) => {
+  if (selectedCategory === categoryId) {
+    setSelectedCategory(null);
+  } else {
+    setSelectedCategory(categoryId);
+  }
+};
