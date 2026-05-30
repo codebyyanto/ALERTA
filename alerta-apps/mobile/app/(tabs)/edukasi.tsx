@@ -206,6 +206,14 @@ return (
           </TouchableOpacity>
         );
       })}
+
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Materi Mitigasi & Edukasi</Text>
+
+        <TouchableOpacity onPress={() => fetchArticles(false)}>
+          <RefreshCw size={14} color="#C8102E" />
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   </SafeAreaView>
 );
