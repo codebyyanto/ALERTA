@@ -67,3 +67,6 @@ const CATEGORY_BANNERS = [
     badge: null,
   },
 ];
+const [articles, setArticles] = useState<Article[]>([]);
+const [loading, setLoading] = useState(true);
+const [refreshing, setRefreshing] = useState(false);
