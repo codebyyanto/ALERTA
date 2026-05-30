@@ -155,3 +155,26 @@ export default function ArticleDetailScreen() {
     </View >
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
+  },
+  /* ── Cover Atas ── */
+  coverContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 320,
+    backgroundColor: '#e2e8f0',
+  },
+  coverImage: {
+    width: '100%',
+    height: '100%',
+  },
+  imageOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(15, 23, 42, 0.3)',
+  },
