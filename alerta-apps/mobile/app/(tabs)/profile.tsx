@@ -89,3 +89,83 @@ export default function ProfileScreen() {
           <Text style={styles.userNameText}>{userName}</Text>
           <Text style={styles.userRoleText}>{userRole}</Text>
         </View>
+        {/* ── Menu List Card ── */}
+        <View style={styles.menuCard}>
+          {/* Item 1: Informasi Pribadi */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            activeOpacity={0.7}
+            onPress={() => handleMenuPress('Informasi Pribadi')}
+          >
+            <View style={styles.menuItemLeft}>
+              <View style={[styles.iconWrapper, { backgroundColor: '#f1f5f9' }]}>
+                <User size={20} color="#64748b" />
+              </View>
+              <Text style={styles.menuItemLabel}>Informasi Pribadi</Text>
+            </View>
+            <ChevronRight size={18} color="#cbd5e1" />
+          </TouchableOpacity>
+
+          {/* Item 2: Riwayat Laporan (Dengan Red Dot) */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            activeOpacity={0.7}
+            onPress={() => handleMenuPress('Riwayat Laporan')}
+          >
+            <View style={styles.menuItemLeft}>
+              <View style={[styles.iconWrapper, { backgroundColor: '#f1f5f9' }]}>
+                <Clock size={20} color="#64748b" />
+              </View>
+              <View style={styles.labelWithBadge}>
+                <Text style={styles.menuItemLabel}>Riwayat Laporan</Text>
+                <View style={styles.redDot} />
+              </View>
+            </View>
+            <ChevronRight size={18} color="#cbd5e1" />
+          </TouchableOpacity>
+
+          {/* Item 3: Pengaturan Notifikasi */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            activeOpacity={0.7}
+            onPress={() => handleMenuPress('Pengaturan Notifikasi')}
+          >
+            <View style={styles.menuItemLeft}>
+              <View style={[styles.iconWrapper, { backgroundColor: '#f1f5f9' }]}>
+                <Bell size={20} color="#64748b" />
+              </View>
+              <Text style={styles.menuItemLabel}>Pengaturan Notifikasi</Text>
+            </View>
+            <ChevronRight size={18} color="#cbd5e1" />
+          </TouchableOpacity>
+
+          {/* Item 4: Pusat Bantuan */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            activeOpacity={0.7}
+            onPress={() => handleMenuPress('Pusat Bantuan')}
+          >
+            <View style={styles.menuItemLeft}>
+              <View style={[styles.iconWrapper, { backgroundColor: '#f1f5f9' }]}>
+                <HelpCircle size={20} color="#64748b" />
+              </View>
+              <Text style={styles.menuItemLabel}>Pusat Bantuan</Text>
+            </View>
+            <ChevronRight size={18} color="#cbd5e1" />
+          </TouchableOpacity>
+
+          {/* Item 5: Tentang */}
+          <TouchableOpacity
+            style={[styles.menuItem, { borderBottomWidth: 0 }]}
+            activeOpacity={0.7}
+            onPress={() => handleMenuPress('Tentang')}
+          >
+            <View style={styles.menuItemLeft}>
+              <View style={[styles.iconWrapper, { backgroundColor: '#f1f5f9' }]}>
+                <Info size={20} color="#64748b" />
+              </View>
+              <Text style={styles.menuItemLabel}>Tentang</Text>
+            </View>
+            <ChevronRight size={18} color="#cbd5e1" />
+          </TouchableOpacity>
+        </View>
