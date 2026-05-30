@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Platform } from 'react-native';
-import { GraduationCap } from 'lucide-react-native';
+import { View, StyleSheet, Platform } from 'react-native';
+import { Home, Map, Plus, GraduationCap, User as UserIcon } from 'lucide-react-native';
 import { HapticTab } from '@/components/haptic-tab';
 
 export default function TabLayout() {
@@ -16,6 +16,31 @@ export default function TabLayout() {
         tabBarLabelStyle: styles.tabBarLabel,
       }}>
       <Tabs.Screen
+        name="index"
+        options={{
+          title: 'BERANDA',
+          tabBarIcon: ({ color }) => <Home size={22} color={color} strokeWidth={2} />,
+        }}
+      />
+      <Tabs.Screen
+        name="map"
+        options={{
+          title: 'PETA',
+          tabBarIcon: ({ color }) => <Map size={22} color={color} strokeWidth={2} />,
+        }}
+      />
+      <Tabs.Screen
+        name="report"
+        options={{
+          title: 'LAPOR',
+          tabBarIcon: () => (
+            <View style={styles.centerButton}>
+              <Plus size={22} color="#ffffff" strokeWidth={3} />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="edukasi"
         options={{
           title: 'EDUKASI',
@@ -23,9 +48,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="index"
+        name="profile"
         options={{
-          href: null, // Sembunyikan tab Beranda bawaan
+          title: 'PROFIL',
+          tabBarIcon: ({ color }) => <UserIcon size={22} color={color} strokeWidth={2} />,
         }}
       />
       <Tabs.Screen
@@ -62,5 +88,19 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: 0.5,
     marginTop: 2,
+  },
+  centerButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 14,
+    backgroundColor: '#C8102E',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: Platform.OS === 'ios' ? 12 : 8,
+    shadowColor: '#C8102E',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.35,
+    shadowRadius: 10,
+    elevation: 6,
   },
 });

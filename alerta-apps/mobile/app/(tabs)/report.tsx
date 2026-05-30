@@ -1,18 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Home } from 'lucide-react-native';
+import { AlertTriangle } from 'lucide-react-native';
 
-export default function HomeScreen() {
+export default function ReportScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.iconCircle}>
-          <Home size={32} color="#C8102E" />
+          <AlertTriangle size={32} color="#C8102E" />
         </View>
-        <Text style={styles.title}>Beranda</Text>
+        <Text style={styles.title}>Lapor Kejadian</Text>
         <Text style={styles.description}>
-          Halaman Beranda utama sedang dalam pengembangan. Tampilan lengkap akan segera hadir.
+          Halaman Lapor cepat kejadian darurat bencana sedang dalam pengembangan. Tampilan lengkap akan segera hadir.
         </Text>
       </View>
     </SafeAreaView>
