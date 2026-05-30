@@ -150,3 +150,8 @@ export default function ArticleDetailScreen() {
         Simpan panduan ini ke perangkat Anda agar tetap dapat diakses meskipun koneksi internet terputus saat terjadi kondisi darurat bencana.
       </Text>
     </View>
+  </View>
+      </ScrollView >
+    </View >
+  );
+}
