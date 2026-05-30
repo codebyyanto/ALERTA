@@ -59,8 +59,8 @@ export default function ArticleDetailScreen() {
     );
   }
   return (
-    <View style={styles.container}></View>
-          <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
                 {/* ── Gambar Cover Atas ── */ }
   <View style={styles.coverContainer}>
     <Image
@@ -101,7 +101,7 @@ export default function ArticleDetailScreen() {
   >
     <View style={styles.spacer} />
     {/* ── Overlap Card Konten Utama ── */}
-    <View style={styles.contentCard}></View>
+    <View style={styles.contentCard}>
     {/* Kategori Badge */}
     <View style={styles.badgeRow}>
       <View style={styles.categoryBadge}>
