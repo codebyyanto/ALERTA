@@ -230,5 +230,63 @@ return (
         </View>
       ) : null}
     </ScrollView>
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.articlesCarousel}
+      snapToInterval={290 + 16}
+      decelerationRate="fast"
+    >
+      {filteredArticles.map((article) => (
+        <TouchableOpacity
+          key={article.id}
+          style={styles.articleCard}
+          activeOpacity={0.9}
+          onPress={() => router.push(`/articles/${article.id}`)}
+        >
+          <View style={styles.cardImageContainer}>
+            <Image
+              source={{
+                uri:
+                  article.image ||
+                  'https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=400',
+              }}
+              style={styles.cardImage}
+            />
+          </View>
+
+          <View style={styles.cardBody}>
+            <View style={styles.cardMetaRow}>
+              <Text style={styles.cardCategory}>{article.category.toUpperCase()}</Text>
+            </View>
+
+            <Text style={styles.cardTitle} numberOfLines={2}>
+              {article.title}
+            </Text>
+
+            <Text style={styles.cardSummary} numberOfLines={2}>
+              {article.summary}
+            </Text>
+
+            <View style={styles.cardFooter}>
+              <View style={styles.footerItem}>
+                <Eye size={14} color="#94a3b8" />
+                <Text style={styles.footerItemText}>1.2k dibaca</Text>
+              </View>
+
+              <View style={styles.footerItem}>
+                <Calendar size={14} color="#94a3b8" />
+                <Text style={styles.footerItemText}>
+                  {new Date(article.createdAt).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                  })}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+      ))}
+    </ScrollView>
   </SafeAreaView>
 );
