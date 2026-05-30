@@ -142,3 +142,11 @@ export default function ArticleDetailScreen() {
     </View>
     {/* Konten Lengkap */}
     <Text style={styles.bodyText}>{article.content}</Text>
+
+    {/* Tambahan Info / Disclaimer */}
+    <View style={styles.disclaimerBox}>
+      <Text style={styles.disclaimerTitle}>💡 Rekomendasi Siaga Bencana</Text>
+      <Text style={styles.disclaimerText}>
+        Simpan panduan ini ke perangkat Anda agar tetap dapat diakses meskipun koneksi internet terputus saat terjadi kondisi darurat bencana.
+      </Text>
+    </View>
