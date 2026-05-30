@@ -22,3 +22,18 @@ export default function ArticleDetailScreen() {
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [saved, setSaved] = useState(false);
+  useEffect(() => {
+    async function loadArticle() {
+      if (!id) return;
+      setLoading(true);
+      try {
+        const data = await articleService.getArticleById(id);
+        setArticle(data);
+      } catch (error) {
+        console.error('[Detail] Gagal memuat artikel:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadArticle();
+  }, [id]);
