@@ -18,3 +18,7 @@ import { articleService, Article } from '@/services/articleService';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 export default function ArticleDetailScreen() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const [article, setArticle] = useState<Article | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saved, setSaved] = useState(false);
