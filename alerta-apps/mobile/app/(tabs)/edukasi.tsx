@@ -45,3 +45,4 @@ import { articleService, Article } from '@/services/articleService';
 export default function EdukasiScreen() {
   return null;
 }
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
