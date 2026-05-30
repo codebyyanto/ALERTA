@@ -100,3 +100,5 @@ export default function ArticleDetailScreen() {
     bounces={false}
   >
     <View style={styles.spacer} />
+    {/* ── Overlap Card Konten Utama ── */}
+    <View style={styles.contentCard}></View>
