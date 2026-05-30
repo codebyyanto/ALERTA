@@ -37,3 +37,6 @@ export default function ArticleDetailScreen() {
     }
     loadArticle();
   }, [id]);
+  const handleShare = () => {
+    alert('Bagikan materi berhasil disalin!');
+  };
