@@ -17,3 +17,4 @@ import { ArrowLeft, Calendar, Eye, ShieldCheck, Share2, Bookmark } from 'lucide-
 import { articleService, Article } from '@/services/articleService';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
+export default function ArticleDetailScreen() {
