@@ -112,3 +112,6 @@ export default function ArticleDetailScreen() {
         <Text style={styles.verifiedText}>Lolos Verifikasi BPBD</Text>
       </View>
     </View>
+
+    {/* Judul Materi */}
+    <Text style={styles.title}>{article.title}</Text>
