@@ -61,3 +61,15 @@ export default function ArticleDetailScreen() {
   return (
     <View style={styles.container}></View>
           <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
+                {/* ── Gambar Cover Atas ── */ }
+  <View style={styles.coverContainer}>
+    <Image
+      source={{
+        uri:
+          article.image ||
+          'https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=400',
+      }}
+      style={styles.coverImage}
+    />
+    <View style={styles.imageOverlay} />
+  </View>
