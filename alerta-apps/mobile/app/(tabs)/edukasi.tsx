@@ -89,3 +89,7 @@ const fetchArticles = async (isRefresh = false) => {
 useEffect(() => {
   fetchArticles();
 }, []);
+const onRefresh = () => {
+  setRefreshing(true);
+  fetchArticles(true);
+};
