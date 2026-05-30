@@ -115,3 +115,20 @@ export default function ArticleDetailScreen() {
 
     {/* Judul Materi */}
     <Text style={styles.title}>{article.title}</Text>
+    {/* Metadata */}
+    <View style={styles.metaRow}>
+      <View style={styles.metaItem}>
+        <Calendar size={14} color="#94a3b8" />
+        <Text style={styles.metaText}>
+          {new Date(article.createdAt).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          })}
+        </Text>
+      </View>
+      <View style={styles.metaItem}>
+        <Eye size={14} color="#94a3b8" />
+        <Text style={styles.metaText}>1.2k tayangan</Text>
+      </View>
+    </View>
