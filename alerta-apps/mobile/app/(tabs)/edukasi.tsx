@@ -11,8 +11,9 @@ import {
   Dimensions,
   Platform,
   Alert,
+  StatusBar as RNStatusBar,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { Search, Eye, Calendar, RefreshCw, X, Award } from 'lucide-react-native';
 import { router } from 'expo-router';
@@ -43,6 +44,7 @@ const CATEGORY_BANNERS = [
 ];
 
 export default function EdukasiScreen() {
+  const insets = useSafeAreaInsets();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -102,7 +104,7 @@ export default function EdukasiScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <View style={[styles.safeArea, { paddingTop: Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20) }]}>
       {/* ── Custom Header ── */}
       <View style={styles.headerBar}>
         <View>
@@ -278,7 +280,7 @@ export default function EdukasiScreen() {
         {/* Spacer di bawah agar tidak tertutup tabbar absolut */}
         <View style={styles.bottomSpacer} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
