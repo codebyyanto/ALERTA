@@ -93,3 +93,13 @@ const onRefresh = () => {
   setRefreshing(true);
   fetchArticles(true);
 };
+const filteredArticles = articles.filter((art) => {
+  const matchesSearch =
+    art.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    art.summary.toLowerCase().includes(searchQuery.toLowerCase());
+
+  const matchesCategory =
+    !selectedCategory || art.category.toUpperCase() === selectedCategory.toUpperCase();
+
+  return matchesSearch && matchesCategory;
+});
