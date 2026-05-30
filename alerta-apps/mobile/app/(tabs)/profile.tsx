@@ -71,3 +71,21 @@ export default function ProfileScreen() {
           <Bell size={22} color="#1e293b" />
         </TouchableOpacity>
       </View>
+
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* ── Kartu Profil Utama ── */}
+        <View style={styles.profileCard}>
+          <View style={styles.avatarWrapper}>
+            <View style={styles.avatarIconContainer}>
+              <User size={48} color="#C8102E" />
+            </View>
+            {/* Lencana Merah Verifikasi di sudut kanan bawah */}
+            <View style={styles.verifiedBadge} />
+          </View>
+
+          <Text style={styles.userNameText}>{userName}</Text>
+          <Text style={styles.userRoleText}>{userRole}</Text>
+        </View>
