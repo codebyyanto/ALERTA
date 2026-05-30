@@ -214,6 +214,13 @@ return (
           <RefreshCw size={14} color="#C8102E" />
         </TouchableOpacity>
       </View>
+      {loading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#C8102E" />
+          <Text style={styles.loadingText}>Memuat materi dari CMS...</Text>
+        </View>
+      ) : null}
+
     </ScrollView>
   </SafeAreaView>
 );
