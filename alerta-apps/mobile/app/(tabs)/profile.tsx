@@ -38,3 +38,21 @@ export default function ProfileScreen() {
     }
     loadUser();
   }, []);
+
+  const handleLogout = () => {
+    Alert.alert('Keluar', 'Apakah Anda yakin ingin keluar dari akun?', [
+      { text: 'Batal', style: 'cancel' },
+      {
+        text: 'Keluar',
+        style: 'destructive',
+        onPress: async () => {
+          await authService.logout();
+          router.replace('/(auth)/login');
+        },
+      },
+    ]);
+  };
+
+  const handleMenuPress = (menuName: string) => {
+    Alert.alert('Fitur Terkunci', `Halaman ${menuName} akan segera hadir dalam pembaruan berikutnya!`);
+  };
