@@ -177,5 +177,35 @@ return (
       )}
     </View>
 
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.categoryScroll}
+    >
+      {CATEGORY_BANNERS.map((cat) => {
+        const isSelected = selectedCategory === cat.id;
+
+        return (
+          <TouchableOpacity
+            key={cat.id}
+            style={[styles.categoryCard, isSelected && styles.categoryCardSelected]}
+            onPress={() => handleCategoryPress(cat.id)}
+            activeOpacity={0.8}
+          >
+            <Image source={{ uri: cat.image }} style={styles.categoryImage} />
+
+            <View style={styles.categoryOverlay} />
+
+            {cat.badge && (
+              <View style={styles.criticalBadge}>
+                <Text style={styles.criticalText}>{cat.badge}</Text>
+              </View>
+            )}
+
+            <Text style={styles.categoryTitle}>{cat.label}</Text>
+          </TouchableOpacity>
+        );
+      })}
+    </ScrollView>
   </SafeAreaView>
 );
