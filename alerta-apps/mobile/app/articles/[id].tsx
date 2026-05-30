@@ -92,3 +92,11 @@ export default function ArticleDetailScreen() {
       </TouchableOpacity>
     </View>
   </SafeAreaView>
+
+  {/* ── Konten Scroll ── */ }
+  <ScrollView
+    showsVerticalScrollIndicator={false}
+    contentContainerStyle={styles.scrollContent}
+    bounces={false}
+  >
+    <View style={styles.spacer} />
