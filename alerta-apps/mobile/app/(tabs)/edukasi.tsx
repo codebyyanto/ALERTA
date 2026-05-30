@@ -220,7 +220,15 @@ return (
           <Text style={styles.loadingText}>Memuat materi dari CMS...</Text>
         </View>
       ) : null}
+      {filteredArticles.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>Tidak ada materi edukasi ditemukan.</Text>
 
+          <TouchableOpacity style={styles.refreshBtn} onPress={onRefresh}>
+            <Text style={styles.refreshBtnText}>Muat Ulang</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </ScrollView>
   </SafeAreaView>
 );
