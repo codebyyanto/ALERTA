@@ -178,3 +178,42 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(15, 23, 42, 0.3)',
   },
+
+  /* ── Header Melayang ── */
+  floatingHeader: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: Platform.OS === 'ios' ? 0 : 12,
+    zIndex: 10,
+  },
+  roundBtn: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  rightFloatingBtns: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  /* ── Scroll Content ── */
+  scrollContent: {
+    flexGrow: 1,
+  },
+  spacer: {
+    height: 260, // Membiarkan cover atas terlihat sebagian
+  },
