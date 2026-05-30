@@ -169,3 +169,16 @@ export default function ProfileScreen() {
             <ChevronRight size={18} color="#cbd5e1" />
           </TouchableOpacity>
         </View>
+
+        {/* ── Tombol Keluar Akun (Kartu Terpisah) ── */}
+        <TouchableOpacity
+          style={styles.logoutCard}
+          activeOpacity={0.8}
+          onPress={handleLogout}
+        >
+          <LogOut size={20} color="#C8102E" />
+          <Text style={styles.logoutCardText}>Keluar Akun</Text>
+        </TouchableOpacity>
+
+        {/* ── Catatan Kaki Versi ── */}
+        <Text style={styles.versionText}>ALERTA V1.0.0 • INDONESIA</Text>
