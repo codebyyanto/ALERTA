@@ -23,3 +23,18 @@ import {
 } from 'lucide-react-native';
 import { authService } from '@/services/authService';
 import { router } from 'expo-router';
+
+export default function ProfileScreen() {
+  const insets = useSafeAreaInsets();
+  const [userName, setUserName] = useState('Budi Setiawan');
+  const [userRole, setUserRole] = useState('Pengguna Terverifikasi');
+
+  useEffect(() => {
+    async function loadUser() {
+      const user = await authService.getStoredUser();
+      if (user?.name) {
+        setUserName(user.name);
+      }
+    }
+    loadUser();
+  }, []);
