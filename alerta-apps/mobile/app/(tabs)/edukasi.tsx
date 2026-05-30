@@ -103,3 +103,14 @@ const filteredArticles = articles.filter((art) => {
 
   return matchesSearch && matchesCategory;
 });
+
+const handleStartQuiz = () => {
+  Alert.alert(
+    'Kuis Harian',
+    'Uji kesiagaan bencana Anda dan dapatkan +250 XP untuk pengguna terverifikasi!',
+    [
+      { text: 'Nanti Saja', style: 'cancel' },
+      { text: 'Mulai Kuis', onPress: () => alert('Fitur Kuis akan segera hadir!') },
+    ]
+  );
+};
