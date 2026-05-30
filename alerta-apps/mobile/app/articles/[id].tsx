@@ -60,3 +60,4 @@ export default function ArticleDetailScreen() {
   }
   return (
     <View style={styles.container}></View>
+          <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
