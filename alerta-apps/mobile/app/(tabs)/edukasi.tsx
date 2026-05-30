@@ -70,3 +70,6 @@ const CATEGORY_BANNERS = [
 const [articles, setArticles] = useState<Article[]>([]);
 const [loading, setLoading] = useState(true);
 const [refreshing, setRefreshing] = useState(false);
+
+const [searchQuery, setSearchQuery] = useState('');
+const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
