@@ -15,3 +15,5 @@ import { Image } from 'expo-image';
 import { useLocalSearchParams, router } from 'expo-router';
 import { ArrowLeft, Calendar, Eye, ShieldCheck, Share2, Bookmark } from 'lucide-react-native';
 import { articleService, Article } from '@/services/articleService';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
