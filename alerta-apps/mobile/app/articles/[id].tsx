@@ -102,3 +102,13 @@ export default function ArticleDetailScreen() {
     <View style={styles.spacer} />
     {/* ── Overlap Card Konten Utama ── */}
     <View style={styles.contentCard}></View>
+    {/* Kategori Badge */}
+    <View style={styles.badgeRow}>
+      <View style={styles.categoryBadge}>
+        <Text style={styles.categoryText}>{article.category.toUpperCase()}</Text>
+      </View>
+      <View style={styles.verifiedBadge}>
+        <ShieldCheck size={12} color="#059669" />
+        <Text style={styles.verifiedText}>Lolos Verifikasi BPBD</Text>
+      </View>
+    </View>
