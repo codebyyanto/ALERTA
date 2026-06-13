@@ -196,6 +196,31 @@ export default function MapScreen() {
           </View>
         )}
 
+        {/* Floating region stats overlay */}
+        {!selectedDisaster && (
+          <View style={styles.statsOverlayCard}>
+            <View style={styles.statsHeader}>
+              <Text style={styles.statsTitle}>STATISTIK WILAYAH</Text>
+              <Text style={styles.statsBadge}>LAMPUNG</Text>
+            </View>
+
+            <View style={styles.statsGrid}>
+              <View style={styles.statsItem}>
+                <Text style={styles.statsLabel}>TERDAMPAK</Text>
+                <Text style={styles.statsVal}>1.240</Text>
+                <Text style={[styles.statsSubVal, { color: '#ef4444' }]}>▲ 12% Hari Ini</Text>
+              </View>
+              <View style={styles.statsItem}>
+                <Text style={styles.statsLabel}>PENGUNGSI</Text>
+                <Text style={styles.statsVal}>3.412</Text>
+                <Text style={[styles.statsSubVal, { color: '#10b981' }]}>● Stabil</Text>
+              </View>
+            </View>
+            
+            {/* Logistics progress goes here */}
+          </View>
+        )}
+
         {/* Map Overlays */}
       </View>
     </View>
@@ -425,6 +450,75 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '800',
     color: '#94a3b8',
+  },
+  statsOverlayCard: {
+    position: 'absolute',
+    bottom: 24,
+    left: 16,
+    right: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 24,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.05,
+    shadowRadius: 12,
+    elevation: 5,
+    zIndex: 25,
+  },
+  statsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  statsTitle: {
+    fontSize: 9,
+    fontWeight: '900',
+    color: '#1e293b',
+    letterSpacing: 0.5,
+  },
+  statsBadge: {
+    fontSize: 8,
+    fontWeight: '900',
+    color: '#C8102E',
+    backgroundColor: 'rgba(200, 16, 46, 0.05)',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+    letterSpacing: 0.5,
+  },
+  statsGrid: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 10,
+  },
+  statsItem: {
+    flex: 1,
+    backgroundColor: '#f8fafc',
+    borderRadius: 16,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
+  statsLabel: {
+    fontSize: 8,
+    fontWeight: '900',
+    color: '#94a3b8',
+    letterSpacing: 0.5,
+  },
+  statsVal: {
+    fontSize: 14,
+    fontWeight: '900',
+    color: '#1e293b',
+    marginTop: 2,
+  },
+  statsSubVal: {
+    fontSize: 8,
+    fontWeight: '800',
+    marginTop: 2,
   },
   brandTitle: {
     fontSize: 22,
