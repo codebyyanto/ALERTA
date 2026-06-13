@@ -29,6 +29,7 @@ export default function MapScreen() {
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
   const [selectedDisaster, setSelectedDisaster] = useState<any | null>(null);
   const [disasters, setDisasters] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -60,6 +61,7 @@ export default function MapScreen() {
 
   useEffect(() => {
     async function loadDisasters() {
+      setLoading(true);
       try {
         const res = await fetch('http://localhost:3000/reports?status=TERVERIFIKASI');
         if (res.ok) {
@@ -73,6 +75,9 @@ export default function MapScreen() {
           { id: '1', reporterName: 'Andi Darmawan', category: 'Kebakaran', location: 'Lampung Selatan', time: '10:45, Hari ini', description: 'Kebakaran hutan semak belukar seluas 3 hektar.' },
           { id: '2', reporterName: 'Siti Aminah', category: 'Banjir', location: 'Lampung Barat', time: '08:20, Hari ini', description: 'Banjir meluap ke pemukiman setinggi 40cm.' }
         ]);
+      }
+      } finally {
+        setLoading(false);
       }
     }
     loadDisasters();
@@ -123,6 +128,13 @@ export default function MapScreen() {
         />
         {/* Overlay Gradients */}
         <View style={styles.mapOverlay} />
+
+        {/* Loading Spinner */}
+        {loading && (
+          <View style={styles.loadingSpinnerContainer}>
+            <ActivityIndicator size="large" color={COLORS.primary} />
+          </View>
+        )}
         
         {/* Map Zoom Controls */}
         <View style={styles.zoomControls}>
@@ -607,6 +619,13 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#0d9488',
     borderRadius: 2.5,
+  },
+  loadingSpinnerContainer: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 22,
   },
   brandTitle: {
     fontSize: 22,
