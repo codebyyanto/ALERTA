@@ -25,6 +25,8 @@ export default function ReportsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentTab, setCurrentTab] = useState<'ALL' | 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK'>('ALL');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [reports, setReports] = useState<any[]>([]);
 
   return (
     <DashboardLayout>
@@ -102,6 +104,18 @@ export default function ReportsPage() {
                       </td>
                     </tr>
                   ))
+                )}
+                {!loading && (error || reports.length === 0) && (
+                  <tr>
+                    <td colSpan={7} className="py-12 text-center">
+                      <div className="flex flex-col items-center justify-center gap-2">
+                        <AlertTriangle size={32} className="text-slate-300" />
+                        <p className="text-[13px] font-bold text-slate-400">
+                          {error ? 'Gagal memuat data laporan dari API' : 'Belum ada laporan masuk dari aplikasi mobile'}
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>
