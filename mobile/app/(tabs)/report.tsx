@@ -47,6 +47,34 @@ export default function ReportScreen() {
           <Bell size={22} color={COLORS.textDark} />
         </TouchableOpacity>
       </View>
+
+      {/* Progress Steps */}
+      <View style={styles.stepsContainer}>
+        <View style={styles.stepItem}>
+          <View style={[styles.stepCircle, styles.stepCircleActive]}>
+            <Text style={styles.stepNumberActive}>1</Text>
+          </View>
+          <Text style={styles.stepLabelActive}>DETAIL</Text>
+        </View>
+
+        <View style={styles.stepLine} />
+
+        <View style={styles.stepItem}>
+          <View style={styles.stepCircle}>
+            <Text style={styles.stepNumber}>2</Text>
+          </View>
+          <Text style={styles.stepLabel}>LOKASI</Text>
+        </View>
+
+        <View style={styles.stepLine} />
+
+        <View style={styles.stepItem}>
+          <View style={styles.stepCircle}>
+            <Text style={styles.stepNumber}>3</Text>
+          </View>
+          <Text style={styles.stepLabel}>KIRIM</Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -79,6 +107,61 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.04,
     shadowRadius: 3,
     elevation: 2,
+  },
+  stepsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 36,
+    paddingVertical: 20,
+    backgroundColor: '#ffffff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#f1f5f9',
+  },
+  stepItem: {
+    alignItems: 'center',
+    width: 60,
+  },
+  stepCircle: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#e2e8f0',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 6,
+  },
+  stepCircleActive: {
+    backgroundColor: '#C8102E',
+  },
+  stepNumber: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#94a3b8',
+  },
+  stepNumberActive: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#ffffff',
+  },
+  stepLabel: {
+    fontSize: 9,
+    fontWeight: '800',
+    color: '#94a3b8',
+    letterSpacing: 0.5,
+  },
+  stepLabelActive: {
+    fontSize: 9,
+    fontWeight: '800',
+    color: '#C8102E',
+    letterSpacing: 0.5,
+  },
+  stepLine: {
+    flex: 1,
+    height: 2,
+    backgroundColor: '#e2e8f0',
+    marginHorizontal: 8,
+    marginBottom: 16,
   },
   brandTitle: {
     fontSize: 22,
