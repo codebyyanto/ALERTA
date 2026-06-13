@@ -111,6 +111,15 @@ export default function MonitoringPage() {
               </div>
               
               {/* Logistics Progress Indicator */}
+              <div className="space-y-1.5 pt-2 border-t border-slate-100">
+                <div className="flex justify-between items-center text-[10px] font-bold text-slate-500">
+                  <span>Kebutuhan Logistik</span>
+                  <span className="text-slate-800">78% Terpenuhi</span>
+                </div>
+                <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-[#0D9488] rounded-full transition-all duration-500" style={{ width: '78%' }} />
+                </div>
+              </div>
             </div>
             {/* Map Markers Overlays */}
             <div className="absolute inset-0 z-10 pointer-events-none">
