@@ -100,6 +100,15 @@ export default function ReportScreen() {
               <AlertTriangle size={24} color={COLORS.textLight} />
               <Text style={styles.categoryText}>Longsor</Text>
             </TouchableOpacity>
+
+            {/* Gempa */}
+            <TouchableOpacity 
+              style={styles.categoryCard} 
+              activeOpacity={0.7}
+            >
+              <Activity size={24} color={COLORS.textLight} />
+              <Text style={styles.categoryText}>Gempa</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
