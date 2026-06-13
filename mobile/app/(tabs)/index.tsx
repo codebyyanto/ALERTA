@@ -39,6 +39,21 @@ export default function HomeScreen() {
 
         {/* Latest News List */}
         <View style={styles.newsList}>
+          {/* News Item 1 */}
+          <TouchableOpacity style={styles.newsCard} activeOpacity={0.8}>
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1542350327-013b6b9e4307?auto=format&fit=crop&q=80&w=400' }} 
+              style={styles.newsImg} 
+            />
+            <View style={styles.newsBody}>
+              <View style={[styles.badgeCategory, { backgroundColor: '#e0f2fe' }]}>
+                <Text style={[styles.badgeCategoryText, { color: '#0369a1' }]}>PENANGANAN</Text>
+              </View>
+              <Text style={styles.newsTitle} numberOfLines={2}>Tim SAR Evakuasi Korban Longsor di Sukabumi</Text>
+              <Text style={styles.newsMeta}>2 Jam yang lalu • Metro News</Text>
+            </View>
+          </TouchableOpacity>
+          
           {/* News Cards */}
         </View>
 
@@ -436,6 +451,54 @@ const styles = StyleSheet.create({
   newsList: {
     marginHorizontal: 16,
     gap: 12,
+  },
+  newsCard: {
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.02,
+    shadowRadius: 6,
+    elevation: 2,
+    padding: 10,
+    gap: 12,
+  },
+  newsImg: {
+    width: 90,
+    height: 90,
+    borderRadius: 14,
+    resizeMode: 'cover',
+  },
+  newsBody: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  badgeCategory: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
+    marginBottom: 4,
+  },
+  badgeCategoryText: {
+    fontSize: 8,
+    fontWeight: '900',
+  },
+  newsTitle: {
+    fontSize: 12,
+    fontWeight: '900',
+    color: '#1e293b',
+    marginBottom: 4,
+    lineHeight: 16,
+  },
+  newsMeta: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#94a3b8',
   },
   brandTitle: {
     fontSize: 22,
