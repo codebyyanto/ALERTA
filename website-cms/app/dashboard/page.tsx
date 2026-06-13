@@ -268,7 +268,22 @@ export default function DashboardPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Table Rows */}
+                  {mockReports.map((report) => (
+                    <tr key={report.id} className="border-b border-slate-50 last:border-0 hover:bg-slate-50/30 transition-colors">
+                      <td className="py-4 flex items-center gap-3">
+                        <div className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-black text-slate-500 shrink-0">
+                          {report.initials}
+                        </div>
+                        <span className="text-[12px] font-bold text-slate-800">{report.reporter}</span>
+                      </td>
+                      <td className="py-4 text-[12px] font-bold text-slate-800">{report.type}</td>
+                      <td className="py-4 text-[12px] text-slate-500 font-semibold">{report.location}</td>
+                      <td className="py-4 text-[12px] text-slate-400 font-semibold">{report.time}</td>
+                      <td className="py-4 text-right">
+                        {/* Status Badge */}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
