@@ -296,7 +296,16 @@ export default function DashboardPage() {
             </div>
           </div>
           
-          {/* Right: Quick Response Place */}
+          {/* Right: Quick Response Card */}
+          <div className="bg-[#FEF2F2] rounded-[32px] p-8 border border-red-100/50 shadow-[0_4px_20px_rgba(200,16,46,0.01)] flex flex-col justify-between min-h-[280px]">
+            <div>
+              <h4 className="text-[11px] font-black text-[#C8102E] tracking-widest uppercase mb-6">QUICK RESPONSE</h4>
+              
+              <div className="space-y-3.5">
+                {/* Action Buttons */}
+              </div>
+            </div>
+          </div>
         </div>
           </div>
         </div>
