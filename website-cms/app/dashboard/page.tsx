@@ -153,7 +153,38 @@ export default function DashboardPage() {
                 </div>
               </div>
               
-              {/* Chart Container */}
+              {/* Custom SVG Bar Chart */}
+              <div className="h-60 mt-8 flex items-end justify-between relative">
+                {/* Horizontal Gridlines */}
+                <div className="absolute inset-0 flex flex-col justify-between pointer-events-none pb-8">
+                  <div className="w-full border-t border-slate-50" />
+                  <div className="w-full border-t border-slate-50" />
+                  <div className="w-full border-t border-slate-50" />
+                  <div className="w-full border-t border-slate-50" />
+                </div>
+                
+                {/* Bars rendering */}
+                <div className="w-full h-[88%] flex items-end justify-between z-10 pt-4 pb-1">
+                  {(timeframe === 'DAILY' ? mockDailyTrend : mockMonthlyTrend).map((item, idx) => {
+                    const maxVal = Math.max(...(timeframe === 'DAILY' ? mockDailyTrend.map(d => d.count) : mockMonthlyTrend.map(m => m.count)));
+                    const heightPercent = `${(item.count / maxVal) * 88}%`;
+                    const isPeak = timeframe === 'DAILY' ? item.count === 42 : item.date === 'OKT';
+                    
+                    return (
+                      <div key={item.date} className="flex-1 flex flex-col items-center group/bar cursor-pointer h-full justify-end px-2">
+                        <div 
+                          style={{ height: heightPercent }}
+                          className={cn(
+                            "w-full rounded-t-lg transition-all duration-500 relative min-h-[4px]",
+                            isPeak ? "bg-[#C8102E] shadow-[0_4px_12px_rgba(200,16,46,0.2)]" : "bg-[#FCA5A5] hover:bg-[#F87171]"
+                          )}
+                        />
+                        <span className="text-[9px] font-black text-slate-400 tracking-wider mt-3.5 whitespace-nowrap">{item.date}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
           
