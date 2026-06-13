@@ -32,6 +32,7 @@ import {
 export default function ReportScreen() {
   const [category, setCategory] = useState<string>('Kebakaran');
   const [photoUri, setPhotoUri] = useState<string | null>(null);
+  const [gpsLoading, setGpsLoading] = useState<boolean>(false);
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -62,6 +63,28 @@ export default function ReportScreen() {
           </Text>
         </View>
         
+        {/* Location Section */}
+        <View style={styles.sectionContainer}>
+          <View style={styles.sectionHeaderRow}>
+            <Text style={styles.sectionLabel}>LOKASI KEJADIAN</Text>
+            <TouchableOpacity 
+              style={styles.gpsButton} 
+              activeOpacity={0.7}
+            >
+              {gpsLoading ? (
+                <ActivityIndicator size="small" color={COLORS.primary} />
+              ) : (
+                <>
+                  <MapPin size={13} color={COLORS.primary} strokeWidth={3} />
+                  <Text style={styles.gpsText}>GUNAKAN GPS</Text>
+                </>
+              )}
+            </TouchableOpacity>
+          </View>
+
+          {/* Map layout will go here */}
+        </View>
+
         {/* Photo Upload Section */}
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionLabel}>UNGGAH BUKTI FOTO</Text>
@@ -364,6 +387,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
+  },
+  sectionHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  gpsButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  gpsText: {
+    fontSize: 11,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: 0.5,
   },
   categoryCard: {
     width: '31%',
