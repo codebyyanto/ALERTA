@@ -30,6 +30,7 @@ import {
 } from 'lucide-react-native';
 
 export default function ReportScreen() {
+  const [category, setCategory] = useState<string>('Kebakaran');
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -67,56 +68,62 @@ export default function ReportScreen() {
           <View style={styles.categoriesGrid}>
             {/* Kebakaran */}
             <TouchableOpacity 
-              style={styles.categoryCard} 
+              style={[styles.categoryCard, category === 'Kebakaran' && styles.categoryCardActive]} 
               activeOpacity={0.7}
+              onPress={() => setCategory('Kebakaran')}
             >
-              <Flame size={24} color={COLORS.textLight} />
-              <Text style={styles.categoryText}>Kebakaran</Text>
+              <Flame size={24} color={category === 'Kebakaran' ? COLORS.primary : COLORS.textLight} />
+              <Text style={[styles.categoryText, category === 'Kebakaran' && styles.categoryTextActive]}>Kebakaran</Text>
             </TouchableOpacity>
 
             {/* Banjir */}
             <TouchableOpacity 
-              style={styles.categoryCard} 
+              style={[styles.categoryCard, category === 'Banjir' && styles.categoryCardActive]} 
               activeOpacity={0.7}
+              onPress={() => setCategory('Banjir')}
             >
-              <Waves size={24} color={COLORS.textLight} />
-              <Text style={styles.categoryText}>Banjir</Text>
+              <Waves size={24} color={category === 'Banjir' ? COLORS.primary : COLORS.textLight} />
+              <Text style={[styles.categoryText, category === 'Banjir' && styles.categoryTextActive]}>Banjir</Text>
             </TouchableOpacity>
 
             {/* Medis */}
             <TouchableOpacity 
-              style={styles.categoryCard} 
+              style={[styles.categoryCard, category === 'Medis' && styles.categoryCardActive]} 
               activeOpacity={0.7}
+              onPress={() => setCategory('Medis')}
             >
-              <PlusSquare size={24} color={COLORS.textLight} />
-              <Text style={styles.categoryText}>Medis</Text>
+              <PlusSquare size={24} color={category === 'Medis' ? COLORS.primary : COLORS.textLight} />
+              <Text style={[styles.categoryText, category === 'Medis' && styles.categoryTextActive]}>Medis</Text>
             </TouchableOpacity>
 
             {/* Longsor */}
             <TouchableOpacity 
-              style={styles.categoryCard} 
+              style={[styles.categoryCard, category === 'Longsor' && styles.categoryCardActive]} 
               activeOpacity={0.7}
+              onPress={() => setCategory('Longsor')}
             >
-              <AlertTriangle size={24} color={COLORS.textLight} />
-              <Text style={styles.categoryText}>Longsor</Text>
+              <AlertTriangle size={24} color={category === 'Longsor' ? COLORS.primary : COLORS.textLight} />
+              <Text style={[styles.categoryText, category === 'Longsor' && styles.categoryTextActive]}>Longsor</Text>
             </TouchableOpacity>
 
             {/* Gempa */}
             <TouchableOpacity 
-              style={styles.categoryCard} 
+              style={[styles.categoryCard, category === 'Gempa' && styles.categoryCardActive]} 
               activeOpacity={0.7}
+              onPress={() => setCategory('Gempa')}
             >
-              <Activity size={24} color={COLORS.textLight} />
-              <Text style={styles.categoryText}>Gempa</Text>
+              <Activity size={24} color={category === 'Gempa' ? COLORS.primary : COLORS.textLight} />
+              <Text style={[styles.categoryText, category === 'Gempa' && styles.categoryTextActive]}>Gempa</Text>
             </TouchableOpacity>
 
             {/* Lainnya */}
             <TouchableOpacity 
-              style={styles.categoryCard} 
+              style={[styles.categoryCard, category === 'Lainnya' && styles.categoryCardActive]} 
               activeOpacity={0.7}
+              onPress={() => setCategory('Lainnya')}
             >
-              <MoreHorizontal size={24} color={COLORS.textLight} />
-              <Text style={styles.categoryText}>Lainnya</Text>
+              <MoreHorizontal size={24} color={category === 'Lainnya' ? COLORS.primary : COLORS.textLight} />
+              <Text style={[styles.categoryText, category === 'Lainnya' && styles.categoryTextActive]}>Lainnya</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -272,6 +279,13 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 12,
     justifyContent: 'space-between',
+  },
+  categoryCardActive: {
+    borderColor: '#C8102E',
+    backgroundColor: '#fff5f5',
+  },
+  categoryTextActive: {
+    color: '#C8102E',
   },
   categoryCard: {
     width: '31%',
