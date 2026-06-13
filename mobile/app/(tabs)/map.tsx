@@ -26,8 +26,11 @@ import {
 } from 'lucide-react-native';
 
 export default function MapScreen() {
+  const insets = useSafeAreaInsets();
+  const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
+
   return (
-    <View style={styles.safeArea}>
+    <View style={[styles.safeArea, { paddingTop }]}>
       <Text>Peta Kebencanaan</Text>
     </View>
   );
