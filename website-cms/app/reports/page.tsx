@@ -55,6 +55,13 @@ export default function ReportsPage() {
             </button>
           </div>
         </header>
+        {/* Title and Top Actions */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900">Manajemen Laporan</h1>
+            <p className="text-[13px] text-slate-500 font-medium mt-1">Pantau dan verifikasi setiap laporan kejadian dari masyarakat secara real-time.</p>
+          </div>
+        </div>
       </div>
     </DashboardLayout>
   );
