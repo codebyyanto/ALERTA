@@ -56,6 +56,28 @@ export default function ReportsPage() {
             </button>
           </div>
         </header>
+        {/* Table & Pagination Wrapper */}
+        <div className="bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-[0_4px_25px_rgba(0,0,0,0.005)]">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-slate-50 text-[10px] font-black text-slate-400 tracking-widest uppercase bg-slate-50/50">
+                  <th className="py-4 px-6">ID LAPORAN</th>
+                  <th className="py-4 px-6">PELAPOR</th>
+                  <th className="py-4 px-6">KATEGORI</th>
+                  <th className="py-4 px-6">LOKASI</th>
+                  <th className="py-4 px-6">WAKTU</th>
+                  <th className="py-4 px-6">STATUS</th>
+                  <th className="py-4 px-6 text-center">AKSI</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-50">
+                {/* Rows will go here */}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         {/* Filtering Tabs */}
         <div className="border-b border-slate-100 flex gap-6 text-[13px] font-black">
           {(['ALL', 'MENUNGGU', 'TERVERIFIKASI', 'DITOLAK'] as const).map((tab) => (
