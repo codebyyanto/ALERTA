@@ -280,7 +280,14 @@ export default function DashboardPage() {
                       <td className="py-4 text-[12px] text-slate-500 font-semibold">{report.location}</td>
                       <td className="py-4 text-[12px] text-slate-400 font-semibold">{report.time}</td>
                       <td className="py-4 text-right">
-                        {/* Status Badge */}
+                        <span className={cn(
+                          "inline-block px-3 py-1 rounded-[6px] text-[9px] font-black tracking-widest text-center",
+                          report.status === 'MENUNGGU' && "border border-slate-200 text-slate-400 bg-white shadow-sm",
+                          report.status === 'TERVERIFIKASI' && "bg-[#0D9488] text-white shadow-sm shadow-teal-100",
+                          report.status === 'DIPROSES' && "bg-[#C8102E] text-white shadow-sm shadow-red-100"
+                        )}>
+                          {report.status}
+                        </span>
                       </td>
                     </tr>
                   ))}
