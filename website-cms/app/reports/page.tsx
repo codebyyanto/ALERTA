@@ -55,6 +55,20 @@ export default function ReportsPage() {
             </button>
           </div>
         </header>
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Total Laporan */}
+          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">TOTAL LAPORAN</span>
+            <div className="flex items-baseline gap-2 mt-1">
+              <span className="text-[26px] font-black text-slate-900 leading-none">
+                1.284
+              </span>
+              <span className="text-[10px] font-black text-emerald-500">+12%</span>
+            </div>
+          </div>
+        </div>
+
         {/* Title and Top Actions */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
