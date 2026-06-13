@@ -32,6 +32,16 @@ export default function HomeScreen() {
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {/* Latest News Header */}
+        <View style={styles.newsSectionHeader}>
+          <Text style={styles.newsSectionTitle}>Berita Terkini</Text>
+        </View>
+
+        {/* Latest News List */}
+        <View style={styles.newsList}>
+          {/* News Cards */}
+        </View>
+
         {/* Tips Scroll Wrapper */}
         <ScrollView 
           horizontal 
@@ -413,6 +423,19 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#64748b',
     lineHeight: 14,
+  },
+  newsSectionHeader: {
+    marginHorizontal: 16,
+    marginBottom: 12,
+  },
+  newsSectionTitle: {
+    fontSize: 16,
+    fontWeight: '900',
+    color: '#1e293b',
+  },
+  newsList: {
+    marginHorizontal: 16,
+    gap: 12,
   },
   brandTitle: {
     fontSize: 22,
