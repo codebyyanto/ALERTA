@@ -27,6 +27,7 @@ import {
 
 export default function MapScreen() {
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
+  const [selectedDisaster, setSelectedDisaster] = useState<any | null>(null);
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -43,6 +44,12 @@ export default function MapScreen() {
         <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
           <Bell size={22} color={COLORS.textDark} />
         </TouchableOpacity>
+        {/* Floating Detail Information Card */}
+        {selectedDisaster && (
+          <View style={styles.detailCard}>
+            {/* Detail info goes here */}
+          </View>
+        )}
       </View>
 
       {/* Map Container Wrapper */}
@@ -339,6 +346,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(200, 16, 46, 0.25)',
     borderWidth: 1,
     borderColor: '#C8102E',
+  },
+  detailCard: {
+    position: 'absolute',
+    bottom: 24,
+    left: 16,
+    right: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 24,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 20,
+    elevation: 8,
+    zIndex: 30,
   },
   brandTitle: {
     fontSize: 22,
