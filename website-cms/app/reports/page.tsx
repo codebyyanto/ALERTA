@@ -23,6 +23,7 @@ import DashboardLayout from '@/components/DashboardLayout';
 
 export default function ReportsPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentTab, setCurrentTab] = useState<'ALL' | 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK'>('ALL');
 
   return (
     <DashboardLayout>
@@ -55,6 +56,24 @@ export default function ReportsPage() {
             </button>
           </div>
         </header>
+        {/* Filtering Tabs */}
+        <div className="border-b border-slate-100 flex gap-6 text-[13px] font-black">
+          {(['ALL', 'MENUNGGU', 'TERVERIFIKASI', 'DITOLAK'] as const).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setCurrentTab(tab)}
+              className={cn(
+                "pb-3.5 transition-all relative border-b-2 uppercase tracking-wider",
+                currentTab === tab 
+                  ? "border-[#C8102E] text-[#C8102E]" 
+                  : "border-transparent text-slate-400 hover:text-slate-600"
+              )}
+            >
+              {tab === 'ALL' ? 'Semua Laporan' : tab === 'MENUNGGU' ? 'Menunggu Verifikasi' : tab === 'TERVERIFIKASI' ? 'Terverifikasi' : 'Ditolak'}
+            </button>
+          ))}
+        </div>
+
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Total Laporan */}
