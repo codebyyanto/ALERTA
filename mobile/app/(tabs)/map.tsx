@@ -64,6 +64,11 @@ export default function MapScreen() {
           </TouchableOpacity>
         </View>
 
+        {/* GPS Locate Control */}
+        <TouchableOpacity style={styles.gpsLocateBtn} activeOpacity={0.7}>
+          <Compass size={20} color={COLORS.textDark} strokeWidth={2} />
+        </TouchableOpacity>
+
         {/* Map Overlays */}
       </View>
     </View>
@@ -137,6 +142,25 @@ const styles = StyleSheet.create({
     height: 36,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  gpsLocateBtn: {
+    position: 'absolute',
+    bottom: 250,
+    right: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 3,
+    zIndex: 20,
   },
   brandTitle: {
     fontSize: 22,
