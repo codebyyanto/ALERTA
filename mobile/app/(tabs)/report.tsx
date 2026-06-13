@@ -61,6 +61,14 @@ export default function ReportScreen() {
           </Text>
         </View>
         
+        {/* Photo Upload Section */}
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionLabel}>UNGGAH BUKTI FOTO</Text>
+          <View style={styles.photoRow}>
+            {/* Upload form will go here */}
+          </View>
+        </View>
+
         {/* Category Selector */}
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionLabel}>KATEGORI KEJADIAN</Text>
@@ -286,6 +294,10 @@ const styles = StyleSheet.create({
   },
   categoryTextActive: {
     color: '#C8102E',
+  },
+  photoRow: {
+    flexDirection: 'row',
+    gap: 16,
   },
   categoryCard: {
     width: '31%',
