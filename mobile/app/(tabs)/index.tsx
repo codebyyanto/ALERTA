@@ -26,9 +26,14 @@ import {
 } from 'lucide-react-native';
 
 export default function HomeScreen() {
+  const insets = useSafeAreaInsets();
+  const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
+
   return (
-    <View style={styles.safeArea}>
-      <Text>Beranda Alerta</Text>
+    <View style={[styles.safeArea, { paddingTop }]}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        <Text>Beranda Alerta</Text>
+      </ScrollView>
     </View>
   );
 }
@@ -46,5 +51,8 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#F8FAFC',
+  },
+  scrollContainer: {
+    paddingBottom: 90, // room for floating tab bar
   },
 });
