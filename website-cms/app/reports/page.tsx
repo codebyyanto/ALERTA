@@ -89,6 +89,17 @@ export default function ReportsPage() {
               <span className="text-[10px] font-black text-blue-500">92%</span>
             </div>
           </div>
+
+          {/* Rata-Rata Respon */}
+          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">RATA-RATA RESPON</span>
+            <div className="flex items-baseline gap-2 mt-1">
+              <span className="text-[26px] font-black text-slate-900 leading-none">
+                14m
+              </span>
+              <span className="text-[10px] font-black text-emerald-500">-2m</span>
+            </div>
+          </div>
         </div>
 
         {/* Title and Top Actions */}
