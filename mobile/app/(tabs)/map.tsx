@@ -106,7 +106,25 @@ export default function MapScreen() {
               <Text style={[styles.pillText, activeCategory === 'Kebakaran' && styles.pillTextActive]}>Kebakaran</Text>
             </TouchableOpacity>
 
-            {/* Remaining placeholders */}
+            {/* Gempa */}
+            <TouchableOpacity 
+              style={[styles.pillBtn, activeCategory === 'Gempa' && styles.pillBtnActive]} 
+              activeOpacity={0.7}
+              onPress={() => setActiveCategory('Gempa')}
+            >
+              <ShieldAlert size={14} color={activeCategory === 'Gempa' ? '#ffffff' : COLORS.textDark} />
+              <Text style={[styles.pillText, activeCategory === 'Gempa' && styles.pillTextActive]}>Gempa</Text>
+            </TouchableOpacity>
+
+            {/* Longsor */}
+            <TouchableOpacity 
+              style={[styles.pillBtn, activeCategory === 'Longsor' && styles.pillBtnActive]} 
+              activeOpacity={0.7}
+              onPress={() => setActiveCategory('Longsor')}
+            >
+              <AlertTriangle size={14} color={activeCategory === 'Longsor' ? '#ffffff' : COLORS.textDark} strokeWidth={2.5} />
+              <Text style={[styles.pillText, activeCategory === 'Longsor' && styles.pillTextActive]}>Longsor</Text>
+            </TouchableOpacity>
           </ScrollView>
         </View>
 
