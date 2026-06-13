@@ -54,7 +54,20 @@ export default function HomeScreen() {
             </View>
           </TouchableOpacity>
           
-          {/* News Cards */}
+          {/* News Item 2 */}
+          <TouchableOpacity style={styles.newsCard} activeOpacity={0.8}>
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=400' }} 
+              style={styles.newsImg} 
+            />
+            <View style={styles.newsBody}>
+              <View style={[styles.badgeCategory, { backgroundColor: '#fee2e2' }]}>
+                <Text style={[styles.badgeCategoryText, { color: '#C8102E' }]}>UPDATE BMKG</Text>
+              </View>
+              <Text style={styles.newsTitle} numberOfLines={2}>Gempa Magnitudo 5.2 Guncang Lampung Barat</Text>
+              <Text style={styles.newsMeta}>4 Jam yang lalu • BMKG</Text>
+            </View>
+          </TouchableOpacity>
         </View>
 
         {/* Tips Scroll Wrapper */}
