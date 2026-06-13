@@ -28,8 +28,29 @@ import {
 export default function MapScreen() {
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
   const [selectedDisaster, setSelectedDisaster] = useState<any | null>(null);
+  const [disasters, setDisasters] = useState<any[]>([]);
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
+
+  useEffect(() => {
+    async function loadDisasters() {
+      try {
+        const res = await fetch('http://localhost:3000/reports?status=TERVERIFIKASI');
+        if (res.ok) {
+          const json = await res.json();
+          setDisasters(json.data || []);
+        }
+      } catch (err) {
+        console.warn('Gagal memuat titik bencana dari API, menggunakan data simulasi.', err);
+        // Fallback data simulasi di database jika koneksi mati
+        setDisasters([
+          { id: '1', reporterName: 'Andi Darmawan', category: 'Kebakaran', location: 'Lampung Selatan', time: '10:45, Hari ini', description: 'Kebakaran hutan semak belukar seluas 3 hektar.' },
+          { id: '2', reporterName: 'Siti Aminah', category: 'Banjir', location: 'Lampung Barat', time: '08:20, Hari ini', description: 'Banjir meluap ke pemukiman setinggi 40cm.' }
+        ]);
+      }
+    }
+    loadDisasters();
+  }, []);
 
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
