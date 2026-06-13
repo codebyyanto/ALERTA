@@ -34,6 +34,7 @@ export default function MonitoringPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategories, setActiveCategories] = useState<string[]>(['flood', 'fire']);
   const [hoveredMarker, setHoveredMarker] = useState<number | null>(null);
+  // Checkboxes are mapped to this state to show/hide overlays on the Lampung map
 
   return (
     <DashboardLayout>
