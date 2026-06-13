@@ -69,6 +69,17 @@ export default function MapScreen() {
           <Compass size={20} color={COLORS.textDark} strokeWidth={2} />
         </TouchableOpacity>
 
+        {/* Category Filter Pills (Horizontal List) */}
+        <View style={styles.filterPillsContainer}>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.filterPillsScroll}
+          >
+            {/* Filter Pills */}
+          </ScrollView>
+        </View>
+
         {/* Map Overlays */}
       </View>
     </View>
@@ -161,6 +172,17 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 3,
     zIndex: 20,
+  },
+  filterPillsContainer: {
+    position: 'absolute',
+    top: 20,
+    left: 0,
+    right: 0,
+    zIndex: 20,
+  },
+  filterPillsScroll: {
+    paddingHorizontal: 16,
+    gap: 8,
   },
   brandTitle: {
     fontSize: 22,
