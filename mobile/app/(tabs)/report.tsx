@@ -36,6 +36,7 @@ export default function ReportScreen() {
   const [locationAddress, setLocationAddress] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const [successModal, setSuccessModal] = useState<boolean>(false);
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -251,7 +252,11 @@ export default function ReportScreen() {
                 })
               });
               if (res.ok) {
-                // Handle Success
+                setSuccessModal(true);
+                setCategory('Kebakaran');
+                setPhotoUri(null);
+                setLocationAddress('');
+                setDescription('');
               } else {
                 throw new Error('Gagal mengirim laporan');
               }
@@ -298,6 +303,30 @@ export default function ReportScreen() {
           <Text style={styles.stepLabel}>KIRIM</Text>
         </View>
       </View>
+      {/* Success Modal Notification */}
+      <Modal
+        visible={successModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setSuccessModal(false)}
+      >
+        <View style={styles.modalBackdrop}>
+          <View style={styles.modalCard}>
+            <CheckCircle size={56} color="#10b981" strokeWidth={2.5} />
+            <Text style={styles.modalTitle}>Laporan Terkirim!</Text>
+            <Text style={styles.modalDesc}>
+              Laporan Anda telah berhasil terdaftar ke Command Center dan akan segera ditindaklanjuti oleh petugas BPBD Lampung.
+            </Text>
+            <TouchableOpacity 
+              style={styles.modalBtn} 
+              activeOpacity={0.8}
+              onPress={() => setSuccessModal(false)}
+            >
+              <Text style={styles.modalBtnText}>Kembali</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -578,6 +607,56 @@ const styles = StyleSheet.create({
   },
   submitBtnText: {
     fontSize: 15,
+    fontWeight: '800',
+    color: '#ffffff',
+  },
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(15, 23, 42, 0.6)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  modalCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 32,
+    padding: 28,
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: 340,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 20,
+    elevation: 8,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: '950',
+    color: '#1e293b',
+    marginTop: 16,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  modalDesc: {
+    fontSize: 13,
+    color: '#64748b',
+    textAlign: 'center',
+    lineHeight: 18,
+    marginBottom: 20,
+    fontWeight: '500',
+  },
+  modalBtn: {
+    backgroundColor: '#C8102E',
+    borderRadius: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  modalBtnText: {
+    fontSize: 13,
     fontWeight: '800',
     color: '#ffffff',
   },
