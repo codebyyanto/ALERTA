@@ -32,6 +32,14 @@ export default function HomeScreen() {
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {/* Tips Mitigasi Header */}
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Tips Mitigasi</Text>
+          <TouchableOpacity activeOpacity={0.6} onPress={() => router.push('/(tabs)/edukasi')}>
+            <Text style={styles.seeAllText}>LIHAT SEMUA</Text>
+          </TouchableOpacity>
+        </View>
+
         {/* Active Disasters Grid Row */}
         <View style={styles.activeRow}>
           {/* Banjir Summary Card */}
@@ -317,6 +325,24 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '700',
     color: COLORS.textLight,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginHorizontal: 16,
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: '900',
+    color: '#1e293b',
+  },
+  seeAllText: {
+    fontSize: 10,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: 0.5,
   },
   brandTitle: {
     fontSize: 22,
