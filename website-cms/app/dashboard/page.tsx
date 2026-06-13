@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '@/lib/api';
 import { 
   Search, 
   Bell, 
@@ -52,6 +53,31 @@ const mockReports = [
 export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [timeframe, setTimeframe] = useState<'DAILY' | 'MONTHLY'>('DAILY');
+  const [stats, setStats] = useState({
+    totalReports: '2,450',
+    totalReportsChange: '+12% vs last month',
+    activeDisasters: '12',
+    activeDisastersChange: 'URGENT STATUS ACTIVE',
+    verifiedReports: '1,800',
+    verifiedReportsChange: '73% Conversion rate',
+    activeVolunteers: '842',
+    activeVolunteersChange: '24 New onboarding today'
+  });
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        // TODO: Hubungkan dengan API real bila rute /reports/stats telah di-deploy
+        const res = await api.get('/reports/stats');
+        if (res.data) {
+          setStats(res.data);
+        }
+      } catch (err) {
+        console.warn('Gagal memuat statistik riil dari API, menggunakan data simulasi lokal.', err);
+      }
+    }
+    fetchStats();
+  }, []);
 
   return (
     <DashboardLayout>
@@ -93,7 +119,7 @@ export default function DashboardPage() {
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-slate-400 tracking-wider uppercase mb-1">TOTAL REPORTS</p>
-                <h3 className="text-3xl font-black text-slate-800 tracking-tight">2,450</h3>
+                <h3 className="text-3xl font-black text-slate-800 tracking-tight">{stats.totalReports}</h3>
               </div>
               <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
                 <FileText size={20} />
@@ -101,7 +127,7 @@ export default function DashboardPage() {
             </div>
             <div className="mt-4 flex items-center gap-1 text-[11px] text-emerald-600 font-bold">
               <TrendingUp size={14} />
-              <span>+12% vs last month</span>
+              <span>{stats.totalReportsChange}</span>
             </div>
           </div>
 
@@ -110,7 +136,7 @@ export default function DashboardPage() {
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-white/75 tracking-wider uppercase mb-1">ACTIVE DISASTERS</p>
-                <h3 className="text-3xl font-black tracking-tight">12</h3>
+                <h3 className="text-3xl font-black tracking-tight">{stats.activeDisasters}</h3>
               </div>
               <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
                 <AlertTriangle size={20} />
@@ -118,7 +144,7 @@ export default function DashboardPage() {
             </div>
             <div className="mt-4 flex items-center gap-1.5 text-[9px] font-black tracking-wider uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span>URGENT STATUS ACTIVE</span>
+              <span>{stats.activeDisastersChange}</span>
             </div>
           </div>
 
@@ -127,15 +153,15 @@ export default function DashboardPage() {
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-slate-400 tracking-wider uppercase mb-1">VERIFIED REPORTS</p>
-                <h3 className="text-3xl font-black text-slate-800 tracking-tight">1,800</h3>
+                <h3 className="text-3xl font-black text-slate-800 tracking-tight">{stats.verifiedReports}</h3>
               </div>
               <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
                 <CheckCircle size={20} />
               </div>
             </div>
             <div className="mt-4 flex items-center gap-1 text-[11px] text-slate-500 font-bold">
-              <span className="text-[#0D9488] flex items-center gap-0.5">✓ 73%</span>
-              <span className="text-slate-400 font-medium">Conversion rate</span>
+              <span className="text-[#0D9488] flex items-center gap-0.5">✓</span>
+              <span className="text-slate-400 font-medium">{stats.verifiedReportsChange}</span>
             </div>
           </div>
 
@@ -144,7 +170,7 @@ export default function DashboardPage() {
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-slate-400 tracking-wider uppercase mb-1">ACTIVE VOLUNTEERS</p>
-                <h3 className="text-3xl font-black text-slate-800 tracking-tight">842</h3>
+                <h3 className="text-3xl font-black text-slate-800 tracking-tight">{stats.activeVolunteers}</h3>
               </div>
               <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
                 <Users size={20} />
@@ -152,7 +178,7 @@ export default function DashboardPage() {
             </div>
             <div className="mt-4 flex items-center gap-1 text-[11px] text-slate-500 font-bold">
               <Users2 size={14} className="text-blue-500" />
-              <span>24 New onboarding today</span>
+              <span>{stats.activeVolunteersChange}</span>
             </div>
           </div>
 
