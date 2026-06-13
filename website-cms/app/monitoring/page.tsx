@@ -90,6 +90,28 @@ export default function MonitoringPage() {
             </div>
 
             {/* GPS Locate Control */}
+            {/* Map Region Statistics Overlay */}
+            <div className="absolute bottom-6 left-6 z-20 bg-white rounded-3xl p-5 border border-slate-100 shadow-[0_4px_25px_rgba(0,0,0,0.06)] min-w-[260px] pointer-events-auto">
+              <div className="flex justify-between items-center mb-4">
+                <span className="text-[11px] font-black text-slate-800 tracking-wide uppercase">Statistik Wilayah</span>
+                <span className="bg-[#C8102E]/5 text-[#C8102E] text-[8px] font-black px-2 py-0.5 rounded tracking-wide uppercase">LAMPUNG</span>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="bg-slate-50 rounded-2xl p-3 border border-slate-100">
+                  <span className="text-[9px] font-black text-slate-400 tracking-wider uppercase">TERDAMPAK</span>
+                  <p className="text-[16px] font-black text-slate-800 leading-none mt-1">1.240</p>
+                  <span className="text-[8px] font-black text-red-500 block mt-1">▲ 12% Hari Ini</span>
+                </div>
+                <div className="bg-slate-50 rounded-2xl p-3 border border-slate-100">
+                  <span className="text-[9px] font-black text-slate-400 tracking-wider uppercase">PENGUNGSI</span>
+                  <p className="text-[16px] font-black text-slate-800 leading-none mt-1">3.412</p>
+                  <span className="text-[8px] font-black text-emerald-500 block mt-1">● Stabil</span>
+                </div>
+              </div>
+              
+              {/* Logistics Progress Indicator */}
+            </div>
             {/* Map Markers Overlays */}
             <div className="absolute inset-0 z-10 pointer-events-none">
               
