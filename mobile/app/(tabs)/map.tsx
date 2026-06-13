@@ -209,51 +209,35 @@ export default function MapScreen() {
           </ScrollView>
         </View>
 
-        {/* Gempa active marker overlay */}
-        {(activeCategory === 'ALL' || activeCategory === 'Gempa') && (
-          <View style={[styles.markerWrapper, { top: '70%', left: '15%' }]} pointerEvents="box-none">
-            <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
-              <View style={[styles.markerIconBg, { backgroundColor: '#2563eb' }]}>
-                <ShieldAlert size={12} color="#ffffff" />
-              </View>
-            </TouchableOpacity>
-          </View>
-        )}
+        {/* Dynamic disasters markers mapping loop */}
+        {!loading && disasters
+          .filter(d => activeCategory === 'ALL' || d.category.toLowerCase() === activeCategory.toLowerCase())
+          .map(d => {
+            const offset = getMarkerOffset(d.location);
+            const markerBg = getMarkerColor(d.category);
+            const isCritical = d.category.toLowerCase() === 'banjir' || d.category.toLowerCase() === 'kebakaran';
 
-        {/* Longsor active marker overlay */}
-        {(activeCategory === 'ALL' || activeCategory === 'Longsor') && (
-          <View style={[styles.markerWrapper, { top: '48%', left: '60%' }]} pointerEvents="box-none">
-            <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
-              <View style={[styles.markerIconBg, { backgroundColor: '#64748b' }]}>
-                <AlertTriangle size={12} color="#ffffff" strokeWidth={2.5} />
+            return (
+              <View 
+                key={d.id} 
+                style={[styles.markerWrapper, { top: offset.top, left: offset.left }]} 
+                pointerEvents="box-none"
+              >
+                <TouchableOpacity 
+                  style={styles.markerCircle} 
+                  activeOpacity={0.8}
+                  onPress={() => setSelectedDisaster(d)}
+                >
+                  {isCritical && (
+                    <View style={[styles.markerRipple, { borderColor: markerBg, backgroundColor: `${markerBg}30` }]} />
+                  )}
+                  <View style={[styles.markerIconBg, { backgroundColor: markerBg }]}>
+                    {getMarkerIcon(d.category)}
+                  </View>
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
-          </View>
-        )}
-
-        {/* Fire active marker overlay */}
-        {(activeCategory === 'ALL' || activeCategory === 'Kebakaran') && (
-          <View style={[styles.markerWrapper, { top: '35%', left: '28%' }]} pointerEvents="box-none">
-            <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
-              <View style={[styles.markerRipple, { borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.25)' }]} />
-              <View style={[styles.markerIconBg, { backgroundColor: '#f59e0b' }]}>
-                <Flame size={12} color="#ffffff" />
-              </View>
-            </TouchableOpacity>
-          </View>
-        )}
-
-        {/* Flood active marker overlay */}
-        {(activeCategory === 'ALL' || activeCategory === 'Banjir') && (
-          <View style={[styles.markerWrapper, { top: '55%', left: '46%' }]} pointerEvents="box-none">
-            <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
-              <View style={styles.markerRipple} />
-              <View style={[styles.markerIconBg, { backgroundColor: '#C8102E' }]}>
-                <Waves size={12} color="#ffffff" />
-              </View>
-            </TouchableOpacity>
-          </View>
-        )}
+            );
+          })}
 
         {/* Floating region stats overlay */}
         {!selectedDisaster && (
