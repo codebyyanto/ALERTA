@@ -11,9 +11,6 @@ import {
   Users, 
   TrendingUp, 
   Users2, 
-  MapPin, 
-  Clock, 
-  ChevronRight,
   Megaphone,
   Send,
   Download
@@ -58,10 +55,39 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <div className="p-8 text-slate-800">
+      <div className="p-8 text-slate-800 flex flex-col gap-8">
+        
         {/* Header */}
+        <header className="flex items-center justify-between">
+          <div className="relative w-[360px]">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+            <input 
+              type="text" 
+              placeholder="Cari laporan atau relawan..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-[#EBF5FF]/50 border-none rounded-2xl py-3 pl-12 pr-4 text-[13px] text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:bg-white transition-all font-medium"
+            />
+          </div>
+
+          <div className="flex items-center gap-6">
+            <span className="text-[12px] font-black text-slate-800 tracking-wider flex items-center gap-1.5">
+              ALERTA CMS
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]" />
+            </span>
+            <button className="relative text-slate-400 hover:text-slate-600 transition-colors">
+              <Bell size={20} />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#C8102E] rounded-full border border-white" />
+            </button>
+            <button className="text-slate-400 hover:text-slate-600 transition-colors">
+              <HelpCircle size={20} />
+            </button>
+          </div>
+        </header>
+
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
           {/* Card 1: TOTAL REPORTS */}
           <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.015)] flex flex-col justify-between min-h-[135px]">
             <div className="flex justify-between items-start">
@@ -120,9 +146,21 @@ export default function DashboardPage() {
                 <p className="text-[10px] font-black text-slate-400 tracking-wider uppercase mb-1">ACTIVE VOLUNTEERS</p>
                 <h3 className="text-3xl font-black text-slate-800 tracking-tight">842</h3>
               </div>
+              <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
+                <Users size={20} />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center gap-1 text-[11px] text-slate-500 font-bold">
+              <Users2 size={14} className="text-blue-500" />
+              <span>24 New onboarding today</span>
+            </div>
+          </div>
 
-        {/* Main Sections: Chart & Volunteer Log */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        </div>
+
+        {/* Middle Sections: Chart & Volunteer Log */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
           {/* Left: Tren Kejadian Bencana Chart Card */}
           <div className="lg:col-span-2 bg-white rounded-[32px] p-8 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.01)] flex flex-col justify-between min-h-[420px]">
             <div>
@@ -157,10 +195,10 @@ export default function DashboardPage() {
               <div className="h-60 mt-8 flex items-end justify-between relative">
                 {/* Horizontal Gridlines */}
                 <div className="absolute inset-0 flex flex-col justify-between pointer-events-none pb-8">
-                  <div className="w-full border-t border-slate-50" />
-                  <div className="w-full border-t border-slate-50" />
-                  <div className="w-full border-t border-slate-50" />
-                  <div className="w-full border-t border-slate-50" />
+                  <div className="w-full border-t border-slate-100/50" />
+                  <div className="w-full border-t border-slate-100/50" />
+                  <div className="w-full border-t border-slate-100/50" />
+                  <div className="w-full border-t border-slate-100/50" />
                 </div>
                 
                 {/* Bars rendering */}
@@ -242,9 +280,13 @@ export default function DashboardPage() {
                 BUKA PANEL RELAWAN
               </button>
             </div>
+          </div>
+
+        </div>
 
         {/* Bottom Section: Laporan Terbaru & Quick Response */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
           {/* Left: Laporan Terbaru Table */}
           <div className="lg:col-span-2 bg-white rounded-[32px] p-8 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
             <div className="flex justify-between items-center mb-6">
@@ -322,45 +364,9 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
-        </div>
-          </div>
-        </div>
-              <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
-                <Users size={20} />
-              </div>
-            </div>
-            <div className="mt-4 flex items-center gap-1 text-[11px] text-slate-500 font-bold">
-              <Users2 size={14} className="text-blue-500" />
-              <span>24 New onboarding today</span>
-            </div>
-          </div>
-        </div>
-        <header className="flex items-center justify-between mb-8">
-          <div className="relative w-[360px]">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Cari laporan atau relawan..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#EBF5FF]/50 border-none rounded-2xl py-3 pl-12 pr-4 text-[13px] text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:bg-white transition-all font-medium"
-            />
-          </div>
 
-          <div className="flex items-center gap-6">
-            <span className="text-[12px] font-black text-slate-800 tracking-wider flex items-center gap-1.5">
-              ALERTA CMS
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]" />
-            </span>
-            <button className="relative text-slate-400 hover:text-slate-600 transition-colors">
-              <Bell size={20} />
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#C8102E] rounded-full border border-white" />
-            </button>
-            <button className="text-slate-400 hover:text-slate-600 transition-colors">
-              <HelpCircle size={20} />
-            </button>
-          </div>
-        </header>
+        </div>
+
       </div>
     </DashboardLayout>
   );
