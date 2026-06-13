@@ -393,7 +393,12 @@ export default function MonitoringPage() {
                 </div>
               </div>
               
-              {/* Solid action alert button goes here */}
+              <div className="mt-6">
+                <button className="w-full py-4 bg-[#C8102E] hover:bg-[#b00e28] text-white rounded-2xl text-[11px] font-black tracking-widest uppercase flex items-center justify-center gap-2 shadow-lg shadow-red-200 active:scale-[0.98] transition-all">
+                  <AlertOctagon size={16} />
+                  BUAT ALERT BARU
+                </button>
+              </div>
             </div>
           </div>
         </div>
