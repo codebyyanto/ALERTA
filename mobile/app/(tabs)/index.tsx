@@ -25,12 +25,41 @@ import {
   Droplets,
 } from 'lucide-react-native';
 
+const COLORS = {
+  primary: '#C8102E',
+  secondary: '#fee2e2',
+  background: '#F8FAFC',
+  textDark: '#1e293b',
+  textLight: '#64748b',
+  border: '#e2e8f0',
+};
+
+interface DisasterReport {
+  id: string;
+  reporterName: string;
+  category: string;
+  location: string;
+  time: string;
+  status: string;
+}
+
+interface ArticleItem {
+  id: string;
+  title: string;
+  summary: string;
+  content: string;
+  category: string;
+  image: string | null;
+  status: string;
+}
+
 export default function HomeScreen() {
-  const [disasters, setDisasters] = useState<any[]>([]);
+  const [disasters, setDisasters] = useState<DisasterReport[]>([]);
+  const [articles, setArticles] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [articles, setArticles] = useState<any[]>([]);
   const insets = useSafeAreaInsets();
-  
+  const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
+
   useEffect(() => {
     async function loadStats() {
       setLoading(true);
@@ -45,203 +74,235 @@ export default function HomeScreen() {
         }
         if (resArticles.ok) {
           const json = await resArticles.json();
-          const activeArticles = json.filter((art: any) => art.status === 'PUBLISHED');
+          const activeArticles = json.filter((art: ArticleItem) => art.status === 'PUBLISHED');
           setArticles(activeArticles);
         }
       } catch (err) {
-        console.warn('Gagal memuat statistik bencana untuk beranda dari API.', err);
+        console.warn('Gagal memuat data statistik dan edukasi untuk beranda dari API.', err);
       } finally {
         setLoading(false);
       }
     }
     loadStats();
   }, []);
-  const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
-        {/* Latest News Header */}
-        <View style={styles.newsSectionHeader}>
-          <Text style={styles.newsSectionTitle}>Berita Terkini</Text>
-        </View>
-
-        {/* Latest News List */}
-        <View style={styles.newsList}>
-          {/* News Item 1 */}
-          <TouchableOpacity style={styles.newsCard} activeOpacity={0.8}>
-            <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1542350327-013b6b9e4307?auto=format&fit=crop&q=80&w=400' }} 
-              style={styles.newsImg} 
-            />
-            <View style={styles.newsBody}>
-              <View style={[styles.badgeCategory, { backgroundColor: '#e0f2fe' }]}>
-                <Text style={[styles.badgeCategoryText, { color: '#0369a1' }]}>PENANGANAN</Text>
-              </View>
-              <Text style={styles.newsTitle} numberOfLines={2}>Tim SAR Evakuasi Korban Longsor di Sukabumi</Text>
-              <Text style={styles.newsMeta}>2 Jam yang lalu • Metro News</Text>
-            </View>
-          </TouchableOpacity>
-          
-          {/* News Item 2 */}
-          <TouchableOpacity style={styles.newsCard} activeOpacity={0.8}>
-            <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=400' }} 
-              style={styles.newsImg} 
-            />
-            <View style={styles.newsBody}>
-              <View style={[styles.badgeCategory, { backgroundColor: '#fee2e2' }]}>
-                <Text style={[styles.badgeCategoryText, { color: '#C8102E' }]}>UPDATE BMKG</Text>
-              </View>
-              <Text style={styles.newsTitle} numberOfLines={2}>Gempa Magnitudo 5.2 Guncang Lampung Barat</Text>
-              <Text style={styles.newsMeta}>4 Jam yang lalu • BMKG</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* Tips Scroll Wrapper */}
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.tipsScroll}
-        >
-          {/* Tip Card 1 */}
-          <TouchableOpacity style={styles.tipCard} activeOpacity={0.9}>
-            <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=400' }} 
-              style={styles.tipCardImg} 
-            />
-            <View style={styles.tipCardBody}>
-              <Text style={styles.tipCardTitle} numberOfLines={2}>Persiapan Tas Siaga Bencana (TSB)</Text>
-              <Text style={styles.tipCardDesc} numberOfLines={2}>Barang penting yang wajib ada di dalam tas siaga.</Text>
-            </View>
-          </TouchableOpacity>
-          
-          {/* Tip Card 2 */}
-          <TouchableOpacity style={styles.tipCard} activeOpacity={0.9}>
-            <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1582213782179-a0c52e250e8a?auto=format&fit=crop&q=80&w=400' }} 
-              style={styles.tipCardImg} 
-            />
-            <View style={styles.tipCardBody}>
-              <Text style={styles.tipCardTitle} numberOfLines={2}>Rencana Evakuasi Mandiri</Text>
-              <Text style={styles.tipCardDesc} numberOfLines={2}>Menentukan titik berkumpul keluarga saat keadaan darurat.</Text>
-            </View>
-          </TouchableOpacity>
-        </ScrollView>
-
-        {/* Tips Mitigasi Header */}
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Tips Mitigasi</Text>
-          <TouchableOpacity activeOpacity={0.6} onPress={() => router.push('/(tabs)/edukasi')}>
-            <Text style={styles.seeAllText}>LIHAT SEMUA</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Active Disasters Grid Row */}
-        <View style={styles.activeRow}>
-          {/* Banjir Summary Card */}
-          <View style={styles.summaryCard}>
-            <View style={styles.summaryHeader}>
-              <View style={[styles.summaryIconBg, { backgroundColor: '#fee2e2' }]}>
-                <Droplets size={16} color="#C8102E" />
-              </View>
-              <View style={styles.badgeActive}>
-                <Text style={styles.badgeText}>{`${disasters.filter(d => d.category.toLowerCase() === 'banjir').length} Aktif`}</Text>
-              </View>
-            </View>
-            <Text style={styles.summaryTitle}>Banjir</Text>
-            <Text style={styles.summaryLocs}>
-              {disasters.filter(d => d.category.toLowerCase() === 'banjir').map(d => d.location.split(',')[0]).slice(0, 2).join(', ') || 'Semua Aman'}
-            </Text>
-          </View>
-          
-          {/* Kebakaran Summary Card */}
-          <View style={styles.summaryCard}>
-            <View style={styles.summaryHeader}>
-              <View style={[styles.summaryIconBg, { backgroundColor: '#ffedd5' }]}>
-                <Flame size={16} color="#f97316" />
-              </View>
-              <View style={[styles.badgeActive, { backgroundColor: '#ffedd5' }]}>
-                <Text style={[styles.badgeText, { color: '#f97316' }]}>{`${disasters.filter(d => d.category.toLowerCase() === 'kebakaran').length} Aktif`}</Text>
-              </View>
-            </View>
-            <Text style={styles.summaryTitle}>Kebakaran</Text>
-            <Text style={styles.summaryLocs}>
-              {disasters.filter(d => d.category.toLowerCase() === 'kebakaran').map(d => d.location.split(',')[0]).slice(0, 2).join(', ') || 'Semua Aman'}
-            </Text>
-          </View>
-        </View>
-
-        {/* Regional Preparedness Status */}
-        <View style={styles.statusCard}>
-          <View style={styles.statusTextWrapper}>
-            <Text style={styles.statusLabel}>STATUS WILAYAH</Text>
-            <Text style={styles.statusValue}>Waspada Moderat</Text>
-          </View>
-          <View style={styles.statusIconBg}>
-            <Activity size={20} color="#0284c7" strokeWidth={2.5} />
-          </View>
-        </View>
-
-        {/* Quick Report Button */}
-        <TouchableOpacity 
-          style={styles.reportBtn} 
-          activeOpacity={0.8}
-          onPress={() => router.push('/(tabs)/report')}
-        >
-          <Megaphone size={18} color="#ffffff" strokeWidth={2.5} />
-          <Text style={styles.reportBtnText}>Lapor Kejadian Sekarang</Text>
+      {/* Custom Header Bar */}
+      <View style={styles.headerBar}>
+        <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
+          <Menu size={24} color={COLORS.textDark} />
         </TouchableOpacity>
 
-        {/* Early Warning Card */}
-        <View style={styles.warningCard}>
-          <View style={styles.warningHeader}>
-            <AlertTriangle size={16} color="#ffffff" strokeWidth={2.5} />
-            <Text style={styles.warningTag}>PERINGATAN DINI</Text>
+        <Text style={styles.brandTitle}>ALERTA</Text>
+
+        <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
+          <Bell size={22} color={COLORS.textDark} />
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {loading ? (
+          <View style={styles.skeletonContainer}>
+            <ActivityIndicator size="large" color={COLORS.primary} />
+            <Text style={styles.skeletonText}>Memuat Informasi Alerta...</Text>
           </View>
-          <Text style={styles.warningTitle}>Siaga Banjir Bandar Lampung</Text>
-          <Text style={styles.warningDesc}>
-            Level Siaga 2: Kenaikan debit air di aliran sungai Way Kuala. Waspada kiriman air dari daerah hulu.
-          </Text>
-          <View style={styles.warningFooter}>
-            <TouchableOpacity style={styles.warningBtn} activeOpacity={0.9}>
-              <Text style={styles.warningBtnText}>Lihat Detail</Text>
+        ) : (
+          <>
+            {/* Early Warning Card */}
+            <View style={styles.warningCard}>
+              <View style={styles.warningHeader}>
+                <AlertTriangle size={16} color="#ffffff" strokeWidth={2.5} />
+                <Text style={styles.warningTag}>PERINGATAN DINI</Text>
+              </View>
+              <Text style={styles.warningTitle}>Siaga Banjir Bandar Lampung</Text>
+              <Text style={styles.warningDesc}>
+                Level Siaga 2: Kenaikan debit air di aliran sungai Way Kuala. Waspada kiriman air dari daerah hulu.
+              </Text>
+              <View style={styles.warningFooter}>
+                <TouchableOpacity 
+                  style={styles.warningBtn} 
+                  activeOpacity={0.9}
+                  onPress={() => router.push('/(tabs)/map')}
+                >
+                  <Text style={styles.warningBtnText}>Lihat Detail</Text>
+                </TouchableOpacity>
+                <Text style={styles.warningTime}>Diperbarui: 5 Menit Lalu</Text>
+              </View>
+            </View>
+
+            {/* Quick Report Button */}
+            <TouchableOpacity 
+              style={styles.reportBtn} 
+              activeOpacity={0.8}
+              onPress={() => router.push('/(tabs)/report')}
+            >
+              <Megaphone size={18} color="#ffffff" strokeWidth={2.5} />
+              <Text style={styles.reportBtnText}>Lapor Kejadian Sekarang</Text>
             </TouchableOpacity>
-            <Text style={styles.warningTime}>Diperbarui: 5 Menit Lalu</Text>
-          </View>
-        </View>
 
-        {/* Custom Header Bar */}
-        <View style={styles.headerBar}>
-          <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
-            <Menu size={24} color={COLORS.textDark} />
-          </TouchableOpacity>
+            {/* Regional Preparedness Status */}
+            <View style={styles.statusCard}>
+              <View style={styles.statusTextWrapper}>
+                <Text style={styles.statusLabel}>STATUS WILAYAH</Text>
+                <Text style={styles.statusValue}>Waspada Moderat</Text>
+              </View>
+              <View style={styles.statusIconBg}>
+                <Activity size={20} color="#0284c7" strokeWidth={2.5} />
+              </View>
+            </View>
 
-          <Text style={styles.brandTitle}>ALERTA</Text>
+            {/* Active Disasters Grid Row */}
+            <View style={styles.activeRow}>
+              {/* Banjir Summary Card */}
+              <View style={styles.summaryCard}>
+                <View style={styles.summaryHeader}>
+                  <View style={[styles.summaryIconBg, { backgroundColor: '#fee2e2' }]}>
+                    <Droplets size={16} color="#C8102E" />
+                  </View>
+                  <View style={styles.badgeActive}>
+                    <Text style={styles.badgeText}>
+                      {disasters.filter(d => d.category.toLowerCase() === 'banjir').length} Aktif
+                    </Text>
+                  </View>
+                </View>
+                <Text style={styles.summaryTitle}>Banjir</Text>
+                <Text style={styles.summaryLocs} numberOfLines={1}>
+                  {disasters.filter(d => d.category.toLowerCase() === 'banjir').map(d => d.location.split(',')[0]).slice(0, 2).join(', ') || 'Semua Aman'}
+                </Text>
+              </View>
 
-          <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
-            <Bell size={22} color={COLORS.textDark} />
-          </TouchableOpacity>
-        </View>
+              {/* Kebakaran Summary Card */}
+              <View style={styles.summaryCard}>
+                <View style={styles.summaryHeader}>
+                  <View style={[styles.summaryIconBg, { backgroundColor: '#ffedd5' }]}>
+                    <Flame size={16} color="#f97316" />
+                  </View>
+                  <View style={[styles.badgeActive, { backgroundColor: '#ffedd5' }]}>
+                    <Text style={[styles.badgeText, { color: '#f97316' }]}>
+                      {disasters.filter(d => d.category.toLowerCase() === 'kebakaran').length} Aktif
+                    </Text>
+                  </View>
+                </View>
+                <Text style={styles.summaryTitle}>Kebakaran</Text>
+                <Text style={styles.summaryLocs} numberOfLines={1}>
+                  {disasters.filter(d => d.category.toLowerCase() === 'kebakaran').map(d => d.location.split(',')[0]).slice(0, 2).join(', ') || 'Semua Aman'}
+                </Text>
+              </View>
+            </View>
+
+            {/* Tips Mitigasi Header */}
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>Tips Mitigasi</Text>
+              <TouchableOpacity activeOpacity={0.6} onPress={() => router.push('/(tabs)/edukasi')}>
+                <Text style={styles.seeAllText}>LIHAT SEMUA</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* Tips Scroll Wrapper */}
+            <ScrollView 
+              horizontal 
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.tipsScroll}
+            >
+              {articles.length > 0 ? (
+                articles.map((art) => (
+                  <TouchableOpacity 
+                    key={art.id} 
+                    style={styles.tipCard} 
+                    activeOpacity={0.9}
+                    onPress={() => router.push(`/articles/${art.id}`)}
+                  >
+                    <Image 
+                      source={{ uri: art.image || 'https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=400' }} 
+                      style={styles.tipCardImg} 
+                    />
+                    <View style={styles.tipCardBody}>
+                      <Text style={styles.tipCardTitle} numberOfLines={2}>{art.title}</Text>
+                      <Text style={styles.tipCardDesc} numberOfLines={2}>{art.summary}</Text>
+                    </View>
+                  </TouchableOpacity>
+                ))
+              ) : (
+                <>
+                  {/* Fallback Tip Card 1 */}
+                  <TouchableOpacity style={styles.tipCard} activeOpacity={0.9}>
+                    <Image 
+                      source={{ uri: 'https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=400' }} 
+                      style={styles.tipCardImg} 
+                    />
+                    <View style={styles.tipCardBody}>
+                      <Text style={styles.tipCardTitle} numberOfLines={2}>Persiapan Tas Siaga Bencana (TSB)</Text>
+                      <Text style={styles.tipCardDesc} numberOfLines={2}>Barang penting yang wajib ada di dalam tas siaga.</Text>
+                    </View>
+                  </TouchableOpacity>
+
+                  {/* Fallback Tip Card 2 */}
+                  <TouchableOpacity style={styles.tipCard} activeOpacity={0.9}>
+                    <Image 
+                      source={{ uri: 'https://images.unsplash.com/photo-1582213782179-a0c52e250e8a?auto=format&fit=crop&q=80&w=400' }} 
+                      style={styles.tipCardImg} 
+                    />
+                    <View style={styles.tipCardBody}>
+                      <Text style={styles.tipCardTitle} numberOfLines={2}>Rencana Evakuasi Mandiri</Text>
+                      <Text style={styles.tipCardDesc} numberOfLines={2}>Menentukan titik berkumpul keluarga saat keadaan darurat.</Text>
+                    </View>
+                  </TouchableOpacity>
+                </>
+              )}
+            </ScrollView>
+
+            {/* Latest News Header */}
+            <View style={styles.newsSectionHeader}>
+              <Text style={styles.newsSectionTitle}>Berita Terkini</Text>
+            </View>
+
+            {/* Latest News List */}
+            <View style={styles.newsList}>
+              {/* News Item 1 */}
+              <TouchableOpacity style={styles.newsCard} activeOpacity={0.8}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1542350327-013b6b9e4307?auto=format&fit=crop&q=80&w=400' }} 
+                  style={styles.newsImg} 
+                />
+                <View style={styles.newsBody}>
+                  <View style={[styles.badgeCategory, { backgroundColor: '#e0f2fe' }]}>
+                    <Text style={[styles.badgeCategoryText, { color: '#0369a1' }]}>PENANGANAN</Text>
+                  </View>
+                  <Text style={styles.newsTitle} numberOfLines={2}>Tim SAR Evakuasi Korban Longsor di Sukabumi</Text>
+                  <Text style={styles.newsMeta}>2 Jam yang lalu • Metro News</Text>
+                </View>
+              </TouchableOpacity>
+
+              {/* News Item 2 */}
+              <TouchableOpacity style={styles.newsCard} activeOpacity={0.8}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=400' }} 
+                  style={styles.newsImg} 
+                />
+                <View style={styles.newsBody}>
+                  <View style={[styles.badgeCategory, { backgroundColor: '#fee2e2' }]}>
+                    <Text style={[styles.badgeCategoryText, { color: '#C8102E' }]}>UPDATE BMKG</Text>
+                  </View>
+                  <Text style={styles.newsTitle} numberOfLines={2}>Gempa Magnitudo 5.2 Guncang Lampung Barat</Text>
+                  <Text style={styles.newsMeta}>4 Jam yang lalu • BMKG</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </>
+        )}
       </ScrollView>
     </View>
   );
 }
 
-const COLORS = {
-  primary: '#C8102E',
-  secondary: '#fee2e2',
-  background: '#F8FAFC',
-  textDark: '#1e293b',
-  textLight: '#64748b',
-  border: '#e2e8f0',
-};
-
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#F8FAFC',
+  },
+  scrollContainer: {
+    paddingBottom: 90,
   },
   headerBar: {
     flexDirection: 'row',
@@ -258,6 +319,23 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 2,
     marginBottom: 16,
+  },
+  brandTitle: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: 2,
+    textAlign: 'center',
+  },
+  headerIconButton: {
+    width: 42,
+    height: 42,
+    borderRadius: 14,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
   },
   warningCard: {
     marginHorizontal: 16,
@@ -420,13 +498,13 @@ const styles = StyleSheet.create({
   summaryTitle: {
     fontSize: 14,
     fontWeight: '900',
-    color: COLORS.textDark,
+    color: '#1e293b',
     marginBottom: 2,
   },
   summaryLocs: {
     fontSize: 10,
     fontWeight: '700',
-    color: COLORS.textLight,
+    color: '#64748b',
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -556,25 +634,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '800',
     color: '#94a3b8',
-  },
-  brandTitle: {
-    fontSize: 22,
-    fontWeight: '900',
-    color: '#C8102E',
-    letterSpacing: 2,
-    textAlign: 'center',
-  },
-  headerIconButton: {
-    width: 42,
-    height: 42,
-    borderRadius: 14,
-    backgroundColor: '#ffffff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: '#f1f5f9',
-  },
-  scrollContainer: {
-    paddingBottom: 90, // room for floating tab bar
   },
 });
