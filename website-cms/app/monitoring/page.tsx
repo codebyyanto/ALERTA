@@ -11,20 +11,11 @@ import {
   ShieldAlert, 
   Wind,
   Compass, 
-  Info,
-  Navigation,
   AlertOctagon,
   Check
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import DashboardLayout from '@/components/DashboardLayout';
-
-const initialMarkers = [
-  { id: 1, type: 'flood', title: 'Banjir Bandang', location: 'Lampung Selatan', level: 'Awas', top: '55%', left: '46%', info: 'Kenaikan air sungai setinggi 40cm. Evakuasi sedang berlangsung.' },
-  { id: 2, type: 'fire', title: 'Kebakaran Hutan', location: 'Lampung Barat', level: 'Siaga', top: '35%', left: '28%', info: 'Kebakaran semak belukar seluas 3 hektar. Pemadaman sedang berjalan.' },
-  { id: 3, type: 'earthquake', title: 'Gempa Tektonik M 4.8', location: 'Pesisir Barat', level: 'Waspada', top: '70%', left: '15%', info: 'Guncangan kedalaman 10km. Tidak berpotensi tsunami.' },
-  { id: 4, type: 'wind', title: 'Puting Beliung', location: 'Lampung Tengah', level: 'Waspada', top: '45%', left: '55%', info: 'Angin puting beliung merusak atap rumah. Penanganan BPBD.' },
-];
 
 const mockReports = [
   { id: 1, tag: 'BARU SAJA', title: 'Laporan Banjir: Kelapa Gading', content: 'Warga melaporkan kenaikan debit air setinggi 40cm di jalan protokol...', isNew: true },

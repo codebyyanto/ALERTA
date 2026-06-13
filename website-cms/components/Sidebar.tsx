@@ -35,7 +35,10 @@ export default function Sidebar() {
       const userStr = localStorage.getItem('admin_user');
       if (userStr) {
         try {
-          setAdminUser(JSON.parse(userStr));
+          const parsed = JSON.parse(userStr);
+          setTimeout(() => {
+            setAdminUser(parsed);
+          }, 0);
         } catch (e) {
           console.error(e);
         }
