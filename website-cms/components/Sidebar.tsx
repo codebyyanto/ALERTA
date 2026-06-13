@@ -28,6 +28,27 @@ const menuItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [adminUser, setAdminUser] = React.useState<{ name: string; role: string } | null>(null);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const userStr = localStorage.getItem('admin_user');
+      if (userStr) {
+        try {
+          setAdminUser(JSON.parse(userStr));
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+  }, []);
+
+  const getInitials = (name: string) => {
+    if (!name) return 'AU';
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+    return (parts[0][0] + (parts[1]?.[0] || '')).toUpperCase();
+  };
 
   async function handleLogout() {
     const result = await logoutAction();
@@ -82,13 +103,12 @@ export default function Sidebar() {
       {/* User Section */}
       <div className="p-6 border-t border-slate-700/50">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-red-500 overflow-hidden flex items-center justify-center border-2 border-white/10">
-            {/* Placeholder for avatar */}
-            <span className="text-white font-bold">BS</span>
+          <div className="w-12 h-12 rounded-2xl bg-[#C8102E] overflow-hidden flex items-center justify-center border-2 border-white/10 shrink-0 select-none">
+            <span className="text-white font-black text-sm">{getInitials(adminUser?.name || 'Admin Utama')}</span>
           </div>
-          <div className="flex-1">
-            <p className="text-[14px] font-bold text-white">Budi Santoso</p>
-            <p className="text-[11px] text-slate-400 font-medium">SUPER ADMIN</p>
+          <div className="flex-1 min-w-0">
+            <p className="text-[13px] font-black text-white truncate">{adminUser?.name || 'Admin Utama'}</p>
+            <p className="text-[9px] text-slate-400 font-bold tracking-wider uppercase mt-0.5">{adminUser?.role || 'COMMAND CENTER'}</p>
           </div>
           <button 
             onClick={handleLogout}
