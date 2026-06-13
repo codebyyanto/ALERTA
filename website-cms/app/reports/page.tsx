@@ -61,6 +61,16 @@ export default function ReportsPage() {
             <h1 className="text-2xl font-black tracking-tight text-slate-900">Manajemen Laporan</h1>
             <p className="text-[13px] text-slate-500 font-medium mt-1">Pantau dan verifikasi setiap laporan kejadian dari masyarakat secara real-time.</p>
           </div>
+          <div className="flex items-center gap-3">
+            <button className="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 rounded-2xl px-4 py-2.5 text-[13px] font-bold shadow-sm hover:bg-slate-50 hover:text-slate-800 transition-colors">
+              <Filter size={16} />
+              Filter Lanjutan
+            </button>
+            <button className="flex items-center gap-2 bg-[#C8102E] text-white rounded-2xl px-4 py-2.5 text-[13px] font-bold shadow-sm hover:bg-[#A30D24] transition-colors">
+              <Download size={16} />
+              Ekspor Laporan
+            </button>
+          </div>
         </div>
       </div>
     </DashboardLayout>
