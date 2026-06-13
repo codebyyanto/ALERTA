@@ -290,6 +290,17 @@ export default function ReportsPage() {
               <span className="text-[10px] font-black text-emerald-500">-2m</span>
             </div>
           </div>
+
+          {/* Verification Log Card (1 Col) */}
+          <div className="bg-[#1E293B] text-white rounded-[32px] p-6 border border-slate-800 shadow-[0_4px_25px_rgba(0,0,0,0.15)] flex flex-col justify-between h-[360px]">
+            <div>
+              <h3 className="text-[14px] font-black tracking-wide uppercase mb-4 text-slate-100">Catatan Verifikasi</h3>
+              <div className="space-y-4">
+                {/* Alert details */}
+              </div>
+            </div>
+            {/* Button action */}
+          </div>
         </div>
 
         {/* Title and Top Actions */}
