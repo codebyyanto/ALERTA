@@ -50,7 +50,17 @@ export default function HomeScreen() {
             </View>
           </TouchableOpacity>
           
-          {/* Tips Mitigation Cards */}
+          {/* Tip Card 2 */}
+          <TouchableOpacity style={styles.tipCard} activeOpacity={0.9}>
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1582213782179-a0c52e250e8a?auto=format&fit=crop&q=80&w=400' }} 
+              style={styles.tipCardImg} 
+            />
+            <View style={styles.tipCardBody}>
+              <Text style={styles.tipCardTitle} numberOfLines={2}>Rencana Evakuasi Mandiri</Text>
+              <Text style={styles.tipCardDesc} numberOfLines={2}>Menentukan titik berkumpul keluarga saat keadaan darurat.</Text>
+            </View>
+          </TouchableOpacity>
         </ScrollView>
 
         {/* Tips Mitigasi Header */}
