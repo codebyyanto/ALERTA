@@ -209,7 +209,25 @@ export default function DashboardPage() {
                 {/* Timeline connector line */}
                 <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-slate-100" />
                 
-                {/* Activity list mapped here */}
+                {mockActivities.map((item) => (
+                  <div key={item.id} className="relative flex gap-4">
+                    {/* Circle timeline dot */}
+                    <div className="absolute -left-[20px] top-2 w-2 h-2 rounded-full bg-[#C8102E] border-2 border-white ring-4 ring-red-50 z-10" />
+                    
+                    <div className="flex-1 flex gap-3 min-w-0">
+                      {/* Avatar initials placeholder */}
+                      <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-[11px] font-black text-slate-500 shrink-0">
+                        {item.avatar}
+                      </div>
+                      
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[12px] font-bold text-slate-800 leading-snug">{item.name}</p>
+                        <p className="text-[11px] text-slate-400 font-medium leading-normal mt-0.5">{item.action}</p>
+                        <span className="text-[9px] font-black text-[#C8102E] uppercase tracking-wider block mt-1.5">{item.time}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             
