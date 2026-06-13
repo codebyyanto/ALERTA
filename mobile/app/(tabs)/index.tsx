@@ -546,6 +546,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#94a3b8',
   },
+  skeletonContainer: {
+    paddingVertical: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+  },
+  skeletonText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#94a3b8',
+  },
   brandTitle: {
     fontSize: 22,
     fontWeight: '900',
