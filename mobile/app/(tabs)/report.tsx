@@ -52,7 +52,15 @@ export default function ReportScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Form elements will go here */}
+        {/* Title Section */}
+        <View style={styles.titleSection}>
+          <Text style={styles.titleText}>Lapor Kejadian</Text>
+          <Text style={styles.subtitleText}>
+            Berikan informasi akurat untuk penanganan cepat petugas di lapangan.
+          </Text>
+        </View>
+        
+        {/* Form segments */}
       </ScrollView>
 
       {/* Progress Steps */}
@@ -174,6 +182,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 24,
     paddingBottom: Platform.OS === 'ios' ? 120 : 96,
+  },
+  titleSection: {
+    marginBottom: 24,
+  },
+  titleText: {
+    fontSize: 24,
+    fontWeight: '900',
+    color: '#1e293b',
+    marginBottom: 6,
+  },
+  subtitleText: {
+    fontSize: 13,
+    color: '#64748b',
+    lineHeight: 18,
+    fontWeight: '500',
   },
   brandTitle: {
     fontSize: 22,
