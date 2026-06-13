@@ -69,6 +69,19 @@ export default function MonitoringPage() {
           </div>
         </header>
 
+        {/* Running Text Banner Warning */}
+        <div className="bg-[#C8102E] text-white py-3 px-5 rounded-2xl overflow-hidden shadow-lg shadow-red-100/50 flex items-center gap-4 relative z-10 shrink-0">
+          <div className="bg-red-950/20 text-[9px] font-black tracking-widest px-2.5 py-1 rounded-md shrink-0 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            WARNING
+          </div>
+          <div className="flex-1 overflow-hidden relative font-black text-[11px] tracking-wide uppercase">
+            <marquee className="w-full" scrollamount="4">
+              PERINGATAN DINI: Waspada cuaca ekstrem curah hujan lebat disertai kilat dan angin kencang di wilayah Lampung Selatan, Pringsewu, Pesawaran, dan Bandar Lampung. — BPBD Provinsi Lampung bersiaga di titik rawan longsor dan banjir bandang.
+            </marquee>
+          </div>
+        </div>
+
         {/* Main Workspace Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 min-h-[580px] flex-1">
           {/* Left Column (2 Cols): Map Container */}
