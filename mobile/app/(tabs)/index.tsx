@@ -28,16 +28,25 @@ import {
 export default function HomeScreen() {
   const [disasters, setDisasters] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [articles, setArticles] = useState<any[]>([]);
   const insets = useSafeAreaInsets();
   
   useEffect(() => {
     async function loadStats() {
       setLoading(true);
       try {
-        const res = await fetch('http://localhost:3000/reports?status=TERVERIFIKASI');
-        if (res.ok) {
-          const json = await res.json();
+        const [resReports, resArticles] = await Promise.all([
+          fetch('http://localhost:3000/reports?status=TERVERIFIKASI'),
+          fetch('http://localhost:3000/articles')
+        ]);
+        if (resReports.ok) {
+          const json = await resReports.json();
           setDisasters(json.data || []);
+        }
+        if (resArticles.ok) {
+          const json = await resArticles.json();
+          const activeArticles = json.filter((art: any) => art.status === 'PUBLISHED');
+          setArticles(activeArticles);
         }
       } catch (err) {
         console.warn('Gagal memuat statistik bencana untuk beranda dari API.', err);
