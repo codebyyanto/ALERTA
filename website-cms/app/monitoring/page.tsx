@@ -70,7 +70,16 @@ export default function MonitoringPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 min-h-[580px] flex-1">
           {/* Left Column (2 Cols): Map Container */}
           <div className="lg:col-span-2 relative bg-slate-100 rounded-[32px] overflow-hidden border border-slate-200/50 shadow-[0_4px_20px_rgba(0,0,0,0.015)] flex flex-col justify-between">
-            {/* Map and overlaid features */}
+            {/* Google Maps Embed iframe */}
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1017325.2343940176!2d104.75782745!3d-5.26788255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40dcc24e650ef3%3A0x1030bfbca7c8070!2sLampung!5e0!3m2!1sid!2sid!4v1718287000000!5m2!1sid!2sid" 
+              className="w-full h-full border-none absolute inset-0 z-0 opacity-95 grayscale-[10%]" 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            {/* Overlay Elements */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none z-10" />
           </div>
           
           {/* Right Column (1 Col): Right Side Panel */}
