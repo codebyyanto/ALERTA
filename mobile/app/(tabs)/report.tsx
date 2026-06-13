@@ -35,6 +35,7 @@ export default function ReportScreen() {
   const [gpsLoading, setGpsLoading] = useState<boolean>(false);
   const [locationAddress, setLocationAddress] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -225,6 +226,17 @@ export default function ReportScreen() {
             </TouchableOpacity>
           </View>
         </View>
+        {/* Submit Button */}
+        <TouchableOpacity 
+          style={styles.submitBtn} 
+          activeOpacity={0.8}
+        >
+          {submitting ? (
+            <ActivityIndicator size="small" color="#ffffff" />
+          ) : (
+            <Text style={styles.submitBtnText}>Kirim Laporan</Text>
+          )}
+        </TouchableOpacity>
       </ScrollView>
 
       {/* Progress Steps */}
@@ -518,6 +530,24 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#1e293b',
     textAlignVertical: 'top',
+  },
+  submitBtn: {
+    backgroundColor: '#C8102E',
+    borderRadius: 20,
+    height: 52,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 8,
+    shadowColor: '#C8102E',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  submitBtnText: {
+    fontSize: 15,
+    fontWeight: '800',
+    color: '#ffffff',
   },
   categoryCard: {
     width: '31%',
