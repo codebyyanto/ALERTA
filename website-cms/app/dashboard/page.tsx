@@ -54,6 +54,7 @@ const mockReports = [
 
 export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [timeframe, setTimeframe] = useState<'DAILY' | 'MONTHLY'>('DAILY');
 
   return (
     <DashboardLayout>
@@ -130,7 +131,26 @@ export default function DashboardPage() {
                   <h4 className="text-[16px] font-black text-slate-800 uppercase tracking-tight">Tren Kejadian Bencana</h4>
                   <p className="text-[11px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Laporan harian dalam 30 hari terakhir</p>
                 </div>
-                {/* Filter Toggles */}
+                <div className="flex bg-slate-50 p-1 rounded-xl border border-slate-100 shrink-0">
+                  <button 
+                    onClick={() => setTimeframe('MONTHLY')}
+                    className={cn(
+                      "px-3.5 py-1.5 rounded-lg text-[9px] font-black tracking-wider transition-all",
+                      timeframe === 'MONTHLY' ? "bg-white text-slate-800 shadow-sm" : "text-slate-400 hover:text-slate-600"
+                    )}
+                  >
+                    MONTHLY
+                  </button>
+                  <button 
+                    onClick={() => setTimeframe('DAILY')}
+                    className={cn(
+                      "px-3.5 py-1.5 rounded-lg text-[9px] font-black tracking-wider transition-all",
+                      timeframe === 'DAILY' ? "bg-[#C8102E] text-white shadow-sm" : "text-slate-400 hover:text-slate-600"
+                    )}
+                  >
+                    DAILY
+                  </button>
+                </div>
               </div>
               
               {/* Chart Container */}
