@@ -32,6 +32,32 @@ export default function MapScreen() {
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
+  const getMarkerOffset = (location: string) => {
+    const loc = location.toLowerCase();
+    if (loc.includes('selatan')) return { top: '55%', left: '46%' };
+    if (loc.includes('barat')) return { top: '35%', left: '28%' };
+    if (loc.includes('tengah')) return { top: '45%', left: '55%' };
+    if (loc.includes('utara')) return { top: '25%', left: '42%' };
+    if (loc.includes('pesisir')) return { top: '70%', left: '15%' };
+    return { top: '50%', left: '50%' };
+  };
+
+  const getMarkerColor = (category: string) => {
+    const cat = category.toLowerCase();
+    if (cat.includes('banjir')) return '#C8102E';
+    if (cat.includes('kebakaran')) return '#f59e0b';
+    if (cat.includes('gempa')) return '#2563eb';
+    return '#64748b';
+  };
+
+  const getMarkerIcon = (category: string) => {
+    const cat = category.toLowerCase();
+    if (cat.includes('banjir')) return <Waves size={12} color="#ffffff" />;
+    if (cat.includes('kebakaran')) return <Flame size={12} color="#ffffff" />;
+    if (cat.includes('gempa')) return <ShieldAlert size={12} color="#ffffff" />;
+    return <AlertTriangle size={12} color="#ffffff" strokeWidth={2.5} />;
+  };
+
   useEffect(() => {
     async function loadDisasters() {
       try {
