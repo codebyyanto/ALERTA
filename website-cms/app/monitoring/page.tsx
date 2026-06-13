@@ -32,6 +32,8 @@ const mockReports = [
 
 export default function MonitoringPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategories, setActiveCategories] = useState<string[]>(['flood', 'fire']);
+  const [hoveredMarker, setHoveredMarker] = useState<number | null>(null);
 
   return (
     <DashboardLayout>
@@ -88,6 +90,36 @@ export default function MonitoringPage() {
             </div>
 
             {/* GPS Locate Control */}
+            {/* Map Markers Overlays */}
+            <div className="absolute inset-0 z-10 pointer-events-none">
+              
+              {/* Flood Marker */}
+              {activeCategories.includes('flood') && (
+                <div 
+                  className="absolute pointer-events-auto cursor-pointer"
+                  style={{ top: '55%', left: '46%' }}
+                  onMouseEnter={() => setHoveredMarker(1)}
+                  onMouseLeave={() => setHoveredMarker(null)}
+                >
+                  <div className="relative flex items-center justify-center">
+                    <span className="absolute w-8 h-8 rounded-full bg-[#C8102E]/30 animate-ping pointer-events-none" />
+                    <div className="w-9 h-9 rounded-full bg-[#C8102E] text-white flex items-center justify-center shadow-lg shadow-red-950/30 border border-white/20">
+                      <Waves size={16} />
+                    </div>
+                  </div>
+                  
+                  {/* Tooltip */}
+                  {hoveredMarker === 1 && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-900/95 backdrop-blur-sm border border-slate-800 text-white rounded-2xl p-4 shadow-xl min-w-[200px] z-50 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                      <p className="text-[10px] font-black text-red-400 tracking-widest uppercase mb-1">Banjir Bandang</p>
+                      <p className="text-xs font-bold text-slate-100">Lampung Selatan</p>
+                      <p className="text-[10px] text-slate-400 leading-relaxed mt-1">Status: AWAS. Kenaikan debit air meluap setinggi 40cm.</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+            </div>
             <div className="absolute top-32 left-6 z-20 shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-2xl overflow-hidden border border-slate-100 bg-white p-1">
               <button className="w-9 h-9 flex items-center justify-center text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition-colors rounded-xl">
                 <Compass size={18} />
