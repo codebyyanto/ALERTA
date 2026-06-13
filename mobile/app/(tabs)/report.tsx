@@ -632,7 +632,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 18,
-    fontWeight: '950',
+    fontWeight: '900',
     color: '#1e293b',
     marginTop: 16,
     marginBottom: 8,

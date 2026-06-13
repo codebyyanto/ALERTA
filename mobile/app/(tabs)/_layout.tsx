@@ -33,9 +33,11 @@ export default function TabLayout() {
         name="report"
         options={{
           title: 'LAPOR',
-          tabBarIcon: () => (
-            <View style={styles.centerButton}>
-              <Plus size={22} color="#ffffff" strokeWidth={3} />
+          tabBarIcon: ({ focused }) => (
+            <View style={[styles.centerButton, focused ? styles.centerButtonActive : styles.centerButtonInactive]}>
+              <View style={[styles.centerButtonInner, focused ? styles.centerButtonInnerActive : styles.centerButtonInnerInactive]}>
+                <Plus size={16} color="#ffffff" strokeWidth={3} />
+              </View>
             </View>
           ),
         }}
@@ -57,7 +59,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          href: null, // Sembunyikan tab Explore bawaan
+          href: null,
         }}
       />
     </Tabs>
@@ -90,17 +92,30 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   centerButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
-    backgroundColor: '#C8102E',
+    width: 54,
+    height: 38,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: Platform.OS === 'ios' ? 12 : 8,
-    shadowColor: '#C8102E',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.35,
-    shadowRadius: 10,
-    elevation: 6,
+  },
+  centerButtonActive: {
+    backgroundColor: '#FCE8E6',
+  },
+  centerButtonInactive: {
+    backgroundColor: '#f1f5f9',
+  },
+  centerButtonInner: {
+    width: 26,
+    height: 26,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  centerButtonInnerActive: {
+    backgroundColor: '#C8102E',
+  },
+  centerButtonInnerInactive: {
+    backgroundColor: '#94a3b8',
   },
 });
