@@ -128,6 +128,16 @@ export default function MapScreen() {
           </ScrollView>
         </View>
 
+        {/* Flood active marker overlay */}
+        <View style={[styles.markerWrapper, { top: '55%', left: '46%' }]} pointerEvents="box-none">
+          <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
+            <View style={styles.markerRipple} />
+            <View style={[styles.markerIconBg, { backgroundColor: '#C8102E' }]}>
+              <Waves size={12} color="#ffffff" />
+            </View>
+          </TouchableOpacity>
+        </View>
+
         {/* Map Overlays */}
       </View>
     </View>
@@ -259,6 +269,40 @@ const styles = StyleSheet.create({
   },
   pillTextActive: {
     color: '#ffffff',
+  },
+  markerWrapper: {
+    position: 'absolute',
+    width: 44,
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: -22,
+    marginTop: -22,
+    zIndex: 15,
+  },
+  markerCircle: {
+    width: 32,
+    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  markerIconBg: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1.5,
+    borderColor: '#ffffff',
+  },
+  markerRipple: {
+    position: 'absolute',
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(200, 16, 46, 0.25)',
+    borderWidth: 1,
+    borderColor: '#C8102E',
   },
   brandTitle: {
     fontSize: 22,
