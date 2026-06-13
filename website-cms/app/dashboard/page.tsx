@@ -216,7 +216,12 @@ export default function DashboardPage() {
                     
                     <div className="flex-1 flex gap-3 min-w-0">
                       {/* Avatar initials placeholder */}
-                      <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-[11px] font-black text-slate-500 shrink-0">
+                      <div className={cn(
+                        "w-8 h-8 rounded-xl flex items-center justify-center text-[11px] font-black shrink-0 shadow-sm",
+                        item.name.startsWith('Agus') && "bg-[#E0F2FE] text-[#0369A1]",
+                        item.name.startsWith('Siti') && "bg-[#FEF3C7] text-[#B45309]",
+                        item.name.startsWith('Linda') && "bg-[#E0F2FE] text-[#0D9488]"
+                      )}>
                         {item.avatar}
                       </div>
                       
