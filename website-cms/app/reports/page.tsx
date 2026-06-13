@@ -22,6 +22,31 @@ import { cn } from '@/lib/utils';
 import DashboardLayout from '@/components/DashboardLayout';
 
 export default function ReportsPage() {
+  const getCategoryIcon = (category: string) => {
+    switch (category.toLowerCase()) {
+      case 'banjir':
+        return <Waves size={14} />;
+      case 'kebakaran':
+        return <Flame size={14} />;
+      case 'gempa':
+        return <ShieldAlert size={14} />;
+      default:
+        return <Wind size={14} />;
+    }
+  };
+
+  const getCategoryClass = (category: string) => {
+    switch (category.toLowerCase()) {
+      case 'kebakaran':
+        return 'bg-red-50 text-red-600 border border-red-100';
+      case 'banjir':
+        return 'bg-blue-50 text-blue-600 border border-blue-100';
+      case 'gempa':
+        return 'bg-slate-50 text-slate-600 border border-slate-100';
+      default:
+        return 'bg-slate-50 text-slate-600 border border-slate-100';
+    }
+  };
   const [searchQuery, setSearchQuery] = useState('');
   const [currentTab, setCurrentTab] = useState<'ALL' | 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK'>('ALL');
   const [loading, setLoading] = useState(true);
@@ -117,7 +142,11 @@ export default function ReportsPage() {
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <span className="px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-wide border border-slate-100">
+                      <span className={cn(
+                        "px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-wide flex items-center gap-1.5 w-fit",
+                        getCategoryClass(report.category)
+                      )}>
+                        {getCategoryIcon(report.category)}
                         {report.category}
                       </span>
                     </td>
