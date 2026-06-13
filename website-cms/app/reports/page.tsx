@@ -317,7 +317,21 @@ export default function ReportsPage() {
               <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase">SEBARAN HOTSPOT LAPORAN</span>
               <p className="text-[11px] font-bold text-slate-500 tracking-wide uppercase mt-0.5">LIVE UPDATES - JAKARTA AREA</p>
             </div>
-            {/* Visual animation goes here */}
+            {/* Ripple Heatmap Graphics */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="relative flex items-center justify-center">
+                <span className="absolute text-[24px] font-black text-white tracking-wide mix-blend-overlay z-20">Laporan</span>
+                
+                {/* Outer Ripple */}
+                <div className="absolute w-[260px] h-[200px] rounded-full border border-yellow-500/20 bg-yellow-500/5 animate-pulse" />
+                {/* Mid Ripple */}
+                <div className="absolute w-[200px] h-[150px] rounded-full border border-orange-500/30 bg-orange-500/10 animate-pulse delay-75" />
+                {/* Inner Ripple */}
+                <div className="absolute w-[140px] h-[100px] rounded-full border border-red-500/40 bg-red-500/20 animate-pulse delay-150" />
+                {/* Core Hotspot */}
+                <div className="absolute w-4 h-4 rounded-full bg-[#C8102E] border-2 border-white shadow-lg z-10" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
