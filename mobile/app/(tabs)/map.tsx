@@ -9,6 +9,7 @@ import {
   Platform,
   Alert,
   StatusBar as RNStatusBar,
+  ScrollView,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
@@ -20,18 +21,58 @@ import {
   AlertTriangle,
   Compass,
   X,
-  Activity,
   Plus,
   Minus,
 } from 'lucide-react-native';
 
+const COLORS = {
+  primary: '#C8102E',
+  secondary: '#fee2e2',
+  background: '#F8FAFC',
+  textDark: '#1e293b',
+  textLight: '#64748b',
+  border: '#e2e8f0',
+};
+
+interface DisasterReport {
+  id: string;
+  reporterName: string;
+  category: string;
+  location: string;
+  time: string;
+  description: string;
+  status: string;
+}
+
 export default function MapScreen() {
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
-  const [selectedDisaster, setSelectedDisaster] = useState<any | null>(null);
-  const [disasters, setDisasters] = useState<any[]>([]);
+  const [selectedDisaster, setSelectedDisaster] = useState<DisasterReport | null>(null);
+  const [disasters, setDisasters] = useState<DisasterReport[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
+
+  useEffect(() => {
+    async function loadDisasters() {
+      setLoading(true);
+      try {
+        const res = await fetch('http://localhost:3000/reports?status=TERVERIFIKASI');
+        if (res.ok) {
+          const json = await res.json();
+          setDisasters(json.data || []);
+        }
+      } catch (err) {
+        console.warn('Gagal memuat titik bencana dari API, menggunakan data simulasi.', err);
+        setDisasters([
+          { id: '1', reporterName: 'Andi Darmawan', category: 'Kebakaran', location: 'Lampung Selatan', time: '10:45, Hari ini', description: 'Kebakaran hutan semak belukar seluas 3 hektar.', status: 'TERVERIFIKASI' },
+          { id: '2', reporterName: 'Siti Aminah', category: 'Banjir', location: 'Lampung Barat', time: '08:20, Hari ini', description: 'Banjir meluap ke pemukiman setinggi 40cm.', status: 'TERVERIFIKASI' }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadDisasters();
+  }, []);
 
   const getMarkerOffset = (location: string) => {
     const loc = location.toLowerCase();
@@ -59,30 +100,6 @@ export default function MapScreen() {
     return <AlertTriangle size={12} color="#ffffff" strokeWidth={2.5} />;
   };
 
-  useEffect(() => {
-    async function loadDisasters() {
-      setLoading(true);
-      try {
-        const res = await fetch('http://localhost:3000/reports?status=TERVERIFIKASI');
-        if (res.ok) {
-          const json = await res.json();
-          setDisasters(json.data || []);
-        }
-      } catch (err) {
-        console.warn('Gagal memuat titik bencana dari API, menggunakan data simulasi.', err);
-        // Fallback data simulasi di database jika koneksi mati
-        setDisasters([
-          { id: '1', reporterName: 'Andi Darmawan', category: 'Kebakaran', location: 'Lampung Selatan', time: '10:45, Hari ini', description: 'Kebakaran hutan semak belukar seluas 3 hektar.' },
-          { id: '2', reporterName: 'Siti Aminah', category: 'Banjir', location: 'Lampung Barat', time: '08:20, Hari ini', description: 'Banjir meluap ke pemukiman setinggi 40cm.' }
-        ]);
-      }
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadDisasters();
-  }, []);
-
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
       {/* Custom Header Bar */}
@@ -96,27 +113,6 @@ export default function MapScreen() {
         <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
           <Bell size={22} color={COLORS.textDark} />
         </TouchableOpacity>
-        {/* Floating Detail Information Card */}
-        {selectedDisaster && (
-          <View style={styles.detailCard}>
-            <View style={styles.detailHeader}>
-              <View style={styles.detailTitleWrapper}>
-                <Text style={styles.detailLabel}>{selectedDisaster.category.toUpperCase()}</Text>
-                <Text style={styles.detailTitle}>{selectedDisaster.location}</Text>
-              </View>
-              <TouchableOpacity 
-                style={styles.closeCardBtn} 
-                activeOpacity={0.7}
-                onPress={() => setSelectedDisaster(null)}
-              >
-                <X size={14} color={COLORS.textLight} strokeWidth={2.5} />
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.detailTime}>{selectedDisaster.time}</Text>
-            <Text style={styles.detailDesc}>{selectedDisaster.description}</Text>
-            <Text style={styles.detailReporter}>Dilaporkan oleh: {selectedDisaster.reporterName}</Text>
-          </View>
-        )}
       </View>
 
       {/* Map Container Wrapper */}
@@ -135,21 +131,6 @@ export default function MapScreen() {
             <ActivityIndicator size="large" color={COLORS.primary} />
           </View>
         )}
-        
-        {/* Map Zoom Controls */}
-        <View style={styles.zoomControls}>
-          <TouchableOpacity style={styles.controlBtn} activeOpacity={0.7}>
-            <Plus size={18} color={COLORS.textDark} strokeWidth={2.5} />
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.controlBtn, { borderTopWidth: 1, borderTopColor: '#f1f5f9' }]} activeOpacity={0.7}>
-            <Minus size={18} color={COLORS.textDark} strokeWidth={2.5} />
-          </TouchableOpacity>
-        </View>
-
-        {/* GPS Locate Control */}
-        <TouchableOpacity style={styles.gpsLocateBtn} activeOpacity={0.7}>
-          <Compass size={20} color={COLORS.textDark} strokeWidth={2} />
-        </TouchableOpacity>
 
         {/* Category Filter Pills (Horizontal List) */}
         <View style={styles.filterPillsContainer}>
@@ -209,6 +190,55 @@ export default function MapScreen() {
           </ScrollView>
         </View>
 
+        {/* Map Zoom Controls */}
+        <View style={styles.zoomControls}>
+          <TouchableOpacity style={styles.controlBtn} activeOpacity={0.7}>
+            <Plus size={18} color={COLORS.textDark} strokeWidth={2.5} />
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.controlBtn, { borderTopWidth: 1, borderTopColor: '#f1f5f9' }]} activeOpacity={0.7}>
+            <Minus size={18} color={COLORS.textDark} strokeWidth={2.5} />
+          </TouchableOpacity>
+        </View>
+
+        {/* GPS Locate Control */}
+        <TouchableOpacity style={styles.gpsLocateBtn} activeOpacity={0.7}>
+          <Compass size={20} color={COLORS.textDark} strokeWidth={2} />
+        </TouchableOpacity>
+
+        {/* Floating region stats overlay */}
+        {!selectedDisaster && (
+          <View style={styles.statsOverlayCard}>
+            <View style={styles.statsHeader}>
+              <Text style={styles.statsTitle}>STATISTIK WILAYAH</Text>
+              <Text style={styles.statsBadge}>LAMPUNG</Text>
+            </View>
+
+            <View style={styles.statsGrid}>
+              <View style={styles.statsItem}>
+                <Text style={styles.statsLabel}>TERDAMPAK</Text>
+                <Text style={styles.statsVal}>1.240</Text>
+                <Text style={[styles.statsSubVal, { color: '#ef4444' }]}>▲ 12% Hari Ini</Text>
+              </View>
+              <View style={styles.statsItem}>
+                <Text style={styles.statsLabel}>PENGUNGSI</Text>
+                <Text style={styles.statsVal}>3.412</Text>
+                <Text style={[styles.statsSubVal, { color: '#10b981' }]}>● Stabil</Text>
+              </View>
+            </View>
+
+            {/* Logistics progress indicator */}
+            <View style={styles.logisticsWrapper}>
+              <View style={styles.logisticsHeader}>
+                <Text style={styles.logisticsLabel}>Kebutuhan Logistik</Text>
+                <Text style={styles.logisticsPercent}>78% Terpenuhi</Text>
+              </View>
+              <View style={styles.logisticsBarBg}>
+                <View style={[styles.logisticsBarValue, { width: '78%' }]} />
+              </View>
+            </View>
+          </View>
+        )}
+
         {/* Dynamic disasters markers mapping loop */}
         {!loading && disasters
           .filter(d => activeCategory === 'ALL' || d.category.toLowerCase() === activeCategory.toLowerCase())
@@ -239,54 +269,31 @@ export default function MapScreen() {
             );
           })}
 
-        {/* Floating region stats overlay */}
-        {!selectedDisaster && (
-          <View style={styles.statsOverlayCard}>
-            <View style={styles.statsHeader}>
-              <Text style={styles.statsTitle}>STATISTIK WILAYAH</Text>
-              <Text style={styles.statsBadge}>LAMPUNG</Text>
+        {/* Floating Detail Information Card */}
+        {selectedDisaster && (
+          <View style={styles.detailCard}>
+            <View style={styles.detailHeader}>
+              <View style={styles.detailTitleWrapper}>
+                <Text style={styles.detailLabel}>{selectedDisaster.category.toUpperCase()}</Text>
+                <Text style={styles.detailTitle}>{selectedDisaster.location}</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.closeCardBtn} 
+                activeOpacity={0.7}
+                onPress={() => setSelectedDisaster(null)}
+              >
+                <X size={14} color={COLORS.textLight} strokeWidth={2.5} />
+              </TouchableOpacity>
             </View>
-
-            <View style={styles.statsGrid}>
-              <View style={styles.statsItem}>
-                <Text style={styles.statsLabel}>TERDAMPAK</Text>
-                <Text style={styles.statsVal}>1.240</Text>
-                <Text style={[styles.statsSubVal, { color: '#ef4444' }]}>▲ 12% Hari Ini</Text>
-              </View>
-              <View style={styles.statsItem}>
-                <Text style={styles.statsLabel}>PENGUNGSI</Text>
-                <Text style={styles.statsVal}>3.412</Text>
-                <Text style={[styles.statsSubVal, { color: '#10b981' }]}>● Stabil</Text>
-              </View>
-            </View>
-            
-            {/* Logistics progress indicator */}
-            <View style={styles.logisticsWrapper}>
-              <View style={styles.logisticsHeader}>
-                <Text style={styles.logisticsLabel}>Kebutuhan Logistik</Text>
-                <Text style={styles.logisticsPercent}>78% Terpenuhi</Text>
-              </View>
-              <View style={styles.logisticsBarBg}>
-                <View style={[styles.logisticsBarValue, { width: '78%' }]} />
-              </View>
-            </View>
+            <Text style={styles.detailTime}>{selectedDisaster.time}</Text>
+            <Text style={styles.detailDesc}>{selectedDisaster.description}</Text>
+            <Text style={styles.detailReporter}>Dilaporkan oleh: {selectedDisaster.reporterName}</Text>
           </View>
         )}
-
-        {/* Map Overlays */}
       </View>
     </View>
   );
 }
-
-const COLORS = {
-  primary: '#C8102E',
-  secondary: '#fee2e2',
-  background: '#F8FAFC',
-  textDark: '#1e293b',
-  textLight: '#64748b',
-  border: '#e2e8f0',
-};
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -309,6 +316,23 @@ const styles = StyleSheet.create({
     elevation: 2,
     zIndex: 10,
   },
+  brandTitle: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: 2,
+    textAlign: 'center',
+  },
+  headerIconButton: {
+    width: 42,
+    height: 42,
+    borderRadius: 14,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
   mapWrapper: {
     flex: 1,
     position: 'relative',
@@ -323,7 +347,53 @@ const styles = StyleSheet.create({
   },
   mapOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(13, 148, 136, 0.15)', // soft green ocean tint
+    backgroundColor: 'rgba(13, 148, 136, 0.15)',
+  },
+  loadingSpinnerContainer: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 22,
+  },
+  filterPillsContainer: {
+    position: 'absolute',
+    top: 20,
+    left: 0,
+    right: 0,
+    zIndex: 20,
+  },
+  filterPillsScroll: {
+    paddingHorizontal: 16,
+    gap: 8,
+  },
+  pillBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.03,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  pillBtnActive: {
+    backgroundColor: '#C8102E',
+    borderColor: '#C8102E',
+  },
+  pillText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#1e293b',
+  },
+  pillTextActive: {
+    color: '#ffffff',
   },
   zoomControls: {
     position: 'absolute',
@@ -365,143 +435,6 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 3,
     zIndex: 20,
-  },
-  filterPillsContainer: {
-    position: 'absolute',
-    top: 20,
-    left: 0,
-    right: 0,
-    zIndex: 20,
-  },
-  filterPillsScroll: {
-    paddingHorizontal: 16,
-    gap: 8,
-  },
-  pillBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    backgroundColor: '#ffffff',
-    borderRadius: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderWidth: 1,
-    borderColor: '#f1f5f9',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.03,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  pillBtnActive: {
-    backgroundColor: '#C8102E',
-    borderColor: '#C8102E',
-  },
-  pillText: {
-    fontSize: 12,
-    fontWeight: '800',
-    color: '#1e293b',
-  },
-  pillTextActive: {
-    color: '#ffffff',
-  },
-  markerWrapper: {
-    position: 'absolute',
-    width: 44,
-    height: 44,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: -22,
-    marginTop: -22,
-    zIndex: 15,
-  },
-  markerCircle: {
-    width: 32,
-    height: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  markerIconBg: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1.5,
-    borderColor: '#ffffff',
-  },
-  markerRipple: {
-    position: 'absolute',
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(200, 16, 46, 0.25)',
-    borderWidth: 1,
-    borderColor: '#C8102E',
-  },
-  detailCard: {
-    position: 'absolute',
-    bottom: 24,
-    left: 16,
-    right: 16,
-    backgroundColor: '#ffffff',
-    borderRadius: 24,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: '#f1f5f9',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.1,
-    shadowRadius: 20,
-    elevation: 8,
-    zIndex: 30,
-  },
-  detailHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 8,
-  },
-  detailTitleWrapper: {
-    flex: 1,
-  },
-  detailLabel: {
-    fontSize: 9,
-    fontWeight: '900',
-    color: '#C8102E',
-    letterSpacing: 0.5,
-    marginBottom: 2,
-  },
-  detailTitle: {
-    fontSize: 16,
-    fontWeight: '900',
-    color: '#1e293b',
-  },
-  closeCardBtn: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: '#f1f5f9',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  detailTime: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: '#94a3b8',
-    marginBottom: 10,
-  },
-  detailDesc: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#64748b',
-    lineHeight: 18,
-    marginBottom: 12,
-  },
-  detailReporter: {
-    fontSize: 10,
-    fontWeight: '800',
-    color: '#94a3b8',
   },
   statsOverlayCard: {
     position: 'absolute',
@@ -604,28 +537,100 @@ const styles = StyleSheet.create({
     backgroundColor: '#0d9488',
     borderRadius: 2.5,
   },
-  loadingSpinnerContainer: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+  markerWrapper: {
+    position: 'absolute',
+    width: 44,
+    height: 44,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 22,
+    marginLeft: -22,
+    marginTop: -22,
+    zIndex: 15,
   },
-  brandTitle: {
-    fontSize: 22,
-    fontWeight: '900',
-    color: '#C8102E',
-    letterSpacing: 2,
-    textAlign: 'center',
+  markerCircle: {
+    width: 32,
+    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  headerIconButton: {
-    width: 42,
-    height: 42,
-    borderRadius: 14,
+  markerIconBg: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1.5,
+    borderColor: '#ffffff',
+  },
+  markerRipple: {
+    position: 'absolute',
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 1,
+  },
+  detailCard: {
+    position: 'absolute',
+    bottom: 24,
+    left: 16,
+    right: 16,
     backgroundColor: '#ffffff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: 24,
+    padding: 20,
     borderWidth: 1,
     borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 20,
+    elevation: 8,
+    zIndex: 30,
+  },
+  detailHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 8,
+  },
+  detailTitleWrapper: {
+    flex: 1,
+  },
+  detailLabel: {
+    fontSize: 9,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: 0.5,
+    marginBottom: 2,
+  },
+  detailTitle: {
+    fontSize: 16,
+    fontWeight: '900',
+    color: '#1e293b',
+  },
+  closeCardBtn: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#f1f5f9',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  detailTime: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#94a3b8',
+    marginBottom: 10,
+  },
+  detailDesc: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#64748b',
+    lineHeight: 18,
+    marginBottom: 12,
+  },
+  detailReporter: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#94a3b8',
   },
 });
