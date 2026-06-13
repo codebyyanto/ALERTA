@@ -21,6 +21,9 @@ export default function LoginPage() {
       if (result?.error) {
         setError(result.error);
       } else if (result?.success) {
+        if (typeof window !== 'undefined' && result.user) {
+          localStorage.setItem('admin_user', JSON.stringify(result.user));
+        }
         router.push('/');
       }
     });
