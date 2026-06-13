@@ -48,6 +48,13 @@ export default function ReportScreen() {
         </TouchableOpacity>
       </View>
 
+      <ScrollView 
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Form elements will go here */}
+      </ScrollView>
+
       {/* Progress Steps */}
       <View style={styles.stepsContainer}>
         <View style={styles.stepItem}>
@@ -162,6 +169,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#e2e8f0',
     marginHorizontal: 8,
     marginBottom: 16,
+  },
+  scrollContent: {
+    paddingHorizontal: 20,
+    paddingTop: 24,
+    paddingBottom: Platform.OS === 'ios' ? 120 : 96,
   },
   brandTitle: {
     fontSize: 22,
