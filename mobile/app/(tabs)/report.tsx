@@ -65,7 +65,14 @@ export default function ReportScreen() {
           <Text style={styles.sectionLabel}>KATEGORI KEJADIAN</Text>
           
           <View style={styles.categoriesGrid}>
-            {/* Category Cards */}
+            {/* Kebakaran */}
+            <TouchableOpacity 
+              style={styles.categoryCard} 
+              activeOpacity={0.7}
+            >
+              <Flame size={24} color={COLORS.textLight} />
+              <Text style={styles.categoryText}>Kebakaran</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -220,6 +227,27 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 12,
     justifyContent: 'space-between',
+  },
+  categoryCard: {
+    width: '31%',
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    paddingVertical: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1.5,
+    borderColor: '#f1f5f9',
+    gap: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.01,
+    shadowRadius: 3,
+    elevation: 1,
+  },
+  categoryText: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#64748b',
   },
   brandTitle: {
     fontSize: 22,
