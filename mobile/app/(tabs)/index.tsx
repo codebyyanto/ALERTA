@@ -34,6 +34,20 @@ export default function HomeScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
         {/* Active Disasters Grid Row */}
         <View style={styles.activeRow}>
+          {/* Banjir Summary Card */}
+          <View style={styles.summaryCard}>
+            <View style={styles.summaryHeader}>
+              <View style={[styles.summaryIconBg, { backgroundColor: '#fee2e2' }]}>
+                <Droplets size={16} color="#C8102E" />
+              </View>
+              <View style={styles.badgeActive}>
+                <Text style={styles.badgeText}>4 Aktif</Text>
+              </View>
+            </View>
+            <Text style={styles.summaryTitle}>Banjir</Text>
+            <Text style={styles.summaryLocs}>Sukarame, Kedaton</Text>
+          </View>
+          
           {/* Summary Cards */}
         </View>
 
@@ -243,6 +257,54 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     gap: 12,
     marginBottom: 20,
+  },
+  summaryCard: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    padding: 14,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.02,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  summaryHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  summaryIconBg: {
+    width: 28,
+    height: 28,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeActive: {
+    backgroundColor: '#fee2e2',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
+  },
+  badgeText: {
+    fontSize: 8,
+    fontWeight: '900',
+    color: '#C8102E',
+  },
+  summaryTitle: {
+    fontSize: 14,
+    fontWeight: '900',
+    color: COLORS.textDark,
+    marginBottom: 2,
+  },
+  summaryLocs: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: COLORS.textLight,
   },
   brandTitle: {
     fontSize: 22,
