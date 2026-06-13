@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '@/lib/api';
 import { 
   Search, 
   Bell, 
@@ -35,7 +36,23 @@ export default function MonitoringPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategories, setActiveCategories] = useState<string[]>(['flood', 'fire']);
   const [hoveredMarker, setHoveredMarker] = useState<number | null>(null);
+  const [reports, setReports] = useState(mockReports);
   // Checkboxes are mapped to this state to show/hide overlays on the Lampung map
+
+  useEffect(() => {
+    async function fetchMonitoringData() {
+      try {
+        // TODO: Hubungkan dengan API real jika rute /reports/recent telah di-deploy
+        const res = await api.get('/reports/recent');
+        if (res.data) {
+          setReports(res.data);
+        }
+      } catch (err) {
+        console.warn('Gagal memuat log laporan terbaru dari API, menggunakan data simulasi lokal.', err);
+      }
+    }
+    fetchMonitoringData();
+  }, []);
 
   return (
     <DashboardLayout>
@@ -414,7 +431,7 @@ export default function MonitoringPage() {
                 <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase mb-3.5 px-1 block">LAPORAN TERBARU</span>
                 
                 <div className="space-y-3">
-                  {mockReports.map((report) => (
+                  {reports.map((report) => (
                     <div key={report.id} className="bg-white rounded-2xl p-3.5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)] relative overflow-hidden">
                       {report.isNew && (
                         <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#C8102E]" />
