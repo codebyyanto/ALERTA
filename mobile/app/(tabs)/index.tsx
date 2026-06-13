@@ -33,6 +33,15 @@ export default function HomeScreen() {
   );
 }
 
+const COLORS = {
+  primary: '#C8102E',
+  secondary: '#fee2e2',
+  background: '#F8FAFC',
+  textDark: '#1e293b',
+  textLight: '#64748b',
+  border: '#e2e8f0',
+};
+
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
