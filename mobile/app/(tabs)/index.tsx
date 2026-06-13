@@ -26,7 +26,27 @@ import {
 } from 'lucide-react-native';
 
 export default function HomeScreen() {
+  const [disasters, setDisasters] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const insets = useSafeAreaInsets();
+  
+  useEffect(() => {
+    async function loadStats() {
+      setLoading(true);
+      try {
+        const res = await fetch('http://localhost:3000/reports?status=TERVERIFIKASI');
+        if (res.ok) {
+          const json = await res.json();
+          setDisasters(json.data || []);
+        }
+      } catch (err) {
+        console.warn('Gagal memuat statistik bencana untuk beranda dari API.', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadStats();
+  }, []);
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
   return (
