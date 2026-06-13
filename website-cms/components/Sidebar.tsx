@@ -53,6 +53,9 @@ export default function Sidebar() {
   async function handleLogout() {
     const result = await logoutAction();
     if (result.success) {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('admin_user');
+      }
       router.push('/login');
     }
   }
