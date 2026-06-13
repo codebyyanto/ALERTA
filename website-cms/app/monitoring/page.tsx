@@ -93,6 +93,31 @@ export default function MonitoringPage() {
             {/* Map Markers Overlays */}
             <div className="absolute inset-0 z-10 pointer-events-none">
               
+              {/* Wind Marker */}
+              {activeCategories.includes('wind') && (
+                <div 
+                  className="absolute pointer-events-auto cursor-pointer"
+                  style={{ top: '45%', left: '55%' }}
+                  onMouseEnter={() => setHoveredMarker(4)}
+                  onMouseLeave={() => setHoveredMarker(null)}
+                >
+                  <div className="relative flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-full bg-slate-600 text-white flex items-center justify-center shadow-lg shadow-slate-950/30 border border-white/20">
+                      <Wind size={16} />
+                    </div>
+                  </div>
+                  
+                  {/* Tooltip */}
+                  {hoveredMarker === 4 && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-900/95 backdrop-blur-sm border border-slate-800 text-white rounded-2xl p-4 shadow-xl min-w-[200px] z-50 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                      <p className="text-[10px] font-black text-slate-400 tracking-widest uppercase mb-1">Angin Puting Beliung</p>
+                      <p className="text-xs font-bold text-slate-100">Lampung Tengah</p>
+                      <p className="text-[10px] text-slate-400 leading-relaxed mt-1">Status: WASPADA. Angin kencang merusak atap rumah warga.</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Earthquake Marker */}
               {activeCategories.includes('earthquake') && (
                 <div 
