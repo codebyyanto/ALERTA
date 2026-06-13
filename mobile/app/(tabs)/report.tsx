@@ -71,6 +71,13 @@ export default function ReportScreen() {
             <TouchableOpacity 
               style={styles.gpsButton} 
               activeOpacity={0.7}
+              onPress={() => {
+                setGpsLoading(true);
+                setTimeout(() => {
+                  setGpsLoading(false);
+                  setLocationAddress('Jl. Raden Intan No. 50, Bandar Lampung, Lampung');
+                }, 1000);
+              }}
             >
               {gpsLoading ? (
                 <ActivityIndicator size="small" color={COLORS.primary} />
