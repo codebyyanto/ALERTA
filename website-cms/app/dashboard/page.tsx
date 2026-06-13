@@ -119,6 +119,26 @@ export default function DashboardPage() {
                 <p className="text-[10px] font-black text-slate-400 tracking-wider uppercase mb-1">ACTIVE VOLUNTEERS</p>
                 <h3 className="text-3xl font-black text-slate-800 tracking-tight">842</h3>
               </div>
+
+        {/* Main Sections: Chart & Volunteer Log */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+          {/* Left: Tren Kejadian Bencana Chart Card */}
+          <div className="lg:col-span-2 bg-white rounded-[32px] p-8 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.01)] flex flex-col justify-between min-h-[420px]">
+            <div>
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h4 className="text-[16px] font-black text-slate-800 uppercase tracking-tight">Tren Kejadian Bencana</h4>
+                  <p className="text-[11px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Laporan harian dalam 30 hari terakhir</p>
+                </div>
+                {/* Filter Toggles */}
+              </div>
+              
+              {/* Chart Container */}
+            </div>
+          </div>
+          
+          {/* Right: Volunteer Activity Log Place */}
+        </div>
               <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
                 <Users size={20} />
               </div>
