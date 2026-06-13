@@ -105,6 +105,36 @@ export default function ReportsPage() {
                     </tr>
                   ))
                 )}
+                {!loading && reports.length > 0 && reports.map((report) => (
+                  <tr key={report.id} className="text-[12px] font-semibold text-slate-700 hover:bg-slate-50/30 transition-colors">
+                    <td className="py-4 px-6 font-black text-slate-800">#REP-{report.id.substring(0, 4)}</td>
+                    <td className="py-4 px-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-[#EBF5FF] text-blue-600 font-bold flex items-center justify-center text-[10px]">
+                          {report.reporterName.substring(0, 2).toUpperCase()}
+                        </div>
+                        <span className="font-bold text-slate-900">{report.reporterName}</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6">
+                      <span className="px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-wide border border-slate-100">
+                        {report.category}
+                      </span>
+                    </td>
+                    <td className="py-4 px-6 font-bold text-slate-900">{report.location}</td>
+                    <td className="py-4 px-6 text-slate-500 font-medium">{report.time}</td>
+                    <td className="py-4 px-6">
+                      <span>{report.status}</span>
+                    </td>
+                    <td className="py-4 px-6">
+                      <div className="flex items-center justify-center gap-2">
+                        <button className="text-slate-400 hover:text-slate-600 transition-colors">
+                          <MoreVertical size={14} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
                 {!loading && (error || reports.length === 0) && (
                   <tr>
                     <td colSpan={7} className="py-12 text-center">
