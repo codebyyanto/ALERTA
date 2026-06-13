@@ -64,6 +64,12 @@ export default function ReportScreen() {
           </Text>
         </View>
         
+        {/* Description Section */}
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionLabel}>DESKRIPSI KEJADIAN</Text>
+          {/* Textarea will go here */}
+        </View>
+
         {/* Location Section */}
         <View style={styles.sectionContainer}>
           <View style={styles.sectionHeaderRow}>
