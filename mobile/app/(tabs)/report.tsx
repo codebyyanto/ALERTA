@@ -60,7 +60,14 @@ export default function ReportScreen() {
           </Text>
         </View>
         
-        {/* Form segments */}
+        {/* Category Selector */}
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionLabel}>KATEGORI KEJADIAN</Text>
+          
+          <View style={styles.categoriesGrid}>
+            {/* Category Cards */}
+          </View>
+        </View>
       </ScrollView>
 
       {/* Progress Steps */}
@@ -197,6 +204,22 @@ const styles = StyleSheet.create({
     color: '#64748b',
     lineHeight: 18,
     fontWeight: '500',
+  },
+  sectionContainer: {
+    marginBottom: 24,
+  },
+  sectionLabel: {
+    fontSize: 11,
+    fontWeight: '900',
+    color: '#64748b',
+    letterSpacing: 1,
+    marginBottom: 12,
+  },
+  categoriesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+    justifyContent: 'space-between',
   },
   brandTitle: {
     fontSize: 22,
