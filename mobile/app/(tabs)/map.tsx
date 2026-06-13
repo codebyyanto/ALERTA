@@ -47,7 +47,22 @@ export default function MapScreen() {
         {/* Floating Detail Information Card */}
         {selectedDisaster && (
           <View style={styles.detailCard}>
-            {/* Detail info goes here */}
+            <View style={styles.detailHeader}>
+              <View style={styles.detailTitleWrapper}>
+                <Text style={styles.detailLabel}>{selectedDisaster.category.toUpperCase()}</Text>
+                <Text style={styles.detailTitle}>{selectedDisaster.location}</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.closeCardBtn} 
+                activeOpacity={0.7}
+                onPress={() => setSelectedDisaster(null)}
+              >
+                <X size={14} color={COLORS.textLight} strokeWidth={2.5} />
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.detailTime}>{selectedDisaster.time}</Text>
+            <Text style={styles.detailDesc}>{selectedDisaster.description}</Text>
+            <Text style={styles.detailReporter}>Dilaporkan oleh: {selectedDisaster.reporterName}</Text>
           </View>
         )}
       </View>
@@ -363,6 +378,53 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 8,
     zIndex: 30,
+  },
+  detailHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 8,
+  },
+  detailTitleWrapper: {
+    flex: 1,
+  },
+  detailLabel: {
+    fontSize: 9,
+    fontWeight: '900',
+    color: '#C8102E',
+    letterSpacing: 0.5,
+    marginBottom: 2,
+  },
+  detailTitle: {
+    fontSize: 16,
+    fontWeight: '900',
+    color: '#1e293b',
+  },
+  closeCardBtn: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#f1f5f9',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  detailTime: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#94a3b8',
+    marginBottom: 10,
+  },
+  detailDesc: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#64748b',
+    lineHeight: 18,
+    marginBottom: 12,
+  },
+  detailReporter: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#94a3b8',
   },
   brandTitle: {
     fontSize: 22,
