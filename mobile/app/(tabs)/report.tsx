@@ -33,6 +33,7 @@ export default function ReportScreen() {
   const [category, setCategory] = useState<string>('Kebakaran');
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [gpsLoading, setGpsLoading] = useState<boolean>(false);
+  const [locationAddress, setLocationAddress] = useState<string>('');
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -95,7 +96,17 @@ export default function ReportScreen() {
             </View>
           </View>
           
-          {/* Address display card will go here */}
+          {/* Address detail Card */}
+          <View style={styles.addressCard}>
+            <MapPin size={16} color={COLORS.primary} strokeWidth={2.5} />
+            <TextInput 
+              style={styles.addressInput}
+              value={locationAddress}
+              onChangeText={setLocationAddress}
+              placeholder="Tap 'GUNAKAN GPS' atau ketik alamat di Lampung..."
+              placeholderTextColor="#94a3b8"
+            />
+          </View>
         </View>
 
         {/* Photo Upload Section */}
@@ -449,6 +460,30 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(200, 16, 46, 0.2)',
     borderWidth: 1,
     borderColor: '#C8102E',
+  },
+  addressCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: '#ffffff',
+    borderRadius: 18,
+    borderWidth: 1.5,
+    borderColor: '#f1f5f9',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    marginTop: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.01,
+    shadowRadius: 4,
+    elevation: 1,
+  },
+  addressInput: {
+    flex: 1,
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#1e293b',
+    padding: 0,
   },
   categoryCard: {
     width: '31%',
