@@ -128,6 +128,16 @@ export default function MapScreen() {
           </ScrollView>
         </View>
 
+        {/* Fire active marker overlay */}
+        <View style={[styles.markerWrapper, { top: '35%', left: '28%' }]} pointerEvents="box-none">
+          <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
+            <View style={[styles.markerRipple, { borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.25)' }]} />
+            <View style={[styles.markerIconBg, { backgroundColor: '#f59e0b' }]}>
+              <Flame size={12} color="#ffffff" />
+            </View>
+          </TouchableOpacity>
+        </View>
+
         {/* Flood active marker overlay */}
         <View style={[styles.markerWrapper, { top: '55%', left: '46%' }]} pointerEvents="box-none">
           <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
