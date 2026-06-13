@@ -217,7 +217,16 @@ export default function MapScreen() {
               </View>
             </View>
             
-            {/* Logistics progress goes here */}
+            {/* Logistics progress indicator */}
+            <View style={styles.logisticsWrapper}>
+              <View style={styles.logisticsHeader}>
+                <Text style={styles.logisticsLabel}>Kebutuhan Logistik</Text>
+                <Text style={styles.logisticsPercent}>78% Terpenuhi</Text>
+              </View>
+              <View style={styles.logisticsBarBg}>
+                <View style={[styles.logisticsBarValue, { width: '78%' }]} />
+              </View>
+            </View>
           </View>
         )}
 
@@ -519,6 +528,38 @@ const styles = StyleSheet.create({
     fontSize: 8,
     fontWeight: '800',
     marginTop: 2,
+  },
+  logisticsWrapper: {
+    borderTopWidth: 1,
+    borderTopColor: '#f1f5f9',
+    paddingTop: 10,
+  },
+  logisticsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  logisticsLabel: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#64748b',
+  },
+  logisticsPercent: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#1e293b',
+  },
+  logisticsBarBg: {
+    height: 5,
+    backgroundColor: '#f1f5f9',
+    borderRadius: 2.5,
+    overflow: 'hidden',
+  },
+  logisticsBarValue: {
+    height: '100%',
+    backgroundColor: '#0d9488',
+    borderRadius: 2.5,
   },
   brandTitle: {
     fontSize: 22,
