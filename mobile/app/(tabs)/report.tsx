@@ -82,6 +82,15 @@ export default function ReportScreen() {
               <Waves size={24} color={COLORS.textLight} />
               <Text style={styles.categoryText}>Banjir</Text>
             </TouchableOpacity>
+
+            {/* Medis */}
+            <TouchableOpacity 
+              style={styles.categoryCard} 
+              activeOpacity={0.7}
+            >
+              <PlusSquare size={24} color={COLORS.textLight} />
+              <Text style={styles.categoryText}>Medis</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
