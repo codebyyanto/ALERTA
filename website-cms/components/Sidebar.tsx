@@ -10,7 +10,8 @@ import {
   BookOpen, 
   Users, 
   Settings,
-  LogOut
+  LogOut,
+  Megaphone
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { logoutAction } from '@/app/login/actions';
@@ -38,11 +39,16 @@ export default function Sidebar() {
   return (
     <aside className="w-[280px] bg-[#1E293B] h-screen flex flex-col fixed left-0 top-0 z-50">
       {/* Logo Section */}
-      <div className="p-8 pb-10">
-        <h1 className="text-2xl font-black text-white tracking-tighter">ALERTA</h1>
-        <p className="text-[10px] font-bold text-slate-400 tracking-[0.1em] uppercase mt-1">
-          Disaster Response Admin
-        </p>
+      <div className="p-8 pb-10 flex items-center gap-3">
+        <div className="w-10 h-10 rounded-xl bg-[#C8102E] flex items-center justify-center text-white shadow-lg shadow-red-950/20 shrink-0">
+          <Megaphone size={20} className="-rotate-12" />
+        </div>
+        <div>
+          <h1 className="text-xl font-black text-white tracking-tighter leading-none">ALERTA</h1>
+          <p className="text-[9px] font-bold text-slate-400 tracking-wider uppercase mt-1">
+            Disaster Response<br />Admin
+          </p>
+        </div>
       </div>
 
       {/* Navigation */}
