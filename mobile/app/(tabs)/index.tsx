@@ -147,11 +147,13 @@ export default function HomeScreen() {
                 <Droplets size={16} color="#C8102E" />
               </View>
               <View style={styles.badgeActive}>
-                <Text style={styles.badgeText}>4 Aktif</Text>
+                <Text style={styles.badgeText}>{`${disasters.filter(d => d.category.toLowerCase() === 'banjir').length} Aktif`}</Text>
               </View>
             </View>
             <Text style={styles.summaryTitle}>Banjir</Text>
-            <Text style={styles.summaryLocs}>Sukarame, Kedaton</Text>
+            <Text style={styles.summaryLocs}>
+              {disasters.filter(d => d.category.toLowerCase() === 'banjir').map(d => d.location.split(',')[0]).slice(0, 2).join(', ') || 'Semua Aman'}
+            </Text>
           </View>
           
           {/* Kebakaran Summary Card */}
@@ -161,11 +163,13 @@ export default function HomeScreen() {
                 <Flame size={16} color="#f97316" />
               </View>
               <View style={[styles.badgeActive, { backgroundColor: '#ffedd5' }]}>
-                <Text style={[styles.badgeText, { color: '#f97316' }]}>2 Aktif</Text>
+                <Text style={[styles.badgeText, { color: '#f97316' }]}>{`${disasters.filter(d => d.category.toLowerCase() === 'kebakaran').length} Aktif`}</Text>
               </View>
             </View>
             <Text style={styles.summaryTitle}>Kebakaran</Text>
-            <Text style={styles.summaryLocs}>Kemiling, Rajabasa</Text>
+            <Text style={styles.summaryLocs}>
+              {disasters.filter(d => d.category.toLowerCase() === 'kebakaran').map(d => d.location.split(',')[0]).slice(0, 2).join(', ') || 'Semua Aman'}
+            </Text>
           </View>
         </View>
 
