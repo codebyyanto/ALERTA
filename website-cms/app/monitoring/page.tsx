@@ -80,6 +80,12 @@ export default function MonitoringPage() {
             />
             {/* Overlay Elements */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none z-10" />
+            
+            {/* Map Zoom Controls */}
+            <div className="absolute top-6 left-6 z-20 flex flex-col gap-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-2xl overflow-hidden border border-slate-100 bg-white p-1">
+              <button className="w-9 h-9 flex items-center justify-center font-black text-[16px] text-slate-600 hover:bg-slate-50 hover:text-slate-800 transition-colors rounded-xl font-mono">+</button>
+              <button className="w-9 h-9 flex items-center justify-center font-black text-[16px] text-slate-600 hover:bg-slate-50 hover:text-slate-800 border-t border-slate-100 transition-colors rounded-xl font-mono">-</button>
+            </div>
           </div>
           
           {/* Right Column (1 Col): Right Side Panel */}
