@@ -193,7 +193,28 @@ export default function DashboardPage() {
             </div>
           </div>
           
-          {/* Right: Volunteer Activity Log Place */}
+          {/* Right: Volunteer Activity Log Card */}
+          <div className="bg-white rounded-[32px] p-8 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.01)] flex flex-col justify-between min-h-[420px]">
+            <div>
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <h4 className="text-[16px] font-black text-slate-800 uppercase tracking-tight">Aktivitas Relawan</h4>
+                  <p className="text-[11px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Log aktivitas terkini</p>
+                </div>
+                <Users className="text-[#C8102E]" size={20} />
+              </div>
+              
+              {/* Volunteer activity list container */}
+              <div className="relative pl-6 space-y-6">
+                {/* Timeline connector line */}
+                <div className="absolute left-[11px] top-2 bottom-2 w-[1.5px] bg-slate-100" />
+                
+                {/* Activity list mapped here */}
+              </div>
+            </div>
+            
+            {/* Action Button Container */}
+          </div>
         </div>
               <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
                 <Users size={20} />
