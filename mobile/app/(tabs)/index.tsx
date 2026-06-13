@@ -32,6 +32,12 @@ export default function HomeScreen() {
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {/* Quick Report Button */}
+        <TouchableOpacity style={styles.reportBtn} activeOpacity={0.8}>
+          <Megaphone size={18} color="#ffffff" strokeWidth={2.5} />
+          <Text style={styles.reportBtnText}>Lapor Kejadian Sekarang</Text>
+        </TouchableOpacity>
+
         {/* Early Warning Card */}
         <View style={styles.warningCard}>
           <View style={styles.warningHeader}>
@@ -154,6 +160,28 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 0.7)',
     fontSize: 10,
     fontWeight: '700',
+  },
+  reportBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginHorizontal: 16,
+    backgroundColor: '#C8102E',
+    borderRadius: 16,
+    paddingVertical: 14,
+    marginBottom: 16,
+    shadowColor: '#C8102E',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  reportBtnText: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '900',
+    letterSpacing: 0.5,
   },
   brandTitle: {
     fontSize: 22,
