@@ -19,11 +19,14 @@ import {
   Download
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import DashboardLayout from '@/components/DashboardLayout';
 
 export default function DashboardPage() {
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-    </div>
+    <DashboardLayout>
+      <div className="p-8">
+        <h1 className="text-2xl font-bold">Dashboard</h1>
+      </div>
+    </DashboardLayout>
   );
 }
