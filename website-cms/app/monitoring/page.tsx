@@ -369,7 +369,18 @@ export default function MonitoringPage() {
               </div>
             </div>
             
-            {/* Latest reports container */}
+            {/* Latest Disaster Reports Card */}
+            <div className="bg-[#F8FAFC] rounded-[32px] p-6 border border-slate-100/80 shadow-[0_4px_20px_rgba(0,0,0,0.005)] flex-1 flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase mb-4 px-1 block">LAPORAN TERBARU</span>
+                
+                <div className="space-y-4">
+                  {/* Reports list items go here */}
+                </div>
+              </div>
+              
+              {/* Solid action alert button goes here */}
+            </div>
           </div>
         </div>
       </div>
