@@ -61,6 +61,22 @@ export default function DashboardPage() {
         {/* Header */}
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {/* Card 1: TOTAL REPORTS */}
+          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.015)] flex flex-col justify-between min-h-[135px]">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] font-black text-slate-400 tracking-wider uppercase mb-1">TOTAL REPORTS</p>
+                <h3 className="text-3xl font-black text-slate-800 tracking-tight">2,450</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
+                <FileText size={20} />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center gap-1 text-[11px] text-emerald-600 font-bold">
+              <TrendingUp size={14} />
+              <span>+12% vs last month</span>
+            </div>
+          </div>
         </div>
         <header className="flex items-center justify-between mb-8">
           <div className="relative w-[360px]">
