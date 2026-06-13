@@ -236,7 +236,17 @@ export default function MonitoringPage() {
           
           {/* Right Column (1 Col): Right Side Panel */}
           <div className="flex flex-col gap-6">
-            {/* Sidebar content */}
+            
+            {/* Disaster Categories Card */}
+            <div className="bg-white rounded-[32px] p-6 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.01)] flex flex-col gap-4">
+              <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase mb-1 px-1">KATEGORI BENCANA</span>
+              
+              <div className="space-y-2">
+                {/* Checkbox item list will go here */}
+              </div>
+            </div>
+            
+            {/* Latest reports container */}
           </div>
         </div>
       </div>
