@@ -59,6 +59,9 @@ export default function DashboardPage() {
     <DashboardLayout>
       <div className="p-8 text-slate-800">
         {/* Header */}
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        </div>
         <header className="flex items-center justify-between mb-8">
           <div className="relative w-[360px]">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
