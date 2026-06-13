@@ -54,6 +54,16 @@ export default function MapScreen() {
         {/* Overlay Gradients */}
         <View style={styles.mapOverlay} />
         
+        {/* Map Zoom Controls */}
+        <View style={styles.zoomControls}>
+          <TouchableOpacity style={styles.controlBtn} activeOpacity={0.7}>
+            <Plus size={18} color={COLORS.textDark} strokeWidth={2.5} />
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.controlBtn, { borderTopWidth: 1, borderTopColor: '#f1f5f9' }]} activeOpacity={0.7}>
+            <Minus size={18} color={COLORS.textDark} strokeWidth={2.5} />
+          </TouchableOpacity>
+        </View>
+
         {/* Map Overlays */}
       </View>
     </View>
@@ -105,6 +115,28 @@ const styles = StyleSheet.create({
   mapOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(13, 148, 136, 0.15)', // soft green ocean tint
+  },
+  zoomControls: {
+    position: 'absolute',
+    top: 80,
+    right: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 3,
+    padding: 2,
+    zIndex: 20,
+  },
+  controlBtn: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   brandTitle: {
     fontSize: 22,
