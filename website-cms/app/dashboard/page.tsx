@@ -237,6 +237,11 @@ export default function DashboardPage() {
             </div>
             
             {/* Action Button Container */}
+            <div className="mt-6">
+              <button className="w-full py-3.5 bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200/50 rounded-2xl text-[10px] font-black tracking-widest uppercase transition-all duration-300 active:scale-[0.98]">
+                BUKA PANEL RELAWAN
+              </button>
+            </div>
           </div>
         </div>
               <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
