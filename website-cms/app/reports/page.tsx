@@ -308,9 +308,22 @@ export default function ReportsPage() {
                     </p>
                   </div>
                 </div>
+
+                {/* Daily Progress */}
+                <div className="space-y-2 pt-2">
+                  <div className="flex justify-between items-baseline text-[9px] font-black uppercase text-slate-400 tracking-wider">
+                    <span>STATISTIK HARIAN</span>
+                    <span className="text-white text-[10px]">Laporan diproses: 128</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-full bg-[#C8102E] rounded-full" style={{ width: '65%' }} />
+                  </div>
+                </div>
               </div>
             </div>
-            {/* Button action */}
+            <button className="w-full bg-slate-800 hover:bg-slate-700/80 text-white rounded-2xl py-3 text-[11px] font-black uppercase tracking-wider transition-colors">
+              LIHAT LOG AKTIVITAS
+            </button>
           </div>
         </div>
 
