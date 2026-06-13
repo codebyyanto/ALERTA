@@ -129,42 +129,50 @@ export default function MapScreen() {
         </View>
 
         {/* Gempa active marker overlay */}
-        <View style={[styles.markerWrapper, { top: '70%', left: '15%' }]} pointerEvents="box-none">
-          <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
-            <View style={[styles.markerIconBg, { backgroundColor: '#2563eb' }]}>
-              <ShieldAlert size={12} color="#ffffff" />
-            </View>
-          </TouchableOpacity>
-        </View>
+        {(activeCategory === 'ALL' || activeCategory === 'Gempa') && (
+          <View style={[styles.markerWrapper, { top: '70%', left: '15%' }]} pointerEvents="box-none">
+            <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
+              <View style={[styles.markerIconBg, { backgroundColor: '#2563eb' }]}>
+                <ShieldAlert size={12} color="#ffffff" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* Longsor active marker overlay */}
-        <View style={[styles.markerWrapper, { top: '48%', left: '60%' }]} pointerEvents="box-none">
-          <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
-            <View style={[styles.markerIconBg, { backgroundColor: '#64748b' }]}>
-              <AlertTriangle size={12} color="#ffffff" strokeWidth={2.5} />
-            </View>
-          </TouchableOpacity>
-        </View>
+        {(activeCategory === 'ALL' || activeCategory === 'Longsor') && (
+          <View style={[styles.markerWrapper, { top: '48%', left: '60%' }]} pointerEvents="box-none">
+            <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
+              <View style={[styles.markerIconBg, { backgroundColor: '#64748b' }]}>
+                <AlertTriangle size={12} color="#ffffff" strokeWidth={2.5} />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* Fire active marker overlay */}
-        <View style={[styles.markerWrapper, { top: '35%', left: '28%' }]} pointerEvents="box-none">
-          <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
-            <View style={[styles.markerRipple, { borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.25)' }]} />
-            <View style={[styles.markerIconBg, { backgroundColor: '#f59e0b' }]}>
-              <Flame size={12} color="#ffffff" />
-            </View>
-          </TouchableOpacity>
-        </View>
+        {(activeCategory === 'ALL' || activeCategory === 'Kebakaran') && (
+          <View style={[styles.markerWrapper, { top: '35%', left: '28%' }]} pointerEvents="box-none">
+            <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
+              <View style={[styles.markerRipple, { borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.25)' }]} />
+              <View style={[styles.markerIconBg, { backgroundColor: '#f59e0b' }]}>
+                <Flame size={12} color="#ffffff" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* Flood active marker overlay */}
-        <View style={[styles.markerWrapper, { top: '55%', left: '46%' }]} pointerEvents="box-none">
-          <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
-            <View style={styles.markerRipple} />
-            <View style={[styles.markerIconBg, { backgroundColor: '#C8102E' }]}>
-              <Waves size={12} color="#ffffff" />
-            </View>
-          </TouchableOpacity>
-        </View>
+        {(activeCategory === 'ALL' || activeCategory === 'Banjir') && (
+          <View style={[styles.markerWrapper, { top: '55%', left: '46%' }]} pointerEvents="box-none">
+            <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
+              <View style={styles.markerRipple} />
+              <View style={[styles.markerIconBg, { backgroundColor: '#C8102E' }]}>
+                <Waves size={12} color="#ffffff" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* Map Overlays */}
       </View>
