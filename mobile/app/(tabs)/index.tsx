@@ -32,6 +32,17 @@ export default function HomeScreen() {
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {/* Regional Preparedness Status */}
+        <View style={styles.statusCard}>
+          <View style={styles.statusTextWrapper}>
+            <Text style={styles.statusLabel}>STATUS WILAYAH</Text>
+            <Text style={styles.statusValue}>Waspada Moderat</Text>
+          </View>
+          <View style={styles.statusIconBg}>
+            <Activity size={20} color="#0284c7" strokeWidth={2.5} />
+          </View>
+        </View>
+
         {/* Quick Report Button */}
         <TouchableOpacity 
           style={styles.reportBtn} 
@@ -186,6 +197,41 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '900',
     letterSpacing: 0.5,
+  },
+  statusCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: 16,
+    backgroundColor: '#f0f9ff',
+    borderRadius: 20,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#e0f2fe',
+    marginBottom: 16,
+  },
+  statusTextWrapper: {
+    flex: 1,
+  },
+  statusLabel: {
+    fontSize: 9,
+    fontWeight: '900',
+    color: '#0369a1',
+    letterSpacing: 0.5,
+    marginBottom: 2,
+  },
+  statusValue: {
+    fontSize: 16,
+    fontWeight: '900',
+    color: '#0c4a6e',
+  },
+  statusIconBg: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: '#e0f2fe',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   brandTitle: {
     fontSize: 22,
