@@ -230,6 +230,38 @@ export default function ReportScreen() {
         <TouchableOpacity 
           style={styles.submitBtn} 
           activeOpacity={0.8}
+          onPress={async () => {
+            if (!category || !locationAddress || !description) {
+              Alert.alert('Formulir Tidak Lengkap', 'Silakan lengkapi semua data laporan sebelum mengirim.');
+              return;
+            }
+            setSubmitting(true);
+            try {
+              const res = await fetch('http://localhost:3000/reports', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  reporterName: 'Masyarakat Lampung',
+                  category: category,
+                  location: locationAddress,
+                  time: 'Hari ini, ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                  status: 'MENUNGGU'
+                })
+              });
+              if (res.ok) {
+                // Handle Success
+              } else {
+                throw new Error('Gagal mengirim laporan');
+              }
+            } catch (err) {
+              console.error(err);
+              Alert.alert('Gagal Mengirim', 'Koneksi ke API terputus. Silakan coba sesaat lagi.');
+            } finally {
+              setSubmitting(false);
+            }
+          }}
         >
           {submitting ? (
             <ActivityIndicator size="small" color="#ffffff" />
