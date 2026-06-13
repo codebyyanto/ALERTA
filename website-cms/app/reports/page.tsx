@@ -19,11 +19,14 @@ import {
   MoreVertical
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import DashboardLayout from '@/components/DashboardLayout';
 
 export default function ReportsPage() {
   return (
-    <div className="p-6">
-      <h1>Manajemen Laporan</h1>
-    </div>
+    <DashboardLayout>
+      <div className="p-6 text-slate-800 flex flex-col gap-6 max-w-[1600px] mx-auto w-full">
+        <h1>Manajemen Laporan</h1>
+      </div>
+    </DashboardLayout>
   );
 }
