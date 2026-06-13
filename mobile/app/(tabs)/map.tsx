@@ -26,6 +26,7 @@ import {
 } from 'lucide-react-native';
 
 export default function MapScreen() {
+  const [activeCategory, setActiveCategory] = useState<string>('ALL');
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -76,7 +77,36 @@ export default function MapScreen() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.filterPillsScroll}
           >
-            {/* Filter Pills */}
+            {/* All */}
+            <TouchableOpacity 
+              style={[styles.pillBtn, activeCategory === 'ALL' && styles.pillBtnActive]} 
+              activeOpacity={0.7}
+              onPress={() => setActiveCategory('ALL')}
+            >
+              <Text style={[styles.pillText, activeCategory === 'ALL' && styles.pillTextActive]}>Semua</Text>
+            </TouchableOpacity>
+
+            {/* Banjir */}
+            <TouchableOpacity 
+              style={[styles.pillBtn, activeCategory === 'Banjir' && styles.pillBtnActive]} 
+              activeOpacity={0.7}
+              onPress={() => setActiveCategory('Banjir')}
+            >
+              <Waves size={14} color={activeCategory === 'Banjir' ? '#ffffff' : COLORS.textDark} />
+              <Text style={[styles.pillText, activeCategory === 'Banjir' && styles.pillTextActive]}>Banjir</Text>
+            </TouchableOpacity>
+
+            {/* Kebakaran */}
+            <TouchableOpacity 
+              style={[styles.pillBtn, activeCategory === 'Kebakaran' && styles.pillBtnActive]} 
+              activeOpacity={0.7}
+              onPress={() => setActiveCategory('Kebakaran')}
+            >
+              <Flame size={14} color={activeCategory === 'Kebakaran' ? '#ffffff' : COLORS.textDark} />
+              <Text style={[styles.pillText, activeCategory === 'Kebakaran' && styles.pillTextActive]}>Kebakaran</Text>
+            </TouchableOpacity>
+
+            {/* Remaining placeholders */}
           </ScrollView>
         </View>
 
@@ -183,6 +213,34 @@ const styles = StyleSheet.create({
   filterPillsScroll: {
     paddingHorizontal: 16,
     gap: 8,
+  },
+  pillBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.03,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  pillBtnActive: {
+    backgroundColor: '#C8102E',
+    borderColor: '#C8102E',
+  },
+  pillText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#1e293b',
+  },
+  pillTextActive: {
+    color: '#ffffff',
   },
   brandTitle: {
     fontSize: 22,
