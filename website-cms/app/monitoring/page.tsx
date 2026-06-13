@@ -66,6 +66,18 @@ export default function MonitoringPage() {
           </div>
         </header>
 
+        {/* Main Workspace Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 min-h-[580px] flex-1">
+          {/* Left Column (2 Cols): Map Container */}
+          <div className="lg:col-span-2 relative bg-slate-100 rounded-[32px] overflow-hidden border border-slate-200/50 shadow-[0_4px_20px_rgba(0,0,0,0.015)] flex flex-col justify-between">
+            {/* Map and overlaid features */}
+          </div>
+          
+          {/* Right Column (1 Col): Right Side Panel */}
+          <div className="flex flex-col gap-6">
+            {/* Sidebar content */}
+          </div>
+        </div>
       </div>
     </DashboardLayout>
   );
