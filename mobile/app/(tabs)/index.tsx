@@ -32,6 +32,15 @@ export default function HomeScreen() {
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {/* Tips Scroll Wrapper */}
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.tipsScroll}
+        >
+          {/* Tips Mitigation Cards */}
+        </ScrollView>
+
         {/* Tips Mitigasi Header */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Tips Mitigasi</Text>
@@ -343,6 +352,11 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#C8102E',
     letterSpacing: 0.5,
+  },
+  tipsScroll: {
+    paddingHorizontal: 16,
+    gap: 12,
+    marginBottom: 24,
   },
   brandTitle: {
     fontSize: 22,
