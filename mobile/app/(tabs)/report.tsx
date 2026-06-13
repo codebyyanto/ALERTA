@@ -91,6 +91,15 @@ export default function ReportScreen() {
               <PlusSquare size={24} color={COLORS.textLight} />
               <Text style={styles.categoryText}>Medis</Text>
             </TouchableOpacity>
+
+            {/* Longsor */}
+            <TouchableOpacity 
+              style={styles.categoryCard} 
+              activeOpacity={0.7}
+            >
+              <AlertTriangle size={24} color={COLORS.textLight} />
+              <Text style={styles.categoryText}>Longsor</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
