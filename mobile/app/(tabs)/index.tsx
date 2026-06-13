@@ -48,7 +48,19 @@ export default function HomeScreen() {
             <Text style={styles.summaryLocs}>Sukarame, Kedaton</Text>
           </View>
           
-          {/* Summary Cards */}
+          {/* Kebakaran Summary Card */}
+          <View style={styles.summaryCard}>
+            <View style={styles.summaryHeader}>
+              <View style={[styles.summaryIconBg, { backgroundColor: '#ffedd5' }]}>
+                <Flame size={16} color="#f97316" />
+              </View>
+              <View style={[styles.badgeActive, { backgroundColor: '#ffedd5' }]}>
+                <Text style={[styles.badgeText, { color: '#f97316' }]}>2 Aktif</Text>
+              </View>
+            </View>
+            <Text style={styles.summaryTitle}>Kebakaran</Text>
+            <Text style={styles.summaryLocs}>Kemiling, Rajabasa</Text>
+          </View>
         </View>
 
         {/* Regional Preparedness Status */}
