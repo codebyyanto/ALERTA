@@ -86,6 +86,13 @@ export default function MonitoringPage() {
               <button className="w-9 h-9 flex items-center justify-center font-black text-[16px] text-slate-600 hover:bg-slate-50 hover:text-slate-800 transition-colors rounded-xl font-mono">+</button>
               <button className="w-9 h-9 flex items-center justify-center font-black text-[16px] text-slate-600 hover:bg-slate-50 hover:text-slate-800 border-t border-slate-100 transition-colors rounded-xl font-mono">-</button>
             </div>
+
+            {/* GPS Locate Control */}
+            <div className="absolute top-32 left-6 z-20 shadow-[0_4px_12px_rgba(0,0,0,0.06)] rounded-2xl overflow-hidden border border-slate-100 bg-white p-1">
+              <button className="w-9 h-9 flex items-center justify-center text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition-colors rounded-xl">
+                <Compass size={18} />
+              </button>
+            </div>
           </div>
           
           {/* Right Column (1 Col): Right Side Panel */}
