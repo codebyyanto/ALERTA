@@ -178,7 +178,12 @@ export default function DashboardPage() {
                             "w-full rounded-t-lg transition-all duration-500 relative min-h-[4px]",
                             isPeak ? "bg-[#C8102E] shadow-[0_4px_12px_rgba(200,16,46,0.2)]" : "bg-[#FCA5A5] hover:bg-[#F87171]"
                           )}
-                        />
+                        >
+                          {/* Floating Tooltip on Hover */}
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-800 text-white text-[9px] font-black py-1 px-2.5 rounded shadow-md opacity-0 group-hover/bar:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-25">
+                            {item.count} Laporan
+                          </div>
+                        </div>
                         <span className="text-[9px] font-black text-slate-400 tracking-wider mt-3.5 whitespace-nowrap">{item.date}</span>
                       </div>
                     );
