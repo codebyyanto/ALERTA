@@ -31,6 +31,7 @@ import {
 
 export default function ReportScreen() {
   const [category, setCategory] = useState<string>('Kebakaran');
+  const [photoUri, setPhotoUri] = useState<string | null>(null);
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -65,13 +66,22 @@ export default function ReportScreen() {
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionLabel}>UNGGAH BUKTI FOTO</Text>
           <View style={styles.photoRow}>
-            <TouchableOpacity 
-              style={styles.uploadDashedButton} 
-              activeOpacity={0.7}
-            >
-              <Camera size={24} color="#94a3b8" />
-              <Text style={styles.uploadText}>Ambil Foto</Text>
-            </TouchableOpacity>
+            {!photoUri ? (
+              <TouchableOpacity 
+                style={styles.uploadDashedButton} 
+                activeOpacity={0.7}
+              >
+                <Camera size={24} color="#94a3b8" />
+                <Text style={styles.uploadText}>Ambil Foto</Text>
+              </TouchableOpacity>
+            ) : (
+              <View style={styles.previewContainer}>
+                <Image source={{ uri: photoUri }} style={styles.previewImage} />
+                <TouchableOpacity style={styles.closeBtn} activeOpacity={0.7}>
+                  <X size={12} color="#ffffff" strokeWidth={3} />
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         </View>
 
@@ -321,6 +331,34 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '800',
     color: '#94a3b8',
+  },
+  previewContainer: {
+    width: 130,
+    height: 130,
+    borderRadius: 20,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  previewImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  closeBtn: {
+    position: 'absolute',
+    top: 6,
+    right: 6,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#ef4444',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   categoryCard: {
     width: '31%',
