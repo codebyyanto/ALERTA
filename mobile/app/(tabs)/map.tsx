@@ -46,7 +46,15 @@ export default function MapScreen() {
 
       {/* Map Container Wrapper */}
       <View style={styles.mapWrapper}>
-        {/* Backdrop Map will go here */}
+        {/* Lampung Map Backdrop */}
+        <Image 
+          source={{ uri: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=600' }} 
+          style={styles.mapBackdrop} 
+        />
+        {/* Overlay Gradients */}
+        <View style={styles.mapOverlay} />
+        
+        {/* Map Overlays */}
       </View>
     </View>
   );
@@ -87,6 +95,16 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
     backgroundColor: '#0d9488',
+  },
+  mapBackdrop: {
+    width: '100%',
+    height: '100%',
+    opacity: 0.35,
+    resizeMode: 'cover',
+  },
+  mapOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(13, 148, 136, 0.15)', // soft green ocean tint
   },
   brandTitle: {
     fontSize: 22,
