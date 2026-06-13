@@ -34,6 +34,7 @@ export default function ReportScreen() {
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [gpsLoading, setGpsLoading] = useState<boolean>(false);
   const [locationAddress, setLocationAddress] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const insets = useSafeAreaInsets();
   const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
 
@@ -67,7 +68,15 @@ export default function ReportScreen() {
         {/* Description Section */}
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionLabel}>DESKRIPSI KEJADIAN</Text>
-          {/* Textarea will go here */}
+          <TextInput 
+            style={styles.textareaInput}
+            value={description}
+            onChangeText={setDescription}
+            multiline
+            numberOfLines={4}
+            placeholder="Ceritakan detail kejadian (Waktu, perkiraan korban, atau kondisi akses jalan)..."
+            placeholderTextColor="#94a3b8"
+          />
         </View>
 
         {/* Location Section */}
@@ -497,6 +506,18 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1e293b',
     padding: 0,
+  },
+  textareaInput: {
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    borderWidth: 1.5,
+    borderColor: '#f1f5f9',
+    padding: 16,
+    height: 100,
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#1e293b',
+    textAlignVertical: 'top',
   },
   categoryCard: {
     width: '31%',
