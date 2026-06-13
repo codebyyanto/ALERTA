@@ -153,7 +153,13 @@ export default function ReportsPage() {
                     <td className="py-4 px-6 font-bold text-slate-900">{report.location}</td>
                     <td className="py-4 px-6 text-slate-500 font-medium">{report.time}</td>
                     <td className="py-4 px-6">
-                      <span>{report.status}</span>
+                      <span className={cn(
+                        "px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-wide w-fit block",
+                        report.status === 'TERVERIFIKASI' ? 'bg-emerald-50 text-emerald-600' :
+                        report.status === 'DITOLAK' ? 'bg-red-50 text-red-600' : 'bg-blue-50/50 text-slate-500 border border-slate-100'
+                      )}>
+                        {report.status}
+                      </span>
                     </td>
                     <td className="py-4 px-6">
                       <div className="flex items-center justify-center gap-2">
