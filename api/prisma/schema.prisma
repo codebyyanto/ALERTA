@@ -51,3 +51,14 @@ model SystemSetting {
   updatedAt          DateTime @updatedAt
 }
 
+model Report {
+  id           String   @id @default(uuid())
+  reporterName String
+  category     String
+  location     String
+  time         String
+  status       String   @default("MENUNGGU") // 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK'
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
