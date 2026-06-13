@@ -94,6 +94,23 @@ export default function DashboardPage() {
               <span>URGENT STATUS ACTIVE</span>
             </div>
           </div>
+
+          {/* Card 3: VERIFIED REPORTS */}
+          <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.015)] flex flex-col justify-between min-h-[135px]">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] font-black text-slate-400 tracking-wider uppercase mb-1">VERIFIED REPORTS</p>
+                <h3 className="text-3xl font-black text-slate-800 tracking-tight">1,800</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
+                <CheckCircle size={20} />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center gap-1 text-[11px] text-slate-500 font-bold">
+              <span className="text-[#0D9488] flex items-center gap-0.5">✓ 73%</span>
+              <span className="text-slate-400 font-medium">Conversion rate</span>
+            </div>
+          </div>
         </div>
         <header className="flex items-center justify-between mb-8">
           <div className="relative w-[360px]">
