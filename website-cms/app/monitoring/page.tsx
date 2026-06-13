@@ -242,7 +242,69 @@ export default function MonitoringPage() {
               <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase mb-1 px-1">KATEGORI BENCANA</span>
               
               <div className="space-y-2">
-                {/* Checkbox item list will go here */}
+                {/* Banjir (Flood) Category */}
+                <label className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 border border-slate-100/50 cursor-pointer transition-all">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-red-50 text-[#C8102E] flex items-center justify-center">
+                      <Waves size={16} />
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-bold text-slate-800 leading-none">Banjir</p>
+                      <span className="text-[9px] font-semibold text-slate-400 mt-1 block">24 Titik Aktif</span>
+                    </div>
+                  </div>
+                  {/* Custom checkbox */}
+                  <div className="relative flex items-center justify-center">
+                    <input 
+                      type="checkbox" 
+                      checked={activeCategories.includes('flood')}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setActiveCategories([...activeCategories, 'flood']);
+                        } else {
+                          setActiveCategories(activeCategories.filter(c => c !== 'flood'));
+                        }
+                      }}
+                      className="sr-only peer"
+                    />
+                    <div className="w-5 h-5 rounded-lg border border-slate-200 peer-checked:bg-[#C8102E] peer-checked:border-[#C8102E] flex items-center justify-center transition-all">
+                      <Check size={12} className="text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                </label>
+
+                {/* Kebakaran (Fire) Category */}
+                <label className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 border border-slate-100/50 cursor-pointer transition-all">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                      <Flame size={16} />
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-bold text-slate-800 leading-none">Kebakaran</p>
+                      <span className="text-[9px] font-semibold text-slate-400 mt-1 block">2 Titik Aktif</span>
+                    </div>
+                  </div>
+                  {/* Custom checkbox */}
+                  <div className="relative flex items-center justify-center">
+                    <input 
+                      type="checkbox" 
+                      checked={activeCategories.includes('fire')}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setActiveCategories([...activeCategories, 'fire']);
+                        } else {
+                          setActiveCategories(activeCategories.filter(c => c !== 'fire'));
+                        }
+                      }}
+                      className="sr-only peer"
+                    />
+                    <div className="w-5 h-5 rounded-lg border border-slate-200 peer-checked:bg-[#C8102E] peer-checked:border-[#C8102E] flex items-center justify-center transition-all">
+                      <Check size={12} className="text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                </label>
+
+                {/* Remaining Categories placeholder */}
               </div>
             </div>
             
