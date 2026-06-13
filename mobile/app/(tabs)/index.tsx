@@ -32,6 +32,11 @@ export default function HomeScreen() {
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {/* Active Disasters Grid Row */}
+        <View style={styles.activeRow}>
+          {/* Summary Cards */}
+        </View>
+
         {/* Regional Preparedness Status */}
         <View style={styles.statusCard}>
           <View style={styles.statusTextWrapper}>
@@ -232,6 +237,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#e0f2fe',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  activeRow: {
+    flexDirection: 'row',
+    marginHorizontal: 16,
+    gap: 12,
+    marginBottom: 20,
   },
   brandTitle: {
     fontSize: 22,
