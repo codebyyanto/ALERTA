@@ -30,8 +30,11 @@ import {
 } from 'lucide-react-native';
 
 export default function ReportScreen() {
+  const insets = useSafeAreaInsets();
+  const paddingTop = Platform.OS === 'android' ? (RNStatusBar.currentHeight ? RNStatusBar.currentHeight + 8 : 36) : (insets.top > 0 ? insets.top : 20);
+
   return (
-    <View style={styles.safeArea}>
+    <View style={[styles.safeArea, { paddingTop }]}>
       <Text>Lapor Kejadian</Text>
     </View>
   );
