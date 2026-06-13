@@ -43,6 +43,11 @@ export default function MapScreen() {
           <Bell size={22} color={COLORS.textDark} />
         </TouchableOpacity>
       </View>
+
+      {/* Map Container Wrapper */}
+      <View style={styles.mapWrapper}>
+        {/* Backdrop Map will go here */}
+      </View>
     </View>
   );
 }
@@ -76,6 +81,12 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 2,
     zIndex: 10,
+  },
+  mapWrapper: {
+    flex: 1,
+    position: 'relative',
+    overflow: 'hidden',
+    backgroundColor: '#0d9488',
   },
   brandTitle: {
     fontSize: 22,
