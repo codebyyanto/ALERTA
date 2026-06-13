@@ -302,7 +302,23 @@ export default function DashboardPage() {
               <h4 className="text-[11px] font-black text-[#C8102E] tracking-widest uppercase mb-6">QUICK RESPONSE</h4>
               
               <div className="space-y-3.5">
-                {/* Action Buttons */}
+                {/* Action 1: Buat Alert Baru */}
+                <button className="w-full bg-white hover:bg-red-50 text-slate-700 font-bold text-[12px] py-4 px-5 rounded-2xl border border-slate-100 flex items-center justify-between transition-all duration-300 group/btn shadow-[0_4px_10px_rgba(0,0,0,0.01)] active:scale-[0.98]">
+                  <span>Buat Alert Baru</span>
+                  <Megaphone size={16} className="text-red-500 group-hover/btn:scale-110 transition-transform" />
+                </button>
+                
+                {/* Action 2: Broadcast SMS/WA */}
+                <button className="w-full bg-white hover:bg-red-50 text-slate-700 font-bold text-[12px] py-4 px-5 rounded-2xl border border-slate-100 flex items-center justify-between transition-all duration-300 group/btn shadow-[0_4px_10px_rgba(0,0,0,0.01)] active:scale-[0.98]">
+                  <span>Broadcast SMS/WA</span>
+                  <Send size={16} className="text-red-500 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                </button>
+                
+                {/* Action 3: Ekspor Data 24 Jam */}
+                <button className="w-full bg-white hover:bg-red-50 text-slate-700 font-bold text-[12px] py-4 px-5 rounded-2xl border border-slate-100 flex items-center justify-between transition-all duration-300 group/btn shadow-[0_4px_10px_rgba(0,0,0,0.01)] active:scale-[0.98]">
+                  <span>Ekspor Data 24 Jam</span>
+                  <Download size={16} className="text-red-500 group-hover/btn:translate-y-0.5 transition-transform" />
+                </button>
               </div>
             </div>
           </div>
