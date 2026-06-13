@@ -38,6 +38,18 @@ export default function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.tipsScroll}
         >
+          {/* Tip Card 1 */}
+          <TouchableOpacity style={styles.tipCard} activeOpacity={0.9}>
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=400' }} 
+              style={styles.tipCardImg} 
+            />
+            <View style={styles.tipCardBody}>
+              <Text style={styles.tipCardTitle} numberOfLines={2}>Persiapan Tas Siaga Bencana (TSB)</Text>
+              <Text style={styles.tipCardDesc} numberOfLines={2}>Barang penting yang wajib ada di dalam tas siaga.</Text>
+            </View>
+          </TouchableOpacity>
+          
           {/* Tips Mitigation Cards */}
         </ScrollView>
 
@@ -357,6 +369,40 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     gap: 12,
     marginBottom: 24,
+  },
+  tipCard: {
+    width: 220,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.02,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  tipCardImg: {
+    width: '100%',
+    height: 110,
+    resizeMode: 'cover',
+  },
+  tipCardBody: {
+    padding: 12,
+  },
+  tipCardTitle: {
+    fontSize: 12,
+    fontWeight: '900',
+    color: '#1e293b',
+    marginBottom: 4,
+    lineHeight: 16,
+  },
+  tipCardDesc: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#64748b',
+    lineHeight: 14,
   },
   brandTitle: {
     fontSize: 22,
