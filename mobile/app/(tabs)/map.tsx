@@ -128,6 +128,24 @@ export default function MapScreen() {
           </ScrollView>
         </View>
 
+        {/* Gempa active marker overlay */}
+        <View style={[styles.markerWrapper, { top: '70%', left: '15%' }]} pointerEvents="box-none">
+          <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
+            <View style={[styles.markerIconBg, { backgroundColor: '#2563eb' }]}>
+              <ShieldAlert size={12} color="#ffffff" />
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        {/* Longsor active marker overlay */}
+        <View style={[styles.markerWrapper, { top: '48%', left: '60%' }]} pointerEvents="box-none">
+          <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
+            <View style={[styles.markerIconBg, { backgroundColor: '#64748b' }]}>
+              <AlertTriangle size={12} color="#ffffff" strokeWidth={2.5} />
+            </View>
+          </TouchableOpacity>
+        </View>
+
         {/* Fire active marker overlay */}
         <View style={[styles.markerWrapper, { top: '35%', left: '28%' }]} pointerEvents="box-none">
           <TouchableOpacity style={styles.markerCircle} activeOpacity={0.8}>
