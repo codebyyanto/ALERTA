@@ -309,6 +309,17 @@ export default function ReportsPage() {
             </button>
           </div>
         </div>
+        {/* Bottom Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          {/* Heatmap Card (2 Cols) */}
+          <div className="lg:col-span-2 bg-slate-950 text-white rounded-[32px] p-6 border border-slate-900 shadow-[0_4px_25px_rgba(0,0,0,0.15)] flex flex-col justify-between h-[360px] relative overflow-hidden">
+            <div className="z-10">
+              <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase">SEBARAN HOTSPOT LAPORAN</span>
+              <p className="text-[11px] font-bold text-slate-500 tracking-wide uppercase mt-0.5">LIVE UPDATES - JAKARTA AREA</p>
+            </div>
+            {/* Visual animation goes here */}
+          </div>
+        </div>
       </div>
     </DashboardLayout>
   );
