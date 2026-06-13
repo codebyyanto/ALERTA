@@ -20,8 +20,76 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import DashboardLayout from '@/components/DashboardLayout';
+import api from '@/lib/api';
+
+interface Report {
+  id: string;
+  reporterName: string;
+  category: string;
+  location: string;
+  time: string;
+  status: 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK';
+}
+
+interface Stats {
+  total: number;
+  totalTrend: string;
+  waiting: number;
+  verified: number;
+  verifiedRate: string;
+  avgResponse: string;
+  avgResponseTrend: string;
+}
 
 export default function ReportsPage() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentTab, setCurrentTab] = useState<'ALL' | 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK'>('ALL');
+  const [reports, setReports] = useState<Report[]>([]);
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(3);
+
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      setError(false);
+      try {
+        const [reportsRes, statsRes] = await Promise.all([
+          api.get(`/reports?page=${currentPage}&status=${currentTab}&search=${searchQuery}`),
+          api.get('/reports/stats')
+        ]);
+        
+        if (reportsRes.data) {
+          setReports(reportsRes.data.data || []);
+          setTotalPages(reportsRes.data.totalPages || 1);
+        }
+        if (statsRes.data) {
+          setStats(statsRes.data);
+        }
+      } catch (err) {
+        console.error('Gagal mengambil data dari API, menyetel state kosong.', err);
+        setError(true);
+        setReports([]);
+        setStats(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, [currentPage, currentTab, searchQuery]);
+
+  async function handleVerify(id: string, newStatus: 'TERVERIFIKASI' | 'DITOLAK') {
+    try {
+      await api.put(`/reports/${id}/status`, { status: newStatus });
+      // Update local state dynamically
+      setReports(prev => prev.map(r => r.id === id ? { ...r, status: newStatus } : r));
+    } catch (err) {
+      console.error('Gagal memperbarui status laporan', err);
+    }
+  }
+
   const getCategoryIcon = (category: string) => {
     switch (category.toLowerCase()) {
       case 'banjir':
@@ -47,14 +115,6 @@ export default function ReportsPage() {
         return 'bg-slate-50 text-slate-600 border border-slate-100';
     }
   };
-  const [searchQuery, setSearchQuery] = useState('');
-  const [currentTab, setCurrentTab] = useState<'ALL' | 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK'>('ALL');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [stats, setStats] = useState<any>(null);
-  const [reports, setReports] = useState<any[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
 
   return (
     <DashboardLayout>
@@ -87,6 +147,101 @@ export default function ReportsPage() {
             </button>
           </div>
         </header>
+
+        {/* Title and Top Actions */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-black tracking-tight text-slate-900">Manajemen Laporan</h1>
+            <p className="text-[13px] text-slate-500 font-medium mt-1">Pantau dan verifikasi setiap laporan kejadian dari masyarakat secara real-time.</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button className="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 rounded-2xl px-4 py-2.5 text-[13px] font-bold shadow-sm hover:bg-slate-50 hover:text-slate-800 transition-colors">
+              <Filter size={16} />
+              Filter Lanjutan
+            </button>
+            <button className="flex items-center gap-2 bg-[#C8102E] text-white rounded-2xl px-4 py-2.5 text-[13px] font-bold shadow-sm hover:bg-[#A30D24] transition-colors">
+              <Download size={16} />
+              Ekspor Laporan
+            </button>
+          </div>
+        </div>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Total Laporan */}
+          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">TOTAL LAPORAN</span>
+            <div className="flex items-baseline gap-2 mt-1">
+              <span className="text-[26px] font-black text-slate-900 leading-none">
+                {loading ? '-' : (stats?.total ? stats.total.toLocaleString() : '0')}
+              </span>
+              {!loading && stats && (
+                <span className="text-[10px] font-black text-emerald-500">{stats.totalTrend}</span>
+              )}
+            </div>
+          </div>
+
+          {/* Menunggu Verifikasi */}
+          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">MENUNGGU VERIFIKASI</span>
+            <div className="flex items-baseline gap-2 mt-1">
+              <span className="text-[26px] font-black text-[#C8102E] leading-none">
+                {loading ? '-' : (stats?.waiting ?? '0')}
+              </span>
+              {!loading && stats && stats.waiting > 0 && (
+                <span className="bg-red-50 text-[#C8102E] text-[8px] font-black px-1.5 py-0.5 rounded tracking-wide uppercase">Urgent</span>
+              )}
+            </div>
+          </div>
+
+          {/* Terverifikasi */}
+          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">TERVERIFIKASI</span>
+            <div className="flex items-baseline gap-2 mt-1">
+              <span className="text-[26px] font-black text-slate-900 leading-none">
+                {loading ? '-' : (stats?.verified ? stats.verified.toLocaleString() : '0')}
+              </span>
+              {!loading && stats && (
+                <span className="text-[10px] font-black text-blue-500">{stats.verifiedRate}</span>
+              )}
+            </div>
+          </div>
+
+          {/* Rata-Rata Respon */}
+          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">RATA-RATA RESPON</span>
+            <div className="flex items-baseline gap-2 mt-1">
+              <span className="text-[26px] font-black text-slate-900 leading-none">
+                {loading ? '-' : (stats?.avgResponse ?? '-')}
+              </span>
+              {!loading && stats && (
+                <span className="text-[10px] font-black text-emerald-500">{stats.avgResponseTrend}</span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Filtering Tabs */}
+        <div className="border-b border-slate-100 flex gap-6 text-[13px] font-black">
+          {(['ALL', 'MENUNGGU', 'TERVERIFIKASI', 'DITOLAK'] as const).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => {
+                setCurrentTab(tab);
+                setCurrentPage(1);
+              }}
+              className={cn(
+                "pb-3.5 transition-all relative border-b-2 uppercase tracking-wider",
+                currentTab === tab 
+                  ? "border-[#C8102E] text-[#C8102E]" 
+                  : "border-transparent text-slate-400 hover:text-slate-600"
+              )}
+            >
+              {tab === 'ALL' ? 'Semua Laporan' : tab === 'MENUNGGU' ? 'Menunggu Verifikasi' : tab === 'TERVERIFIKASI' ? 'Terverifikasi' : 'Ditolak'}
+            </button>
+          ))}
+        </div>
+
         {/* Table & Pagination Wrapper */}
         <div className="bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-[0_4px_25px_rgba(0,0,0,0.005)]">
           <div className="overflow-x-auto">
@@ -103,7 +258,8 @@ export default function ReportsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-{loading && (
+                {loading ? (
+                  // Skeleton loaders
                   Array.from({ length: 3 }).map((_, i) => (
                     <tr key={i} className="animate-pulse">
                       <td className="py-4 px-6">
@@ -132,48 +288,7 @@ export default function ReportsPage() {
                       </td>
                     </tr>
                   ))
-                )}
-                {!loading && reports.length > 0 && reports.map((report) => (
-                  <tr key={report.id} className="text-[12px] font-semibold text-slate-700 hover:bg-slate-50/30 transition-colors">
-                    <td className="py-4 px-6 font-black text-slate-800">#REP-{report.id.substring(0, 4)}</td>
-                    <td className="py-4 px-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-[#EBF5FF] text-blue-600 font-bold flex items-center justify-center text-[10px]">
-                          {report.reporterName.substring(0, 2).toUpperCase()}
-                        </div>
-                        <span className="font-bold text-slate-900">{report.reporterName}</span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-6">
-                      <span className={cn(
-                        "px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-wide flex items-center gap-1.5 w-fit",
-                        getCategoryClass(report.category)
-                      )}>
-                        {getCategoryIcon(report.category)}
-                        {report.category}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6 font-bold text-slate-900">{report.location}</td>
-                    <td className="py-4 px-6 text-slate-500 font-medium">{report.time}</td>
-                    <td className="py-4 px-6">
-                      <span className={cn(
-                        "px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-wide w-fit block",
-                        report.status === 'TERVERIFIKASI' ? 'bg-emerald-50 text-emerald-600' :
-                        report.status === 'DITOLAK' ? 'bg-red-50 text-red-600' : 'bg-blue-50/50 text-slate-500 border border-slate-100'
-                      )}>
-                        {report.status}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6">
-                      <div className="flex items-center justify-center gap-2">
-                        <button className="text-slate-400 hover:text-slate-600 transition-colors">
-                          <MoreVertical size={14} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-                {!loading && (error || reports.length === 0) && (
+                ) : error || reports.length === 0 ? (
                   <tr>
                     <td colSpan={7} className="py-12 text-center">
                       <div className="flex flex-col items-center justify-center gap-2">
@@ -184,6 +299,65 @@ export default function ReportsPage() {
                       </div>
                     </td>
                   </tr>
+                ) : (
+                  reports.map((report) => (
+                    <tr key={report.id} className="text-[12px] font-semibold text-slate-700 hover:bg-slate-50/30 transition-colors">
+                      <td className="py-4 px-6 font-black text-slate-800">#REP-{report.id.substring(0, 4)}</td>
+                      <td className="py-4 px-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-[#EBF5FF] text-blue-600 font-bold flex items-center justify-center text-[10px]">
+                            {report.reporterName.substring(0, 2).toUpperCase()}
+                          </div>
+                          <span className="font-bold text-slate-900">{report.reporterName}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-6">
+                        <span className={cn(
+                          "px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-wide flex items-center gap-1.5 w-fit",
+                          getCategoryClass(report.category)
+                        )}>
+                          {getCategoryIcon(report.category)}
+                          {report.category}
+                        </span>
+                      </td>
+                      <td className="py-4 px-6 font-bold text-slate-900">{report.location}</td>
+                      <td className="py-4 px-6 text-slate-500 font-medium">{report.time}</td>
+                      <td className="py-4 px-6">
+                        <span className={cn(
+                          "px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-wide w-fit block",
+                          report.status === 'TERVERIFIKASI' ? 'bg-emerald-50 text-emerald-600' :
+                          report.status === 'DITOLAK' ? 'bg-red-50 text-red-600' : 'bg-blue-50/50 text-slate-500 border border-slate-100'
+                        )}>
+                          {report.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-6">
+                        <div className="flex items-center justify-center gap-2">
+                          {report.status === 'MENUNGGU' && (
+                            <>
+                              <button 
+                                onClick={() => handleVerify(report.id, 'TERVERIFIKASI')}
+                                className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 flex items-center justify-center transition-colors shadow-sm"
+                                title="Verifikasi"
+                              >
+                                <Check size={14} />
+                              </button>
+                              <button 
+                                onClick={() => handleVerify(report.id, 'DITOLAK')}
+                                className="w-7 h-7 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 flex items-center justify-center transition-colors shadow-sm"
+                                title="Tolak"
+                              >
+                                <X size={14} />
+                              </button>
+                            </>
+                          )}
+                          <button className="text-slate-400 hover:text-slate-600 transition-colors">
+                            <MoreVertical size={14} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
                 )}
               </tbody>
             </table>
@@ -227,67 +401,29 @@ export default function ReportsPage() {
           )}
         </div>
 
-        {/* Filtering Tabs */}
-        <div className="border-b border-slate-100 flex gap-6 text-[13px] font-black">
-          {(['ALL', 'MENUNGGU', 'TERVERIFIKASI', 'DITOLAK'] as const).map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setCurrentTab(tab)}
-              className={cn(
-                "pb-3.5 transition-all relative border-b-2 uppercase tracking-wider",
-                currentTab === tab 
-                  ? "border-[#C8102E] text-[#C8102E]" 
-                  : "border-transparent text-slate-400 hover:text-slate-600"
-              )}
-            >
-              {tab === 'ALL' ? 'Semua Laporan' : tab === 'MENUNGGU' ? 'Menunggu Verifikasi' : tab === 'TERVERIFIKASI' ? 'Terverifikasi' : 'Ditolak'}
-            </button>
-          ))}
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Total Laporan */}
-          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
-            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">TOTAL LAPORAN</span>
-            <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-[26px] font-black text-slate-900 leading-none">
-                1.284
-              </span>
-              <span className="text-[10px] font-black text-emerald-500">+12%</span>
+        {/* Bottom Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          {/* Heatmap Card (2 Cols) */}
+          <div className="lg:col-span-2 bg-slate-950 text-white rounded-[32px] p-6 border border-slate-900 shadow-[0_4px_25px_rgba(0,0,0,0.15)] flex flex-col justify-between h-[360px] relative overflow-hidden">
+            <div className="z-10">
+              <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase">SEBARAN HOTSPOT LAPORAN</span>
+              <p className="text-[11px] font-bold text-slate-500 tracking-wide uppercase mt-0.5">LIVE UPDATES - JAKARTA AREA</p>
             </div>
-          </div>
 
-          {/* Menunggu Verifikasi */}
-          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
-            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">MENUNGGU VERIFIKASI</span>
-            <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-[26px] font-black text-[#C8102E] leading-none">
-                42
-              </span>
-              <span className="bg-red-50 text-[#C8102E] text-[8px] font-black px-1.5 py-0.5 rounded tracking-wide uppercase">Urgent</span>
-            </div>
-          </div>
-
-          {/* Terverifikasi */}
-          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
-            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">TERVERIFIKASI</span>
-            <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-[26px] font-black text-slate-900 leading-none">
-                1.156
-              </span>
-              <span className="text-[10px] font-black text-blue-500">92%</span>
-            </div>
-          </div>
-
-          {/* Rata-Rata Respon */}
-          <div className="bg-white rounded-[24px] p-5 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
-            <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase block mb-1">RATA-RATA RESPON</span>
-            <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-[26px] font-black text-slate-900 leading-none">
-                14m
-              </span>
-              <span className="text-[10px] font-black text-emerald-500">-2m</span>
+            {/* Ripple Heatmap Graphics */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="relative flex items-center justify-center">
+                <span className="absolute text-[24px] font-black text-white tracking-wide mix-blend-overlay z-20">Laporan</span>
+                
+                {/* Outer Ripple */}
+                <div className="absolute w-[260px] h-[200px] rounded-full border border-yellow-500/20 bg-yellow-500/5 animate-pulse" />
+                {/* Mid Ripple */}
+                <div className="absolute w-[200px] h-[150px] rounded-full border border-orange-500/30 bg-orange-500/10 animate-pulse delay-75" />
+                {/* Inner Ripple */}
+                <div className="absolute w-[140px] h-[100px] rounded-full border border-red-500/40 bg-red-500/20 animate-pulse delay-150" />
+                {/* Core Hotspot */}
+                <div className="absolute w-4 h-4 rounded-full bg-[#C8102E] border-2 border-white shadow-lg z-10" />
+              </div>
             </div>
           </div>
 
@@ -321,52 +457,10 @@ export default function ReportsPage() {
                 </div>
               </div>
             </div>
+
             <button className="w-full bg-slate-800 hover:bg-slate-700/80 text-white rounded-2xl py-3 text-[11px] font-black uppercase tracking-wider transition-colors">
               LIHAT LOG AKTIVITAS
             </button>
-          </div>
-        </div>
-
-        {/* Title and Top Actions */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-black tracking-tight text-slate-900">Manajemen Laporan</h1>
-            <p className="text-[13px] text-slate-500 font-medium mt-1">Pantau dan verifikasi setiap laporan kejadian dari masyarakat secara real-time.</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 rounded-2xl px-4 py-2.5 text-[13px] font-bold shadow-sm hover:bg-slate-50 hover:text-slate-800 transition-colors">
-              <Filter size={16} />
-              Filter Lanjutan
-            </button>
-            <button className="flex items-center gap-2 bg-[#C8102E] text-white rounded-2xl px-4 py-2.5 text-[13px] font-bold shadow-sm hover:bg-[#A30D24] transition-colors">
-              <Download size={16} />
-              Ekspor Laporan
-            </button>
-          </div>
-        </div>
-        {/* Bottom Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-          {/* Heatmap Card (2 Cols) */}
-          <div className="lg:col-span-2 bg-slate-950 text-white rounded-[32px] p-6 border border-slate-900 shadow-[0_4px_25px_rgba(0,0,0,0.15)] flex flex-col justify-between h-[360px] relative overflow-hidden">
-            <div className="z-10">
-              <span className="text-[9px] font-black text-slate-400 tracking-widest uppercase">SEBARAN HOTSPOT LAPORAN</span>
-              <p className="text-[11px] font-bold text-slate-500 tracking-wide uppercase mt-0.5">LIVE UPDATES - JAKARTA AREA</p>
-            </div>
-            {/* Ripple Heatmap Graphics */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="relative flex items-center justify-center">
-                <span className="absolute text-[24px] font-black text-white tracking-wide mix-blend-overlay z-20">Laporan</span>
-                
-                {/* Outer Ripple */}
-                <div className="absolute w-[260px] h-[200px] rounded-full border border-yellow-500/20 bg-yellow-500/5 animate-pulse" />
-                {/* Mid Ripple */}
-                <div className="absolute w-[200px] h-[150px] rounded-full border border-orange-500/30 bg-orange-500/10 animate-pulse delay-75" />
-                {/* Inner Ripple */}
-                <div className="absolute w-[140px] h-[100px] rounded-full border border-red-500/40 bg-red-500/20 animate-pulse delay-150" />
-                {/* Core Hotspot */}
-                <div className="absolute w-4 h-4 rounded-full bg-[#C8102E] border-2 border-white shadow-lg z-10" />
-              </div>
-            </div>
           </div>
         </div>
       </div>
