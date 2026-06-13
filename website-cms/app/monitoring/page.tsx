@@ -375,7 +375,21 @@ export default function MonitoringPage() {
                 <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase mb-4 px-1 block">LAPORAN TERBARU</span>
                 
                 <div className="space-y-4">
-                  {/* Reports list items go here */}
+                  {mockReports.map((report) => (
+                    <div key={report.id} className="bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_10px_rgba(0,0,0,0.01)] relative overflow-hidden">
+                      {report.isNew && (
+                        <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#C8102E]" />
+                      )}
+                      <span className={cn(
+                        "text-[8px] font-black tracking-widest uppercase",
+                        report.isNew ? "text-[#C8102E]" : "text-slate-400"
+                      )}>
+                        {report.tag}
+                      </span>
+                      <h5 className="text-[12px] font-bold text-slate-800 leading-snug mt-1">{report.title}</h5>
+                      <p className="text-[11px] text-slate-400 leading-normal mt-1 font-medium">{report.content}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
               
