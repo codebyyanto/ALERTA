@@ -296,7 +296,18 @@ export default function ReportsPage() {
             <div>
               <h3 className="text-[14px] font-black tracking-wide uppercase mb-4 text-slate-100">Catatan Verifikasi</h3>
               <div className="space-y-4">
-                {/* Alert details */}
+                {/* System Alert Box */}
+                <div className="bg-slate-900/60 rounded-2xl p-4 border-l-4 border-red-500 flex gap-3 items-start">
+                  <div className="mt-0.5 text-red-500">
+                    <AlertTriangle size={16} />
+                  </div>
+                  <div>
+                    <span className="text-[8px] font-black text-slate-400 tracking-widest uppercase">PERINGATAN SISTEM</span>
+                    <p className="text-[11px] font-semibold text-slate-300 leading-normal mt-1">
+                      Terdapat 5 laporan serupa dalam radius 500m di wilayah Tebet. Kemungkinan satu kejadian besar.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
             {/* Button action */}
