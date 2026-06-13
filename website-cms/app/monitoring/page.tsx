@@ -30,6 +30,7 @@ const mockReports = [
   { id: 2, tag: '15 MENIT LALU', title: 'Update Evakuasi: Pesisir Barat', content: 'Proses evakuasi warga terdampak getaran gempa di pesisir selesai dilakukan...', isNew: false },
 ];
 
+/* ALERTA Disaster Response Monitoring Center Lampung Area */
 export default function MonitoringPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategories, setActiveCategories] = useState<string[]>(['flood', 'fire']);
@@ -75,10 +76,17 @@ export default function MonitoringPage() {
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             WARNING
           </div>
-          <div className="flex-1 overflow-hidden relative font-black text-[11px] tracking-wide uppercase">
-            <marquee className="w-full" scrollamount="4">
+          <div className="flex-1 overflow-hidden relative font-black text-[11px] tracking-wide uppercase whitespace-nowrap">
+            <div className="inline-block" style={{ animation: 'marquee-scroll 25s linear infinite' }}>
               PERINGATAN DINI: Waspada cuaca ekstrem curah hujan lebat disertai kilat dan angin kencang di wilayah Lampung Selatan, Pringsewu, Pesawaran, dan Bandar Lampung. — BPBD Provinsi Lampung bersiaga di titik rawan longsor dan banjir bandang.
-            </marquee>
+            </div>
+            
+            <style dangerouslySetInnerHTML={{ __html: `
+              @keyframes marquee-scroll {
+                0% { transform: translateX(100%); }
+                100% { transform: translateX(-100%); }
+              }
+            ` }} />
           </div>
         </div>
 
@@ -90,7 +98,7 @@ export default function MonitoringPage() {
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1017325.2343940176!2d104.75782745!3d-5.26788255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40dcc24e650ef3%3A0x1030bfbca7c8070!2sLampung!5e0!3m2!1sid!2sid!4v1718287000000!5m2!1sid!2sid" 
               className="w-full h-full border-none absolute inset-0 z-0 opacity-95 grayscale-[10%]" 
-              allowFullScreen="" 
+              allowFullScreen
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
             />
