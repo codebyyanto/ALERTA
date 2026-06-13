@@ -304,7 +304,67 @@ export default function MonitoringPage() {
                   </div>
                 </label>
 
-                {/* Remaining Categories placeholder */}
+                {/* Gempa Bumi (Earthquake) Category */}
+                <label className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 border border-slate-100/50 cursor-pointer transition-all">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                      <ShieldAlert size={16} />
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-bold text-slate-800 leading-none">Gempa Bumi</p>
+                      <span className="text-[9px] font-semibold text-slate-400 mt-1 block">0 Titik Aktif</span>
+                    </div>
+                  </div>
+                  {/* Custom checkbox */}
+                  <div className="relative flex items-center justify-center">
+                    <input 
+                      type="checkbox" 
+                      checked={activeCategories.includes('earthquake')}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setActiveCategories([...activeCategories, 'earthquake']);
+                        } else {
+                          setActiveCategories(activeCategories.filter(c => c !== 'earthquake'));
+                        }
+                      }}
+                      className="sr-only peer"
+                    />
+                    <div className="w-5 h-5 rounded-lg border border-slate-200 peer-checked:bg-[#C8102E] peer-checked:border-[#C8102E] flex items-center justify-center transition-all">
+                      <Check size={12} className="text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                </label>
+
+                {/* Angin Kencang (Wind) Category */}
+                <label className="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 border border-slate-100/50 cursor-pointer transition-all">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-slate-50 text-slate-600 flex items-center justify-center">
+                      <Wind size={16} />
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-bold text-slate-800 leading-none">Angin Kencang</p>
+                      <span className="text-[9px] font-semibold text-slate-400 mt-1 block">8 Titik Aktif</span>
+                    </div>
+                  </div>
+                  {/* Custom checkbox */}
+                  <div className="relative flex items-center justify-center">
+                    <input 
+                      type="checkbox" 
+                      checked={activeCategories.includes('wind')}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setActiveCategories([...activeCategories, 'wind']);
+                        } else {
+                          setActiveCategories(activeCategories.filter(c => c !== 'wind'));
+                        }
+                      }}
+                      className="sr-only peer"
+                    />
+                    <div className="w-5 h-5 rounded-lg border border-slate-200 peer-checked:bg-[#C8102E] peer-checked:border-[#C8102E] flex items-center justify-center transition-all">
+                      <Check size={12} className="text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                </label>
               </div>
             </div>
             
