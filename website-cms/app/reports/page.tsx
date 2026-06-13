@@ -51,7 +51,10 @@ export default function ReportsPage() {
   const [currentTab, setCurrentTab] = useState<'ALL' | 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK'>('ALL');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [stats, setStats] = useState<any>(null);
   const [reports, setReports] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   return (
     <DashboardLayout>
@@ -185,6 +188,43 @@ export default function ReportsPage() {
               </tbody>
             </table>
           </div>
+
+          {/* Pagination */}
+          {!loading && reports.length > 0 && (
+            <div className="px-6 py-4 flex items-center justify-between border-t border-slate-50 text-[11px] font-bold text-slate-500">
+              <span>Menampilkan {((currentPage - 1) * 10) + 1}-{Math.min(currentPage * 10, stats?.total || 0)} dari {(stats?.total || 0).toLocaleString()} laporan</span>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="w-7 h-7 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none transition-all"
+                >
+                  <ChevronLeft size={14} />
+                </button>
+                {Array.from({ length: totalPages }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentPage(idx + 1)}
+                    className={cn(
+                      "w-7 h-7 rounded-lg font-black transition-all",
+                      currentPage === idx + 1 
+                        ? "bg-[#C8102E] text-white" 
+                        : "border border-slate-200 text-slate-500 hover:bg-slate-50"
+                    )}
+                  >
+                    {idx + 1}
+                  </button>
+                ))}
+                <button 
+                  onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="w-7 h-7 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none transition-all"
+                >
+                  <ChevronRight size={14} />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Filtering Tabs */}
