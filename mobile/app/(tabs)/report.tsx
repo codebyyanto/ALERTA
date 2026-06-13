@@ -73,6 +73,15 @@ export default function ReportScreen() {
               <Flame size={24} color={COLORS.textLight} />
               <Text style={styles.categoryText}>Kebakaran</Text>
             </TouchableOpacity>
+
+            {/* Banjir */}
+            <TouchableOpacity 
+              style={styles.categoryCard} 
+              activeOpacity={0.7}
+            >
+              <Waves size={24} color={COLORS.textLight} />
+              <Text style={styles.categoryText}>Banjir</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
