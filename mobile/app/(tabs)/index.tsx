@@ -32,6 +32,11 @@ export default function HomeScreen() {
   return (
     <View style={[styles.safeArea, { paddingTop }]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {/* Early Warning Card */}
+        <View style={styles.warningCard}>
+          {/* Content inside warning card */}
+        </View>
+
         {/* Custom Header Bar */}
         <View style={styles.headerBar}>
           <TouchableOpacity style={styles.headerIconButton} activeOpacity={0.6}>
@@ -77,6 +82,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.04,
     shadowRadius: 3,
     elevation: 2,
+    marginBottom: 16,
+  },
+  warningCard: {
+    marginHorizontal: 16,
+    borderRadius: 24,
+    backgroundColor: '#C8102E',
+    padding: 20,
+    shadowColor: '#C8102E',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 6,
     marginBottom: 16,
   },
   brandTitle: {
