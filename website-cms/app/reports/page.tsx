@@ -24,6 +24,7 @@ import DashboardLayout from '@/components/DashboardLayout';
 export default function ReportsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentTab, setCurrentTab] = useState<'ALL' | 'MENUNGGU' | 'TERVERIFIKASI' | 'DITOLAK'>('ALL');
+  const [loading, setLoading] = useState(true);
 
   return (
     <DashboardLayout>
@@ -72,7 +73,36 @@ export default function ReportsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {/* Rows will go here */}
+{loading && (
+                  Array.from({ length: 3 }).map((_, i) => (
+                    <tr key={i} className="animate-pulse">
+                      <td className="py-4 px-6">
+                        <div className="h-4 bg-slate-100 rounded-lg w-16" />
+                      </td>
+                      <td className="py-4 px-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-slate-100" />
+                          <div className="h-4 bg-slate-100 rounded-lg w-24" />
+                        </div>
+                      </td>
+                      <td className="py-4 px-6">
+                        <div className="h-6 bg-slate-100 rounded-xl w-20" />
+                      </td>
+                      <td className="py-4 px-6">
+                        <div className="h-4 bg-slate-100 rounded-lg w-32" />
+                      </td>
+                      <td className="py-4 px-6">
+                        <div className="h-4 bg-slate-100 rounded-lg w-20" />
+                      </td>
+                      <td className="py-4 px-6">
+                        <div className="h-6 bg-slate-100 rounded-xl w-24" />
+                      </td>
+                      <td className="py-4 px-6">
+                        <div className="h-8 bg-slate-100 rounded-xl w-16 mx-auto" />
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
