@@ -33,7 +33,11 @@ export default function HomeScreen() {
     <View style={[styles.safeArea, { paddingTop }]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
         {/* Quick Report Button */}
-        <TouchableOpacity style={styles.reportBtn} activeOpacity={0.8}>
+        <TouchableOpacity 
+          style={styles.reportBtn} 
+          activeOpacity={0.8}
+          onPress={() => router.push('/(tabs)/report')}
+        >
           <Megaphone size={18} color="#ffffff" strokeWidth={2.5} />
           <Text style={styles.reportBtnText}>Lapor Kejadian Sekarang</Text>
         </TouchableOpacity>
