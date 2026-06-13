@@ -82,7 +82,20 @@ export default function ReportScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Map layout will go here */}
+          {/* Map Visual (Mock map of Lampung) */}
+          <View style={styles.mapContainer}>
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=600' }} 
+              style={styles.mapBackdrop} 
+            />
+            {/* Center Pin Indicator */}
+            <View style={styles.mapPinContainer}>
+              <View style={styles.pingRing} />
+              <MapPin size={24} color={COLORS.primary} strokeWidth={3} />
+            </View>
+          </View>
+          
+          {/* Address display card will go here */}
         </View>
 
         {/* Photo Upload Section */}
@@ -404,6 +417,38 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#C8102E',
     letterSpacing: 0.5,
+  },
+  mapContainer: {
+    height: 160,
+    borderRadius: 24,
+    overflow: 'hidden',
+    position: 'relative',
+    borderWidth: 1.5,
+    borderColor: '#e2e8f0',
+  },
+  mapBackdrop: {
+    width: '100%',
+    height: '100%',
+    opacity: 0.4,
+    backgroundColor: '#0d9488', // green overlay for map styling
+  },
+  mapPinContainer: {
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    marginLeft: -12,
+    marginTop: -20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pingRing: {
+    position: 'absolute',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'rgba(200, 16, 46, 0.2)',
+    borderWidth: 1,
+    borderColor: '#C8102E',
   },
   categoryCard: {
     width: '31%',
