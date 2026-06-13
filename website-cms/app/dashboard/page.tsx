@@ -77,6 +77,23 @@ export default function DashboardPage() {
               <span>+12% vs last month</span>
             </div>
           </div>
+
+          {/* Card 2: ACTIVE DISASTERS */}
+          <div className="bg-[#C8102E] rounded-3xl p-6 text-white shadow-[0_10px_25px_rgba(200,16,46,0.15)] flex flex-col justify-between min-h-[135px]">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] font-black text-white/75 tracking-wider uppercase mb-1">ACTIVE DISASTERS</p>
+                <h3 className="text-3xl font-black tracking-tight">12</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
+                <AlertTriangle size={20} />
+              </div>
+            </div>
+            <div className="mt-4 flex items-center gap-1.5 text-[9px] font-black tracking-wider uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+              <span>URGENT STATUS ACTIVE</span>
+            </div>
+          </div>
         </div>
         <header className="flex items-center justify-between mb-8">
           <div className="relative w-[360px]">
