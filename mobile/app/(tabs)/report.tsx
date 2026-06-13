@@ -70,6 +70,7 @@ export default function ReportScreen() {
               <TouchableOpacity 
                 style={styles.uploadDashedButton} 
                 activeOpacity={0.7}
+                onPress={() => setPhotoUri('https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?auto=format&fit=crop&q=80&w=400')}
               >
                 <Camera size={24} color="#94a3b8" />
                 <Text style={styles.uploadText}>Ambil Foto</Text>
@@ -77,7 +78,11 @@ export default function ReportScreen() {
             ) : (
               <View style={styles.previewContainer}>
                 <Image source={{ uri: photoUri }} style={styles.previewImage} />
-                <TouchableOpacity style={styles.closeBtn} activeOpacity={0.7}>
+                <TouchableOpacity 
+                  style={styles.closeBtn} 
+                  activeOpacity={0.7}
+                  onPress={() => setPhotoUri(null)}
+                >
                   <X size={12} color="#ffffff" strokeWidth={3} />
                 </TouchableOpacity>
               </View>
