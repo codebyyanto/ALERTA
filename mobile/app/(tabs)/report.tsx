@@ -65,7 +65,13 @@ export default function ReportScreen() {
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionLabel}>UNGGAH BUKTI FOTO</Text>
           <View style={styles.photoRow}>
-            {/* Upload form will go here */}
+            <TouchableOpacity 
+              style={styles.uploadDashedButton} 
+              activeOpacity={0.7}
+            >
+              <Camera size={24} color="#94a3b8" />
+              <Text style={styles.uploadText}>Ambil Foto</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -298,6 +304,23 @@ const styles = StyleSheet.create({
   photoRow: {
     flexDirection: 'row',
     gap: 16,
+  },
+  uploadDashedButton: {
+    width: 130,
+    height: 130,
+    borderRadius: 20,
+    borderWidth: 1.5,
+    borderStyle: 'dashed',
+    borderColor: '#cbd5e1',
+    backgroundColor: '#f8fafc',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  uploadText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#94a3b8',
   },
   categoryCard: {
     width: '31%',
