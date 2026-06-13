@@ -16,11 +16,14 @@ import {
   Check
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import DashboardLayout from '@/components/DashboardLayout';
 
 export default function MonitoringPage() {
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold">Disaster Monitoring</h1>
-    </div>
+    <DashboardLayout>
+      <div className="p-8">
+        <h1 className="text-2xl font-bold">Disaster Monitoring</h1>
+      </div>
+    </DashboardLayout>
   );
 }
