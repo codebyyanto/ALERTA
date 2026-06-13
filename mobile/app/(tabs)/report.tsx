@@ -109,6 +109,15 @@ export default function ReportScreen() {
               <Activity size={24} color={COLORS.textLight} />
               <Text style={styles.categoryText}>Gempa</Text>
             </TouchableOpacity>
+
+            {/* Lainnya */}
+            <TouchableOpacity 
+              style={styles.categoryCard} 
+              activeOpacity={0.7}
+            >
+              <MoreHorizontal size={24} color={COLORS.textLight} />
+              <Text style={styles.categoryText}>Lainnya</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
