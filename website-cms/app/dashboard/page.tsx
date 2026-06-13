@@ -242,6 +242,40 @@ export default function DashboardPage() {
                 BUKA PANEL RELAWAN
               </button>
             </div>
+
+        {/* Bottom Section: Laporan Terbaru & Quick Response */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left: Laporan Terbaru Table */}
+          <div className="lg:col-span-2 bg-white rounded-[32px] p-8 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h4 className="text-[16px] font-black text-slate-800 uppercase tracking-tight">Laporan Terbaru</h4>
+              </div>
+              <button className="text-[10px] font-black text-[#C8102E] hover:text-[#b00e28] tracking-widest uppercase transition-colors">
+                LIHAT SEMUA
+              </button>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[500px]">
+                <thead>
+                  <tr className="border-b border-slate-100 text-left">
+                    <th className="pb-4 text-[9px] font-black text-slate-400 tracking-wider uppercase">PELAPOR</th>
+                    <th className="pb-4 text-[9px] font-black text-slate-400 tracking-wider uppercase">JENIS KEJADIAN</th>
+                    <th className="pb-4 text-[9px] font-black text-slate-400 tracking-wider uppercase">LOKASI</th>
+                    <th className="pb-4 text-[9px] font-black text-slate-400 tracking-wider uppercase">WAKTU</th>
+                    <th className="pb-4 text-[9px] font-black text-slate-400 tracking-wider uppercase text-right">STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Table Rows */}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          {/* Right: Quick Response Place */}
+        </div>
           </div>
         </div>
               <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400">
