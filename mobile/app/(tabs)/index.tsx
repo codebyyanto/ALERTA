@@ -34,7 +34,20 @@ export default function HomeScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
         {/* Early Warning Card */}
         <View style={styles.warningCard}>
-          {/* Content inside warning card */}
+          <View style={styles.warningHeader}>
+            <AlertTriangle size={16} color="#ffffff" strokeWidth={2.5} />
+            <Text style={styles.warningTag}>PERINGATAN DINI</Text>
+          </View>
+          <Text style={styles.warningTitle}>Siaga Banjir Bandar Lampung</Text>
+          <Text style={styles.warningDesc}>
+            Level Siaga 2: Kenaikan debit air di aliran sungai Way Kuala. Waspada kiriman air dari daerah hulu.
+          </Text>
+          <View style={styles.warningFooter}>
+            <TouchableOpacity style={styles.warningBtn} activeOpacity={0.9}>
+              <Text style={styles.warningBtnText}>Lihat Detail</Text>
+            </TouchableOpacity>
+            <Text style={styles.warningTime}>Diperbarui: 5 Menit Lalu</Text>
+          </View>
         </View>
 
         {/* Custom Header Bar */}
@@ -95,6 +108,52 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
     elevation: 6,
     marginBottom: 16,
+  },
+  warningHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 8,
+  },
+  warningTag: {
+    color: '#ffffff',
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 1,
+  },
+  warningTitle: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontWeight: '900',
+    marginBottom: 8,
+  },
+  warningDesc: {
+    color: 'rgba(255, 255, 255, 0.85)',
+    fontSize: 12,
+    lineHeight: 18,
+    fontWeight: '600',
+    marginBottom: 16,
+  },
+  warningFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  warningBtn: {
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 12,
+  },
+  warningBtnText: {
+    color: '#C8102E',
+    fontSize: 12,
+    fontWeight: '900',
+  },
+  warningTime: {
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontSize: 10,
+    fontWeight: '700',
   },
   brandTitle: {
     fontSize: 22,
